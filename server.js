@@ -296,6 +296,69 @@ app.get('/your_courses', (req, res) => {
   });
 });
 
+// Route pour ajouter un cours
+app.post('/add-course', (req, res) => {
+  const { ID_cours, title, responsable, Target, course_key, Informations } = req.body;
+
+  
+  const sql = `
+    INSERT INTO cours (ID_cours, title, responsable, Target, \`key\`, Informations) 
+    VALUES (?, ?, ?, ?, ?, ?)
+  `;
+
+  db.query(sql, [ID_cours, title, responsable, Target, course_key, Informations], (err, result) => {
+    if (err) {
+      console.error('Erreur:', err);
+      res.status(500).send("<h3>Erreur ._. !!</h3>");
+    } else {
+      console.log('Course added successfully');
+      res.status(200).send("<h3>Course added successfully</h3>");
+    }
+  });
+});
+
+// Router pour supprimer un cours
+
+app.delete('/delete-course', (req, res)=> {
+
+const id_course = req.query.id_course;
+const sql = `delete from cours where ID_cours = ?`
+
+db.query(sql , [id_course], (err, result)=> {
+    
+  if(!err){
+    console.log('course deleted ');
+    res.status(200);
+   
+  }else{
+    console.log('Error ._. !!');
+    res.status(500).send(`<h3>course deleted succesfully</h3>`);
+  }
+
+});
+
+});
+
+// Router pour modifier les information d'un cours
+app.put('/modifier-cours', (req,res) =>{
+
+const id_cours = req.query.id_cours
+const {title, responsable, Target, course_key,Informations } = req.body;
+const sql = `UPDATE cours SET  title = ?, responsable = ?, Target = ?,\`key\`= ?, Informations=? WHERE ID_cours = ?`;
+
+db.query(sql , [title, responsable, Target,course_key,Informations,id_cours], (err, result) => {
+  if(err){
+    console.log('Error : ', err);
+    res.status(500).send(`<h3>Error please try again</h3>`);
+    return;
+  }else{
+    console.log('Informations modified succesfully');
+    res.status(200).send(`<h3>Informations modified succesfully</h3>`);
+  }
+});
+});
+
+
  // Démarrer le serveur
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
