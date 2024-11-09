@@ -253,6 +253,48 @@ app.get('/students', (req, res) => {
 });
 
 
+//Route pour enregistrer une iscription à un cour
+
+app.post('/add_enrollment', (req,res) =>{
+
+  const { student_id,course_id } = req.body;
+
+  db.query('INSERT INTO enrollments (student_id, course_id) VALUES (?,?)', [student_id,course_id], (err, result) => {
+    if(err){
+      console.log('Erreur', err);
+      res.status(500).send(`<h3>Erreur ._. !!</h3>`);
+      return;
+    }else{
+      console.log('enrollment added succesfully');
+      res.status(200).send(`<h3>enrollment added succesfully</h3>`);
+    }
+  });
+});
+
+
+// Route to retrieve all courses a student is enrolled in
+app.get('/your_courses', (req, res) => {
+  const num = req.query.num; 
+
+  const sql = `
+    SELECT * 
+    FROM cours
+    WHERE ID_cours IN (
+      SELECT course_id 
+      FROM enrollments 
+      WHERE student_id = ?
+    );
+  `;
+
+  db.query(sql, [num], (error, results) => {
+      if (error) {
+        res.status(500).send(error.message);
+      } else {
+          res.setHeader('Access-Control-Allow-Origin', '*');
+          res.json(results);
+      }
+  });
+});
 
  // Démarrer le serveur
 app.listen(PORT, () => {
