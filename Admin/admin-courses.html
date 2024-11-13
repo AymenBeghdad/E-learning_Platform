@@ -87,102 +87,58 @@
                         <td>Title</td>
                         <td>Responsable</td>
                         <td>Enrollments</td>
+                        <td></td>
+                        <td><button id="adding-btn">Add Student</td>
                         
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td class="students">
-                            <img src="/E-learning_Platform/images/books1.png" alt="">
-                            <div class="students-de">
-                                <h5>Algorithms and Data Structures</h5>
-                                <p>Programming</p>
-                            </div>
-                        </td>
-
-                        <td class="students-des">
-                            <h5>Djilali Nehal</h5>
-                        </td>
-
-                        <td class="active">
-                            <p>321</p>
-                        </td>
-                        
-                        <td class="edit"><a href="#">Edit</a></td>
-
-                        <td class="delete"><a href="#">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td class="students">
-                            <img src="/E-learning_Platform/images/books1.png" alt="">
-                            <div class="students-de">
-                                <h5>Data Analyst</h5>
-                                <p>Data science</p>
-                            </div>
-                        </td>
-
-                        <td class="students-des">
-                            <h5>Ferfera Soufiene</h5>
-                        </td>
-
-                        <td class="active">
-                            <p>53</p>
-                        </td>
-                        
-                        <td class="edit"><a href="#">Edit</a></td>
-
-                        <td class="delete"><a href="#">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td class="students">
-                            <img src="/E-learning_Platform/images/books1.png" alt="">
-                            <div class="students-de">
-                                <h5>AI Programming with Python</h5>
-                                <p>Artificial intelligence</p>
-                            </div>
-                        </td>
-
-                        <td class="students-des">
-                            <h5>Hayet Doud</h5>
-                        </td>
-
-                        <td class="active">
-                            <p>98</p>
-                        </td>
-                        
-                        <td class="edit"><a href="#">Edit</a></td>
-
-                        <td class="delete"><a href="#">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td class="students">
-                            <img src="/E-learning_Platform/images/books1.png" alt="">
-                            <div class="students-de">
-                                <h5>Front End Web Developer</h5>
-                                <p>Web Devlopment</p>
-                            </div>
-                        </td>
-
-                        <td class="students-des">
-                            <h5>Hayet Doud</h5>
-                        </td>
-
-                        <td class="active">
-                            <p>109</p>
-                        </td>
-                        
-                        <td class="edit"><a href="#">Edit</a></td>
-
-                        <td class="delete"><a href="#">Delete</a></td>
-                    </tr>
-
+                <tbody id="courses-div">
+                    
                 </tbody>
             </table>
         </div>
 
     </section>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const courses_container = document.getElementById("courses-div");
+            let request = new XMLHttpRequest();
+            request.open("GET", `http://127.0.0.1:3000/cours`);
+            request.responseType = "json"
+            request.send();
+            request.onreadystatechange = () => {
+                let results = request.response;
+                results.forEach(result => {
+                    courses_container.innerHTML += `
+                        <tr>
+                        <td class="students">
+                            <img src="/E-learning_Platform/images/user.png" alt="">
+                            <div class="students-de">
+                                <h5>${result.title}</h5>
+                                <p>${result.Target}</p>
+                            </div>
+                        </td>
+
+                        <td class="students-des">
+                            <h5>${result.responsable}</h5>
+                        </td>
+
+                        <td class="activee">
+                            <p>${result.key}</p>
+                        </td>
+                        
+                        <td class="edit"><a href="#">Edit</a></td>
+
+                        <td class="delete"><a href="#">Delete</a></td>
+                    </tr>
+                    `
+                });
+            }
+        })
+
+    </script>
+
 </body>
 </html>

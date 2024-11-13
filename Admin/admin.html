@@ -84,108 +84,92 @@
             <table width="100%">
                 <thead>
                     <tr>
-                        <td>Name</td>
-                        <td>Title</td>
+                        <td>Full Name</td>
+                        <td>Field</td>
                         <td>Status</td>
+                        <td></td>
+                        <td><button id="adding-btn">Add Student</td>
+                        
                         
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td class="students">
-                            <img src="/E-learning_Platform/images/user.png" alt="">
-                            <div class="students-de">
-                                <h5>Aymen Beghdad</h5>
-                                <p>aymenbeghdad10@gmail.com</p>
-                            </div>
-                        </td>
-
-                        <td class="students-des">
-                            <h5>Security Student</h5>
-                            <p>Third Year</p>
-                        </td>
-
-                        <td class="active">
-                            <p>active</p>
-                        </td>
-                        
-                        <td class="edit"><a href="#">Edit</a></td>
-
-                        <td class="delete"><a href="#">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td class="students">
-                            <img src="/E-learning_Platform/images/user.png" alt="">
-                            <div class="students-de">
-                                <h5>Max Verstappen</h5>
-                                <p>maxi10@hotmail.com</p>
-                            </div>
-                        </td>
-
-                        <td class="students-des">
-                            <h5>Software Engineering Student</h5>
-                            <p>Last Year</p>
-                        </td>
-
-                        <td class="active">
-                            <p>active</p>
-                        </td>
-                        
-                        <td class="edit"><a href="#">Edit</a></td>
-
-                        <td class="delete"><a href="#">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td class="students">
-                            <img src="/E-learning_Platform/images/user.png" alt="">
-                            <div class="students-de">
-                                <h5>iShowSpeed</h5>
-                                <p>cristianoronaldos@gmail.com</p>
-                            </div>
-                        </td>
-
-                        <td class="students-des">
-                            <h5>Data Science Student</h5>
-                            <p>Third Year</p>
-                        </td>
-
-                        <td class="active">
-                            <p>active</p>
-                        </td>
-                        
-                        <td class="edit"><a href="#">Edit</a></td>
-
-                        <td class="delete"><a href="#">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td class="students">
-                            <img src="/E-learning_Platform/images/user.png" alt="">
-                            <div class="students-de">
-                                <h5>Hadjer Brahimi</h5>
-                                <p>hadjerbr32@gmail.com</p>
-                            </div>
-                        </td>
-
-                        <td class="students-des">
-                            <h5>Security Student</h5>
-                            <p>Third Year</p>
-                        </td>
-
-                        <td class="active">
-                            <p>active</p>
-                        </td>
-                        
-                        <td class="edit"><a href="#">Edit</a></td>
-
-                        <td class="delete"><a href="#">Delete</a></td>
-                    </tr>
+                <tbody id="students-div">
+                    
                 </tbody>
             </table>
         </div>
-
+    
     </section>
+
+    <!-- popup for Add/Edite successfully-->
+
+    <div id="popupid" class="popup center">
+        <div class="icon">
+            <i class="fa fa-check"></i>
+        </div>
+        <div class="title">
+            Success!!
+        </div>
+        <div class="description">
+            Your application has been successfully submitted
+        </div>
+        <div class="dismiss-btn">
+            <button id="dismiss-popup-btn">Dismiss</button>
+        </div>
+    </div>
+    
+    
+
+    <script>
+
+        const popup = document.getElementById("popupid");
+        const closePop = document.getElementById("dismiss-popup-btn");
+        
+        closePop.onclick = () => {
+            popup.style.display = "none";
+        };
+
+        // Students Response section:
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const student_container = document.getElementById("students-div");
+            let request = new XMLHttpRequest();
+            request.open("GET", `http://127.0.0.1:3000/students`);
+            request.responseType = "json"
+            request.send();
+            request.onreadystatechange = () => {
+                let results = request.response;
+                results.forEach(result => {
+                    student_container.innerHTML += `
+                        <tr>
+                        <td class="students">
+                            <img src="/E-learning_Platform/images/user.png" alt="">
+                            <div class="students-de">
+                                <h5>${result.lastname} ${result.firstname}</h5>
+                                <p>${result.student_email}</p>
+                            </div>
+                        </td>
+
+                        <td class="students-des">
+                            <h5>${result.num}</h5>
+                            <p>${result.level}</p>
+                        </td>
+
+                        <td class="activee">
+                            <p>active</p>
+                        </td>
+                        
+                        <td class="edit"><a href="#">Edit</a></td>
+
+                        <td class="delete"><a href="#">Delete</a></td>
+                    </tr>
+                    `
+                });
+            }
+        })
+
+    </script>
+
 </body>
+
 </html>

@@ -88,79 +88,86 @@
                         <td>Field</td>
                         <td>Grade</td>
                         <td></td>
+                        <td><button id="adding-btn">Add Student</td>
+                        
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td class="students">
-                            <img src="/E-learning_Platform/images/teacher (1).png" alt="">
-                            <div class="students-de">
-                                <h5>Djilali Nehal</h5>
-                                <p>djilalinehal10@yahoo.com</p>
-                            </div>
-                        </td>
-
-                        <td class="students-des">
-                            <h5>Programming</h5>
-                        </td>
-
-                        <td class="active">
-                            <p>4.5 / 5</p>
-                        </td>
-                        
-                        <td class="edit"><a href="#">Edit</a></td>
-
-                        <td class="delete"><a href="#">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td class="students">
-                            <img src="/E-learning_Platform/images/teacher (1).png" alt="">
-                            <div class="students-de">
-                                <h5>Hayet Doud</h5>
-                                <p>doudhayetinfo@saad-univ.edu</p>
-                            </div>
-                        </td>
-
-                        <td class="students-des">
-                            <h5>Cyber Security</h5>
-                        </td>
-
-                        <td class="active">
-                            <p>5 / 5</p>
-                        </td>
-                        
-                        <td class="edit"><a href="#">Edit</a></td>
-
-                        <td class="delete"><a href="#">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td class="students">
-                            <img src="/E-learning_Platform/images/teacher (1).png" alt="">
-                            <div class="students-de">
-                                <h5>Ferfera Soufien</h5>
-                                <p>ferfera365soufien@hotmail.com</p>
-                            </div>
-                        </td>
-
-                        <td class="students-des">
-                            <h5>Math</h5>
-                        </td>
-
-                        <td class="active">
-                            <p>2,9 / 5</p>
-                        </td>
-                        
-                        <td class="edit"><a href="#">Edit</a></td>
-
-                        <td class="delete"><a href="#">Delete</a></td>
-                    </tr>
+                <tbody id="teachers-div">
 
                 </tbody>
             </table>
         </div>
 
     </section>
+   
+       <!-- popup for Add/Edite successfully-->
+    
+       <div id="deletePopupId" class="popup center">
+        <div class="delete-icon">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="title">
+            Are you sure?
+        </div>
+        <div class="description">
+            Do you really want to delete these records? This process cannot be undone.
+        </div>
+        <div class="btn">
+            <div class="cancel-btn">
+                 <button id="cancel-popup-btn">Dismiss</button>
+            </div>
+            <div class="delete-btn">
+                <button id="delete-popup-btn">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const popup = document.getElementById("deletePopupId");
+        const closePop = document.getElementById("cancel-popup-btn");
+        
+        closePop.onclick = () => {
+            popup.style.display = "none";
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const teachers_container = document.getElementById("teachers-div");
+            let request = new XMLHttpRequest();
+            request.open("GET", `http://127.0.0.1:3000/teachers`);
+            request.responseType = "json"
+            request.send();
+            request.onreadystatechange = () => {
+                let results = request.response;
+                results.forEach(result => {
+                    teachers_container.innerHTML += `
+                        <tr>
+                        <td class="students">
+                            <img src="/E-learning_Platform/images/teacher (1).png" alt="">
+                            <div class="students-de">
+                                <h5>${result.fullname}</h5>
+                                <p>${result.teacher_email}</p>
+                            </div>
+                        </td>
+
+                        <td class="students-des">
+                            <h5>${result.Field}</h5>
+                        </td>
+
+                        <td class="active">
+                            <p>${result.Grade}</p>
+                        </td>
+                        
+                        <td class="edit"><a href="#">Edit</a></td>
+
+                        <td class="delete"><a href="#">Delete</a></td>
+                    </tr>
+                    `
+                });
+            }
+        })
+
+    </script>
+
 </body>
 </html>
