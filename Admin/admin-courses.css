@@ -268,7 +268,25 @@ tbody tr td {
     padding: 10px 15px;
 }
 
-.active p {
+/*Adding Button styling */
+#adding-btn {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 6px 14px; /* Button padding */
+    font-size: 14px; /* Button font size */
+    border: none; /* Removes border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+/* Button hover effect */
+#adding-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+
+.activee p {
     background: #d7fada;
     padding: 2px 10px;
     display: inline-block;
@@ -277,6 +295,7 @@ tbody tr td {
 }
 
 .edit a {
+    margin-right: -50px;
     text-decoration: none;
     font-size: 14px;
     color: #554cd1;
@@ -284,6 +303,7 @@ tbody tr td {
 }
 
 .delete a {
+    margin-left: 80px;
     text-decoration: none;
     font-size: 16px;
     color: #b91515;
