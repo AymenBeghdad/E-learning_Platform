@@ -102,6 +102,7 @@
    
        <!-- popup for Add/Edite successfully-->
     
+       <!--
        <div id="deletePopupId" class="popup center">
         <div class="delete-icon">
             <i class="fas fa-times"></i>
@@ -122,14 +123,9 @@
         </div>
     </div>
 
-    <script>
+    -->
 
-        const popup = document.getElementById("deletePopupId");
-        const closePop = document.getElementById("cancel-popup-btn");
-        
-        closePop.onclick = () => {
-            popup.style.display = "none";
-        };
+    <script>
 
         document.addEventListener("DOMContentLoaded", () => {
             const teachers_container = document.getElementById("teachers-div");
@@ -160,12 +156,33 @@
                         
                         <td class="edit"><a href="#">Edit</a></td>
 
-                        <td class="delete"><a href="#">Delete</a></td>
+                        <td class="delete"><a href="#" class="delete-link" data-num="${result.fullname}">Delete</a></td>
                     </tr>
                     `
                 });
+
+                document.querySelectorAll('.delete-link').forEach(link => {
+                    link.addEventListener('click', (event) => {
+                        const TeacherName = event.target.getAttribute('data-num');
+                        deleteTeacher(TeacherName);
+                    });
+                });
+
             }
         })
+
+        function deleteTeacher(name) {
+            
+            let deleteRequest = new XMLHttpRequest();
+            deleteRequest.open("DELETE", `http://127.0.0.1:3000/delete-teacher?fullname=${name}`);
+            deleteRequest.send();
+            deleteRequest.onreadystatechange = () => {
+                
+                    console.log("Teacher deleted successfully");
+
+                    location.reload(); // reloads the page to update the list
+            };
+    }
 
     </script>
 
