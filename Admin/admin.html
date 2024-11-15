@@ -85,8 +85,8 @@
                 <thead>
                     <tr>
                         <td>Full Name</td>
-                        <td>Field</td>
-                        <td>Status</td>
+                        <td>Num</td>
+                        <td>level</td>
                         <td></td>
                         <td><button id="adding-btn">Add Student</td>
                         
@@ -132,7 +132,11 @@
         // Students Response section:
 
         document.addEventListener("DOMContentLoaded", () => {
+            
+            const popup = document.getElementById("popupid");
+
             const student_container = document.getElementById("students-div");
+
             let request = new XMLHttpRequest();
             request.open("GET", `http://127.0.0.1:3000/students`);
             request.responseType = "json"
@@ -152,21 +156,47 @@
 
                         <td class="students-des">
                             <h5>${result.num}</h5>
-                            <p>${result.level}</p>
+                            
                         </td>
 
                         <td class="activee">
-                            <p>active</p>
+                            <p>${result.level}</p>
                         </td>
                         
-                        <td class="edit"><a href="#">Edit</a></td>
+                        <td class="edit"><a class="edit-link" href="#">Edit</a></td>
 
-                        <td class="delete"><a href="#">Delete</a></td>
+                        <td class="delete"><a href="#" class="delete-link" data-num="${result.num}">Delete</a></td>
                     </tr>
                     `
                 });
+                
+                document.querySelectorAll(".edit-link").forEach(editLink => {
+                    editLink.addEventListener("click", () => {
+                        popup.style.display = "block";
+                    });
+                });
+
+                document.querySelectorAll('.delete-link').forEach(link => {
+                    link.addEventListener('click', (event) => {
+                        const studentNum = event.target.getAttribute('data-num');
+                        deleteStudent(studentNum);
+                    });
+                });
+
             }
         })
+
+        function deleteStudent(id) {
+            
+                let deleteRequest = new XMLHttpRequest();
+                deleteRequest.open("DELETE", `http://127.0.0.1:3000/delete-student/?num=${id}`);
+                deleteRequest.send();
+                deleteRequest.onreadystatechange = () => {
+                        console.log("Student deleted successfully");
+
+                        location.reload(); // reloads the page to update the list
+                };
+        }
 
     </script>
 

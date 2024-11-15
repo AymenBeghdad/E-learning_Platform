@@ -86,7 +86,7 @@
                     <tr>
                         <td>Title</td>
                         <td>Responsable</td>
-                        <td>Enrollments</td>
+                        <td>Key</td>
                         <td></td>
                         <td><button id="adding-btn">Add Student</td>
                         
@@ -99,6 +99,8 @@
         </div>
 
     </section>
+
+    
 
     <script>
 
@@ -131,12 +133,32 @@
                         
                         <td class="edit"><a href="#">Edit</a></td>
 
-                        <td class="delete"><a href="#">Delete</a></td>
+                        <td class="delete"><a href="#" class="delete-link" data-num="${result.ID_cours}">Delete</a></td>
                     </tr>
                     `
                 });
+
+                document.querySelectorAll('.delete-link').forEach(link => {
+                    link.addEventListener('click', (event) => {
+                        const CourseId = event.target.getAttribute('data-num');
+                        deleteCourse(CourseId);
+                    });
+                });
             }
         })
+
+        function deleteCourse(id) {
+            
+            let deleteRequest = new XMLHttpRequest();
+            deleteRequest.open("DELETE", `http://127.0.0.1:3000/delete-course?ID_cours=${id}`);
+            deleteRequest.send();
+            deleteRequest.onreadystatechange = () => {
+                
+                    console.log("Course deleted successfully");
+
+                    location.reload(); // reloads the page to update the list
+            };
+    }
 
     </script>
 

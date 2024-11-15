@@ -109,12 +109,12 @@ app.delete('/delete-teacher', (req, res)=> {
   db.query(sql , [name], (err, result)=> {
       
     if(!err){
-      console.log('Teacher deleted ');
-      res.status(200);
+      console.log({ message: 'Teacher deleted successfully' });
+      res.status(200).send({ message: 'Teacher deleted successfully' });
      
     }else{
       console.log('Error ._. !!');
-      res.status(500).send(`<h3>Teacher deleted succesfully</h3>`);
+      res.status(500).send({ message: 'Teacher not found' });
     }
   
   });
@@ -171,11 +171,11 @@ db.query(sql , [num], (err, result)=> {
     
   if(!err){
     console.log('Student deleted ');
-    res.status(200);
+    res.status(200).send({ message: 'Student deleted successfully' });
    
   }else{
     console.log('Error ._. !!');
-    res.status(500).send(`<h3>Student deleted succesfully</h3>`);
+    res.status(500).send({ message: 'Student not found' });
   }
 
 });
@@ -298,15 +298,15 @@ app.get('/your_courses', (req, res) => {
 
 // Route pour ajouter un cours
 app.post('/add-course', (req, res) => {
-  const { ID_cours, title, responsable, Target, course_key, Informations } = req.body;
+  const { title, responsable, Target, key, Informations } = req.body;
 
   
   const sql = `
-    INSERT INTO cours (ID_cours, title, responsable, Target, \`key\`, Informations) 
-    VALUES (?, ?, ?, ?, ?, ?)
-  `;
+    INSERT INTO cours (title, responsable, Target, \`key\`, Informations) 
+    VALUES (?, ?, ?, ?, ?)
+`;
 
-  db.query(sql, [ID_cours, title, responsable, Target, course_key, Informations], (err, result) => {
+  db.query(sql, [title, responsable, Target, key, Informations], (err, result) => {
     if (err) {
       console.error('Erreur:', err);
       res.status(500).send("<h3>Erreur ._. !!</h3>");
@@ -319,25 +319,58 @@ app.post('/add-course', (req, res) => {
 
 // Router pour supprimer un cours
 
-app.delete('/delete-course', (req, res)=> {
-
-const id_course = req.query.id_course;
-const sql = `delete from cours where ID_cours = ?`
-
-db.query(sql , [id_course], (err, result)=> {
-    
-  if(!err){
-    console.log('course deleted ');
-    res.status(200);
-   
-  }else{
-    console.log('Error ._. !!');
-    res.status(500).send(`<h3>course deleted succesfully</h3>`);
-  }
-
-});
-
-});
+  app.delete('/delete-course', (req, res) => {
+    const ID_cours = req.query.ID_cours;
+  
+    if (!ID_cours) {
+      return res.status(400).send({ message: 'Course ID is required' });
+    }
+  
+    // SQL queries
+    const deleteEnrollmentsSQL = `DELETE FROM enrollments WHERE course_id = ?`;
+    const deleteCourseSQL = `DELETE FROM cours WHERE ID_cours = ?`;
+  
+    // Start transaction
+    db.beginTransaction((transactionErr) => {
+      if (transactionErr) {
+        console.error('Error starting transaction');
+        return res.status(500).send({ message: 'Transaction error' });
+      }
+  
+      // Step 1: Delete enrollments
+      db.query(deleteEnrollmentsSQL, [ID_cours], (err1) => {
+        if (err1) {
+          console.error('Error deleting enrollments:', err1);
+          db.rollback(() => {
+            return res.status(500).send({ message: 'Error deleting enrollments' });
+          });
+        } else {
+          // Step 2: Delete course
+          db.query(deleteCourseSQL, [ID_cours], (err2, result) => {
+            if (err2) {
+              console.error('Error deleting course:', err2);
+              db.rollback(() => {
+                return res.status(500).send({ message: 'Error deleting course' });
+              });
+            } else {
+              // Commit transaction
+              db.commit((commitErr) => {
+                if (commitErr) {
+                  console.error('Error committing transaction:', commitErr);
+                  db.rollback(() => {
+                    return res.status(500).send({ message: 'Transaction commit error' });
+                  });
+                } else {
+                  console.log('Course and related enrollments deleted successfully');
+                  return res.status(200).send({ message: 'Course and related enrollments deleted successfully' });
+                }
+              });
+            }
+          });
+        }
+      });
+    });
+  });
 
 // Router pour modifier les information d'un cours
 app.put('/modifier-cours', (req,res) =>{
