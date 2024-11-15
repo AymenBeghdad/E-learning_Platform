@@ -15,7 +15,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-image: url(/E-learning_Platform/images/signBg.png);
+            background-color: #171954; 
             background-position: center;
             background-size:cover;
             background-repeat: no-repeat;
@@ -41,11 +41,11 @@
         }
 
         input {
-            background-color: #ADD8E6;
+            background-color: #fefefe;
             width: 340px;
             height: 30px;
             margin-bottom: 10px;
-            border-radius: 20px;
+            border-radius: 10px;
             border: none;
             padding: 5px;
             text-align: center;
@@ -54,28 +54,50 @@
         .name-fields {
             display: flex;
             justify-content: space-between;
-            width: 300px; /* Total width for both fields */
+            gap: 3px;
+            width: 300px; 
         }
 
-        
+        img{
+            margin-top: 70px;
+        }
 
 
         button { 
             font-family: 'TT Chocolates', cursive;
             width: 200px;
-            height: 40px;
-            border-radius: 25px;
+            height: 45px;
+            border-radius: 15px;
             border: none;
-            background-color: #8AABCA;
+            background-color: #3ba1c5;
             color: white;
             font-size: 16px;
             cursor: pointer;
         }
 
         button:hover {
-            background-color: #8294B0;
+            background-color: #171954;
+            border: 2px solid ;
+            border-color:  #00cba9;
+           
+           
+        }
+        #logo-container {
+            position: absolute; /* Position relative to the viewport */
+            top: 20px; /* Adjust spacing from the top */
+            left: 40px; /* Adjust spacing from the left */
         }
 
+
+        #logo-container a {
+           font-size: 30px;
+           text-decoration: none;  
+           color: #3ba1c5;
+        }
+        #logo-container a:hover {
+         
+           color: #00cba9;
+        }
         #divbtn {
             display: flex;
             justify-content: center;
@@ -85,6 +107,10 @@
     </style>
 </head>
 <body>
+     <!-- Logo container with a link -->
+     <div id="logo-container">
+        <a href="" >Educ-Me</a>
+    </div>
     <div id="container">
         <h2>Sign Up</h2>
         <form id="signup">
@@ -109,6 +135,7 @@
             </div>
         </form>
     </div>
+    <img src="signpic.svg" width="400px">
 </body>
 <script>
    

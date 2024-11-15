@@ -6,7 +6,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700&display=swap" rel="stylesheet">
     <title>Log In</title>
     <style>
-        
         body {
             font-family: 'Fraunces', serif;
             display: flex;
@@ -14,15 +13,25 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-image: url(/E-learning_Platform/images/signBg.png);
+            background-color: #171954; 
             background-position: center;
-            background-size:cover;
+            background-size: cover;
             background-repeat: no-repeat;
+            position: relative;
         }
-       
-        a{
-            color:rgba(255, 255, 255, 0.611);
+
+        #logo-container {
+            position: absolute; /* Position relative to the viewport */
+            top: 20px; /* Adjust spacing from the top */
+            left: 40px; /* Adjust spacing from the left */
         }
+
+
+        #logo-container a {
+           font-size: 30px;
+           text-decoration: none;  
+        }
+
         #container {
             display: flex;
             flex-direction: column; 
@@ -31,9 +40,8 @@
             padding: 20px;
             width: 450px;
             height: auto;
-            
-          
         }
+
         h2 {
             text-align: center; 
             font-size: 30px;
@@ -42,65 +50,82 @@
         }
 
         input {
-            background-color: #ADD8E6;
+            background-color: #fefefe;
             width: 340px;
             height: 30px;
             margin-bottom: 10px;
-            border-radius: 20px;
+            border-radius: 10px;
             border: none;
             padding: 5px;
             text-align: center;
         }
 
-        .name-fields {
-            display: flex;
-            justify-content: space-between;
-            width: 300px; /* Total width for both fields */
-        }
-
         button { 
             font-family: 'TT Chocolates', cursive;
             width: 200px;
-            height: 40px;
-            border-radius: 25px;
+            height: 45px;
+            border-radius: 15px;
             border: none;
-            background-color: #8AABCA;
+            background-color: #3ba1c5;
             color: white;
             font-size: 16px;
             cursor: pointer;
         }
 
         button:hover {
-            background-color: #8294B0;
+            background-color: #171954;
+            border: 2px solid #00cba9;
         }
-        #TheLink{
-            display: flex;
-            justify-content: center;   
-        }
+
         #divbtn {
             display: flex;
             justify-content: center;
             align-items: center;
             margin-top: 20px;
         }
+
+        a {
+            color: #3ba1c5;
+        }
+        #logo-container a:hover {
+         
+         color: #00cba9;
+      }
+        p {
+            color: rgba(255, 255, 255, 0.611);
+        }
+
+        #hr {
+            display: flex;
+            justify-content: center;   
+        }
     </style>
 </head>
 <body>
+    <!-- Logo container with a link -->
+    <div id="logo-container">
+        <a href="" >Educ-Me</a>
+    </div>
+
     <div id="container">
         <h2>Log In</h2>
         <form id="signup">
             <div>
-                <input id="email" type="email" placeholder="Email"required>
+                <input id="email" type="email" placeholder="Email" required>
             </div>
             <div>
                 <input id="password" type="password" placeholder="Password" required>
             </div>
             <div id="divbtn">
-                <button >Log in</button>
+                <button>Log in</button>
             </div>
-            <div id="TheLink"> <p>Don't have an account?<a href="sign.html" >sign up!</a></p> </div>
-           
         </form>
+    </div>
+    <div>
+        <img src="logpic.svg" width="400px">
+        <div id="hr">
+        <p>Don't have an account? <a href="signUp.html">Sign up!</a></p>
+        </div>
     </div>
 </body>
 </html>
