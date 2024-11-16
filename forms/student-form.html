@@ -3,49 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
     <link rel="stylesheet" href="style.css">
-    <title>Register Student</title>
+    <title>Add Student</title>
 </head>
 <body>
     <div class="container">
-        <div class="title">ADD/EDIT</div>
-        <form action="#">
+        <div class="title">ADD / EDIT</div>
+        <form id="add-student-form">
             <div class="user-details">
                 <div class="input-box">
                     <span class="details">Card Number</span>
-                    <input type="text" placeholder="Entrer card number" required>
+                    <input id="card-number" type="text" placeholder="Entrer card number" required>
                 </div>
 
                 <div class="input-box">
                     <span class="details">Last Name</span>
-                    <input type="text" placeholder="Entrer lastname" required>
+                    <input id="last-name" type="text" placeholder="Entrer lastname" pattern="[A-Za-z]+" required>
                 </div>
 
                 <div class="input-box">
                     <span class="details">First Name</span>
-                    <input type="text" placeholder="Entrer firstname" required>
+                    <input id="first-name" type="text" placeholder="Entrer firstname" pattern="[A-Za-z]+" required>
                 </div>
 
                 <div class="input-box">
                     <span class="details">Level</span>
-                    <input type="text" placeholder="Entrer level" required>
+                    <input id="level" type="text" placeholder="Entrer level" required>
                 </div>
 
                 <div class="input-box">
                     <span class="details">Email</span>
-                    <input type="email" placeholder="Entrer email" required>
+                    <input id="email" type="email" placeholder="Entrer email" required>
                 </div>
 
                 <div class="input-box">
                     <span class="details">Password</span>
-                    <input type="text" placeholder="Entrer password" required>
+                    <input id="password" type="text" placeholder="Entrer password" required>
                 </div>
             </div>
             <div class="button-form">
-                <button type="sumbit">Register</button>
+                <button id="register-button" type="sumbit">Register</button>
             </div>
         </form>
     </div>
+
+
+    <script>
+        
+        document.getElementById('register-button').addEventListener('click', async () => {
+            const formData = {
+                num: document.getElementById('card-number').value,
+                lastname: document.getElementById('last-name').value,
+                firstname: document.getElementById('first-name').value,
+                level: document.getElementById('level').value,
+                student_email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+            };
+
+            try {
+                const response = await fetch('http://127.0.0.1:3000/add-student', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData),
+                });
+        
+                if (response.ok) {
+                    
+                    alert('Student added successfully.');
+                } else {
+                    console.error('Error:', await response.text());
+                    alert('Failed to add student. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Student added successfully.');
+            }
+        });
+
+    </script>
+
+    
 
 </body>
 </html>

@@ -111,13 +111,13 @@
         <h2>Log In</h2>
         <form id="signup">
             <div>
-                <input id="email" type="email" placeholder="Email" required>
+                <input id="email" placeholder="Email" required>
             </div>
             <div>
                 <input id="password" type="password" placeholder="Password" required>
             </div>
             <div id="divbtn">
-                <button>Log in</button>
+                <button id="login-btn" type="button">Log in</button>
             </div>
         </form>
     </div>
@@ -127,5 +127,31 @@
         <p>Don't have an account? <a href="signUp.html">Sign up!</a></p>
         </div>
     </div>
+    
+    <script>
+    
+        const login_btn = document.getElementById("login-btn")
+        
+        // Add event to login button:
+
+        login_btn.addEventListener('click', () => {
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if(email === 'admin' && password === 'admin123'){
+        
+                window.location.href = '/E-learning_Platform/Admin/admin.html';
+    
+            }else {
+                
+                // diri el api te3 log in l student l yedi params 
+                alert('Invalid credentials. Please try again.');
+            }
+        });
+
+
+    </script>
+
 </body>
 </html>

@@ -18,7 +18,7 @@
             <li><i class="fas fa-user-alt"></i><a href="./admin.html">Students</a></li>
             <li><i class="fas fa-chalkboard-teacher"></i><a href="./admin-teacher.html">Teachers</a></li>
             <li><i class="fas fa-book"></i><a href="./admin-courses.html">Courses</a></li>
-            <li><i class="fas fa-sign-out-alt"></i><a href="#">Sign Out</a></li>
+            <li><i class="fas fa-sign-out-alt"></i><a href="/E-learning_Platform/front/home.html">Sign Out</a></li>
         </div>
     </section>
 
@@ -101,33 +101,38 @@
     
     </section>
 
-    <!-- popup for Add/Edite successfully-->
+    <!-- popup for Add/Edite successfully -->
 
-    <div id="popupid" class="popup center">
+    <div id="popup_id" class="popup center">
         <div class="icon">
-            <i class="fa fa-check"></i>
+            <i class="fas fa-times"></i>
         </div>
         <div class="title">
-            Success!!
+            Warning!!
         </div>
         <div class="description">
-            Your application has been successfully submitted
+            You have been deleted a student from database
         </div>
         <div class="dismiss-btn">
             <button id="dismiss-popup-btn">Dismiss</button>
         </div>
     </div>
     
-    
 
     <script>
-
-        const popup = document.getElementById("popupid");
-        const closePop = document.getElementById("dismiss-popup-btn");
         
-        closePop.onclick = () => {
-            popup.style.display = "none";
-        };
+        const pop = document.getElementById("popup_id");
+        const dismiss_btn = document.getElementById("dismiss-popup-btn");
+        const add_btn = document.getElementById("adding-btn");
+
+        dismiss_btn.onclick = () => {
+            pop.style.display = 'none';
+        }
+        
+        add_btn.addEventListener("click", () => {
+
+            window.location.href = '/E-learning_Platform/forms/student-form.html'
+        })
 
         // Students Response section:
 
@@ -172,7 +177,7 @@
                 
                 document.querySelectorAll(".edit-link").forEach(editLink => {
                     editLink.addEventListener("click", () => {
-                        popup.style.display = "block";
+                        window.location.href = '/E-learning_Platform/forms/student-form.html'
                     });
                 });
 
@@ -180,6 +185,7 @@
                     link.addEventListener('click', (event) => {
                         const studentNum = event.target.getAttribute('data-num');
                         deleteStudent(studentNum);
+                        popup.style.display = "block";
                     });
                 });
 
