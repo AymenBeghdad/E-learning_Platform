@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <title>Log In</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+        body {
+            font-family: "Nunito", sans-serif;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #171954; 
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        #logo-container {
+            position: absolute; /* Position relative to the viewport */
+            top: 20px; /* Adjust spacing from the top */
+            left: 40px; /* Adjust spacing from the left */
+        }
+
+
+        #logo-container a {
+           font-size: 30px;
+           text-decoration: none;  
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            margin: 80px;
+            padding: 20px;
+            width: 450px;
+            height: auto;
+        }
+
+        h2 {
+            text-align: center; 
+            font-size: 30px;
+            color: #ffffff;
+            margin-bottom: 20px; 
+        }
+
+        input {
+            background-color: #fefefe;
+            width: 340px;
+            height: 30px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border: none;
+            padding: 5px;
+            text-align: center;
+        }
+
+        button { 
+          
+            width: 200px;
+            height: 45px;
+            border-radius: 15px;
+            border: none;
+            background-color: #3ba1c5;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #171954;
+            border: 2px solid #00cba9;
+        }
+
+        #divbtn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+
+        #logo-container a {
+            color: #3ba1c5; 
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease; 
+        }
+
+      #logo-container a:hover {
+            
+            color: #00cba9;
+        }
+        p {
+            color: rgba(255, 255, 255, 0.611);
+        }
+
+        #hr {
+            display: flex;
+            justify-content: center;   
+        }
+        #hr a{
+            color: #00cba9;
+            text-decoration:none ;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo container with a link -->
+    <div id="logo-container">
+        <a href="/E-learning_Platform/front/home.html" >Educ-Me</a>
+    </div>
+
+    <div id="container">
+        <h2>Log In</h2>
+        <form id="signup">
+            <div>
+                <input id="email" type="email" placeholder="Email" required>
+            </div>
+            <div>
+                <input id="password" type="password" placeholder="Password" required>
+            </div>
+            <div id="divbtn">
+                <button>Log in</button>
+            </div>
+        </form>
+    </div>
+    <div>
+        <img src="logpic.svg" width="400px">
+        <div id="hr">
+        <p>Don't have an account? <a href="signUp.html">Sign up!</a></p>
+        </div>
+    </div>
+</body>
+</html>
