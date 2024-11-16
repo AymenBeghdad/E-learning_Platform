@@ -21,11 +21,36 @@
         <div id="auth-content">
            
             <form>
-                <input type="email" placeholder="Email Address" required>
-                <input type="password" placeholder="Password" required>
-                <button type="submit" class="auth-btn">Log In</button>
+                <input id="email" type="email" placeholder="Email Address" required>
+                <input id="password" type="password" placeholder="Password" required>
+                <button id="login-btn" type="button" class="auth-btn">Log In</button>
             </form>
         </div>
     </div>
+
+    <script>
+
+        const login_btn = document.getElementById("login-btn")
+        
+        // Add event to login button:
+
+        login_btn.addEventListener('click', () => {
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if(email === 'admin@user.edu' && password === 'admin123'){
+        
+                window.location.href = '/E-learning_Platform/Admin/admin.html';
+    
+            }else {
+                
+                // diri el api te3 log in l student l yedi params 
+                alert('Invalid credentials. Please try again.');
+            }
+        });
+
+    </script>
+
 </body>
 </html>
