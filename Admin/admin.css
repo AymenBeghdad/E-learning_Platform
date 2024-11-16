@@ -310,7 +310,7 @@ tbody tr td {
     font-weight: 600;
 }
 
-/* Add/Edit Popup styling */
+/* Delete Popup styling */
 
 .center {
     position: absolute;
@@ -334,16 +334,16 @@ tbody tr td {
     margin: 5px;
     width: 50px;
     height: 50px;
-    border: 2px solid #34f234;
+    border: 2px solid #f23434;
     text-align: center;
     display: inline-block;
     border-radius: 50px;
     line-height: 60px;
 }
 
-.popup .icon i.fa {
+.popup .icon i.fas {
     font-size: 30px;
-    color: #34f234;
+    color: #f23434;
 }
 
 
@@ -383,6 +383,7 @@ tbody tr td {
     color: #111;
     background: #f5f5f5;
 }
+
 
 
 

@@ -146,9 +146,9 @@ app.put('/modifier-teacher', (req,res) =>{
 // Route pour ajouter un etudiant
 app.post('/add-student', (req,res) =>{
 
-  const { num, lastname , firstname, level, student_email } = req.body;
+  const { num, lastname , firstname, level, student_email, password } = req.body;
 
-  db.query('INSERT INTO students (num, lastname, firstname, level, student_email) VALUES (?, ?, ?, ?, ?)', [num, lastname, firstname, level, student_email], (err, result) => {
+  db.query('INSERT INTO students (num, lastname, firstname, level, student_email, `password`) VALUES (?, ?, ?, ?, ?, ?)', [num, lastname, firstname, level, student_email, password], (err, result) => {
     if(err){
       console.log('Erreur', err);
       res.status(500).send(`<h3>Erreur ._. !!</h3>`);
@@ -164,22 +164,56 @@ app.post('/add-student', (req,res) =>{
 
 app.delete('/delete-student', (req, res)=> {
 
-const num = req.query.num;
-const sql = `delete from students where num = ?`
-
-db.query(sql , [num], (err, result)=> {
-    
-  if(!err){
-    console.log('Student deleted ');
-    res.status(200).send({ message: 'Student deleted successfully' });
-   
-  }else{
-    console.log('Error ._. !!');
-    res.status(500).send({ message: 'Student not found' });
+  const num = req.query.num;
+  
+  if (!num) {
+    return res.status(400).send({ message: 'Course ID is required' });
   }
 
-});
+  // SQL queries
+  const deleteEnrollmentsSQL = `DELETE FROM enrollments WHERE student_id = ?`;
+  const deleteStudentSQL = `DELETE FROM students WHERE num = ?`;
 
+  // Start transaction
+  db.beginTransaction((transactionErr) => {
+    if (transactionErr) {
+      console.error('Error starting transaction');
+      return res.status(500).send({ message: 'Transaction error' });
+    }
+
+    // Step 1: Delete enrollments
+    db.query(deleteEnrollmentsSQL, [num], (err1) => {
+      if (err1) {
+        console.error('Error deleting enrollments:', err1);
+        db.rollback(() => {
+          return res.status(500).send({ message: 'Error deleting enrollments' });
+        });
+      } else {
+        // Step 2: Delete course
+        db.query(deleteStudentSQL, [num], (err2, result) => {
+          if (err2) {
+            console.error('Error deleting student:', err2);
+            db.rollback(() => {
+              return res.status(500).send({ message: 'Error deleting student' });
+            });
+          } else {
+            // Commit transaction
+            db.commit((commitErr) => {
+              if (commitErr) {
+                console.error('Error committing transaction:', commitErr);
+                db.rollback(() => {
+                  return res.status(500).send({ message: 'Transaction commit error' });
+                });
+              } else {
+                console.log('Student and related enrollments deleted successfully');
+                return res.status(200).send({ message: 'Student and related enrollments deleted successfully' });
+              }
+            });
+          }
+        });
+      }
+    });
+  });
 });
 
 // Router pour modifier les information d'etudiant
@@ -389,6 +423,22 @@ db.query(sql , [title, responsable, Target,course_key,Informations,id_cours], (e
     res.status(200).send(`<h3>Informations modified succesfully</h3>`);
   }
 });
+});
+
+// Route pour login un étudiant:
+
+app.get('/students', (req, res) => { 
+    
+  const sql = `SELECT * FROM students where`;
+  
+  db.query(sql, (error, results) => {
+    if (error) { 
+      res.status(500).send(error.message);
+    } else {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.json(results);
+    }
+  });
 });
 
 
