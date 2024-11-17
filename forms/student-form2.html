@@ -9,12 +9,12 @@
 </head>
 <body>
     <div class="container">
-        <div class="title">ADD STUDENT</div>
+        <div class="title">EDIT STUDENT</div>
         <form id="add-student-form">
             <div class="user-details">
                 <div class="input-box">
                     <span class="details">Card Number</span>
-                    <input id="card-number" type="text" placeholder="Entrer card number" required>
+                    <input id="card-number" type="text" placeholder="Entrer card number" disabled>
                 </div>
 
                 <div class="input-box">
@@ -50,15 +50,53 @@
     </div>
 
 
-    <script>
+    <script> 
 
         document.getElementById("cancel-button").addEventListener("click", () => {
             window.location.href = '/E-learning_Platform/Admin/admin.html'
         })
-        
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const num = localStorage.getItem("student_id");
+            console.log(num);
+    
+            let request = new XMLHttpRequest();
+            request.open("GET", `http://127.0.0.1:3000/students-login?numr=${num}`);
+            request.responseType = "json"
+            request.send();
+            request.onreadystatechange = () => {
+                let results = request.response; 
+
+                const card_number = 
+                
+                sessionStorage.setItem("last-name", results[0].lastname);
+                sessionStorage.setItem("first-name", results[0].firstname);
+                sessionStorage.setItem("level", results[0].level);
+                sessionStorage.setItem("email", results[0].student_email);
+                sessionStorage.setItem("password", results[0].password);
+            }
+              
+            
+            
+            // Retrieve saved form data
+            
+                document.getElementById('card-number').value = localStorage.getItem('student_id');
+                document.getElementById('last-name').value = sessionStorage.getItem('last-name');
+                document.getElementById('first-name').value = sessionStorage.getItem('first-name');
+                document.getElementById('level').value = sessionStorage.getItem('level');
+                document.getElementById('email').value = sessionStorage.getItem('email');
+                document.getElementById('password').value = sessionStorage.getItem('password');
+
+            });
+
         document.getElementById('register-button').addEventListener('click', async () => {
+            
+            const num = localStorage.getItem("student_id");
+            
+            // modifier student api
+
             const formData = {
-                num: document.getElementById('card-number').value,
                 lastname: document.getElementById('last-name').value,
                 firstname: document.getElementById('first-name').value,
                 level: document.getElementById('level').value,
@@ -67,16 +105,18 @@
             };
 
             try {
-                const response = await fetch('http://127.0.0.1:3000/add-student', {
-                    method: 'POST',
+                const response = await fetch( `http://127.0.0.1:3000/modifier-student?num=${num}`, {
+                    method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData),
                 });
         
                 if (response.ok) {
                     
-                    alert('Student added successfully.');
-                    
+                    alert('Student information updated successfully!');
+                    localStorage.clear();
+                    sessionStorage.clear();
+
                 } else {
                     console.error('Error:', await response.text());
                     alert('Failed to add student. Please try again.');
@@ -84,6 +124,7 @@
             } catch (error) {
                 console.error('Error:', error);
                 alert('Student added successfully.');
+                
             }
         });
 
