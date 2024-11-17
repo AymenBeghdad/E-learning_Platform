@@ -137,6 +137,8 @@
         // Students Response section:
 
         document.addEventListener("DOMContentLoaded", () => {
+
+            localStorage.clear();
             
             const popup = document.getElementById("popupid");
 
@@ -168,7 +170,7 @@
                             <p>${result.level}</p>
                         </td>
                         
-                        <td class="edit"><a class="edit-link" href="#">Edit</a></td>
+                        <td class="edit"><a class="edit-link" data1-num="${result.num}" href="/E-learning_Platform/forms/student-form2.html">Edit</a></td>
 
                         <td class="delete"><a href="#" class="delete-link" data-num="${result.num}">Delete</a></td>
                     </tr>
@@ -177,7 +179,9 @@
                 
                 document.querySelectorAll(".edit-link").forEach(editLink => {
                     editLink.addEventListener("click", () => {
-                        window.location.href = '/E-learning_Platform/forms/student-form.html'
+                        const studentNum = event.target.getAttribute('data1-num');
+                        localStorage.setItem("student_id", studentNum);        
+                        
                     });
                 });
 
