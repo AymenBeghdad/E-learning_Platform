@@ -425,7 +425,7 @@ db.query(sql , [title, responsable, Target,course_key,Informations,id_cours], (e
 });
 });
 
-// Route pour login un étudiant / Router pour afficher un étudiant selon num(id)
+// Router pour afficher un étudiant selon num(id)
 
 app.get('/students-login', (req, res) => { 
     
@@ -434,6 +434,25 @@ app.get('/students-login', (req, res) => {
   const sql = `SELECT * FROM students where num=?`;
   
   db.query(sql, [num], (error, results) => {
+    if (error) { 
+      res.status(500).send(error.message);
+    } else {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.json(results);
+    }
+  });
+});
+
+// Route pour login student
+
+app.get('/student-login', (req, res) => { 
+    
+  const student_email = req.query.student_email;
+  const password = req.query.password;
+  
+  const sql = `SELECT * FROM students where student_email=? AND \`password\` = ?`;
+  
+  db.query(sql, [student_email, password], (error, results) => {
     if (error) { 
       res.status(500).send(error.message);
     } else {
