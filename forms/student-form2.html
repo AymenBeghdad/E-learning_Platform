@@ -53,7 +53,9 @@
     <script> 
 
         document.getElementById("cancel-button").addEventListener("click", () => {
-            window.location.href = '/E-learning_Platform/Admin/admin.html'
+            window.location.href = '/E-learning_Platform/Admin/admin.html';
+            localStorage.clear();
+            sessionStorage.clear();
         })
 
         document.addEventListener('DOMContentLoaded', () => {

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link rel="stylesheet" href="style.css">
+    <title>Add Student</title>
+</head>
+<body>
+    <div class="container">
+        <div class="title">ADD Teacher</div>
+        <form id="add-student-form">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">FullName</span>
+                    <input id="fullname" type="text" placeholder="Entrer fullname" pattern="[A-Za-z]+" required>
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Field</span>
+                    <input id="field" type="text" placeholder="Entrer field" pattern="[A-Za-z]+" required>
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Grade</span>
+                    <input id="grade" type="text" placeholder="Grade" required>
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Email</span>
+                    <input id="email" type="email" placeholder="Entrer email" required>
+                </div>
+
+            <div class="button-form">
+                <button id="register-button" type="sumbit">Register</button>
+                <button id="cancel-button" type="button">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+
+        document.getElementById("cancel-button").addEventListener("click", () => {
+            window.location.href = '/E-learning_Platform/Admin/admin-teacher.html'
+        })
+        
+        document.getElementById('register-button').addEventListener('click', async () => {
+            const formData = {
+                fullname: document.getElementById('fullname').value,
+                Field: document.getElementById('field').value,
+                Grade: document.getElementById('grade').value,
+                teacher_email: document.getElementById('email').value,
+            };
+
+            try {
+                const response = await fetch('http://127.0.0.1:3000/add-teacher', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData),
+                });
+        
+                if (response.ok) {
+                    alert('Teacher added successfully.');
+                    document.getElementById('fullname').value,
+                    document.getElementById('field').value,
+                    document.getElementById('grade').value,
+                    document.getElementById('email').value,
+                    localStorage.clear();
+                    sessionStorage.clear();
+                    
+                } else {
+                    console.error('Error:', await response.text());
+                    alert('Failed to add teacher. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Teacher added successfully.');
+            }
+        });
+
+    </script>
+
+    
+
+</body>
+</html>

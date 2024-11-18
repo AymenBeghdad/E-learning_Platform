@@ -462,6 +462,41 @@ app.get('/student-login', (req, res) => {
   });
 });
 
+// Router pour afficher un enseignant selon fullname(id)
+
+app.get('/teacher-name', (req, res) => { 
+    
+  const name = req.query.fullname;
+  
+  const sql = `SELECT * FROM teachers where fullname=?`;
+  
+  db.query(sql, [name], (error, results) => {
+    if (error) { 
+      res.status(500).send(error.message);
+    } else {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.json(results);
+    }
+  });
+});
+
+// Router pour afficher un cours selon ID
+
+app.get('/course-id', (req, res) => { 
+    
+  const id = req.query.ID_cours;
+  
+  const sql = `SELECT * FROM cours where ID_cours=?`;
+  
+  db.query(sql, [id], (error, results) => {
+    if (error) { 
+      res.status(500).send(error.message);
+    } else {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.json(results);
+    }
+  });
+});
 
  // Démarrer le serveur
 app.listen(PORT, () => {
