@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link rel="stylesheet" href="style.css">
+    <title>Add Student</title>
+</head>
+<body>
+    <div class="container">
+        <div class="title">ADD Course</div>
+        <form id="add-student-form">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Title</span>
+                    <input id="title" type="text" placeholder="Entrer course title" pattern="[A-Za-z]+" required>
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Responsable</span>
+                    <input id="responsable" type="text" placeholder="Entrer name of responsable" pattern="[A-Za-z]+" required>
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Target</span>
+                    <input id="target" type="text" placeholder="Entrer target" pattern="[A-Za-z]+" required>
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Key</span>
+                    <input id="key" type="text" placeholder="Entrer enrollement key" required>
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Description</span>
+                    <input id="desc" type="email" placeholder="Entrer description of course" required>
+                </div>
+
+            </div>
+            <div class="button-form">
+                <button id="register-button" type="sumbit">Register</button>
+                <button id="cancel-button" type="button">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+
+        document.getElementById("cancel-button").addEventListener("click", () => {
+            window.location.href = '/E-learning_Platform/Admin/admin-courses.html'
+        })
+        
+        document.getElementById('register-button').addEventListener('click', async () => {
+            const formData = {
+                title: document.getElementById('title').value,
+                responsable: document.getElementById('responsable').value,
+                Target: document.getElementById('target').value,
+                key: document.getElementById('key').value,
+                Informations: document.getElementById('desc').value,
+            };
+
+            try {
+                const response = await fetch('http://127.0.0.1:3000/add-course', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData),
+                });
+        
+                if (response.ok) {
+                    
+                    alert('Course added successfully.');   
+                    document.getElementById('title').value = '';
+                    document.getElementById('responsable').value = '';
+                    document.getElementById('target').value = '';
+                    document.getElementById('key').value = '';
+                    document.getElementById('desc').value = '';
+                    
+                    localStorage.clear();
+                    sessionStorage.clear();
+                } else {
+                    console.error('Error:', await response.text());
+                    alert('The teacher not found.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('The teacher not found.');
+            }
+        });
+
+    </script>
+
+    
+
+</body>
+</html>

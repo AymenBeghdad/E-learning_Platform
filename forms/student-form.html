@@ -76,6 +76,12 @@
                 if (response.ok) {
                     
                     alert('Student added successfully.');
+                    document.getElementById('card-number').value = '';
+                    document.getElementById('last-name').value = '';
+                    document.getElementById('first-name').value = '';
+                    document.getElementById('level').value = '';
+                    document.getElementById('email').value = '';
+                    document.getElementById('password').value = '';
                     
                 } else {
                     console.error('Error:', await response.text());
