@@ -45,10 +45,34 @@
     
             }else {
                 
-                // diri el api te3 log in l student l yedi params 
-                alert('Invalid credentials. Please try again.');
-            }
-        });
+            function login(email, password) {
+            let request = new XMLHttpRequest();
+            request.open("GET", `http://127.0.0.1:3000/student-login?student_email=${email}&password=${password}`);
+            request.send();
+
+            request.onreadystatechange = () => {
+                // Check if the request is complete
+                if (request.readyState === XMLHttpRequest.DONE) {
+                    // Parse the response
+                    console.log(request.responseText); // Logs the raw response
+                    const response = JSON.parse(request.responseText);
+                    console.log(response);
+
+                    if (request.status === 200 && response.length > 0) {
+                        console.log("Student logged in successfully:", response);
+                        window.location.href = '/E-learning_Platform/front/homeStudent.html';
+                    } else {
+                        
+                        alert('Invalid credentials. Please try again.');
+                    }
+                }
+            };
+        }
+
+       
+        login(email, password);
+    }
+    });
 
     </script>
 
