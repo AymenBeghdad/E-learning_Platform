@@ -498,6 +498,25 @@ app.get('/course-id', (req, res) => {
   });
 });
 
+//api l y5arej les inscriptions te3 un étudiant
+app.get('/Astudent-courses', (req, res) => {
+  const num = req.query.num;
+  if (!num) {
+    return res.status(400).json({ message: 'Student number (num) is required.' });
+  }
+   const sql = `SELECT * 
+    FROM cours 
+    WHERE ID_cours IN (SELECT course_id FROM enrollments WHERE student_id = ?)`
+     
+    db.query(sql, [num], (err, results) => {
+    if (err) {
+      return res.status(500).json({ message: 'Database error', error: err });
+    }
+    // Send the list of courses the student is enrolled in
+    res.status(200).json({ courses: results });
+  });
+})
+
  // Démarrer le serveur
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
