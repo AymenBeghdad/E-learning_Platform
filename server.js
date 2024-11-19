@@ -220,10 +220,10 @@ app.delete('/delete-student', (req, res)=> {
 app.put('/modifier-student', (req,res) =>{
 
 const num = req.query.num
-const { lastname ,firstname, level, student_email } = req.body;
-const sql = `UPDATE students SET  lastname = ?, firstname = ?, level = ?,student_email= ? WHERE num = ?`;
+const { lastname ,firstname, level, student_email, password } = req.body;
+const sql = `UPDATE students SET  lastname = ?, firstname = ?, level = ?, student_email= ?, \`password\`= ? WHERE num = ?`;
 
-db.query(sql , [lastname, firstname, level ,student_email, num], (err, result) => {
+db.query(sql , [lastname, firstname, level ,student_email, password, num], (err, result) => {
   if(err){
     console.log('Error : ', err);
     res.status(500).send(`<h3>Error please try again</h3>`);
@@ -285,7 +285,6 @@ app.get('/students', (req, res) => {
     }
   });
 });
-
 
 //Route pour enregistrer une iscription à un cour
 
@@ -407,6 +406,7 @@ app.post('/add-course', (req, res) => {
   });
 
 // Router pour modifier les information d'un cours
+
 app.put('/modifier-cours', (req,res) =>{
 
 const id_cours = req.query.id_cours
@@ -425,13 +425,15 @@ db.query(sql , [title, responsable, Target,course_key,Informations,id_cours], (e
 });
 });
 
-// Route pour login un étudiant:
+// Router pour afficher un étudiant selon num(id)
 
-app.get('/students', (req, res) => { 
+app.get('/students-login', (req, res) => { 
     
-  const sql = `SELECT * FROM students where`;
+  const num = req.query.numr;
   
-  db.query(sql, (error, results) => {
+  const sql = `SELECT * FROM students where num=?`;
+  
+  db.query(sql, [num], (error, results) => {
     if (error) { 
       res.status(500).send(error.message);
     } else {
@@ -441,6 +443,24 @@ app.get('/students', (req, res) => {
   });
 });
 
+// Route pour login student
+
+app.get('/student-login', (req, res) => { 
+    
+  const student_email = req.query.student_email;
+  const password = req.query.password;
+  
+  const sql = `SELECT * FROM students where student_email=? AND \`password\` = ?`;
+  
+  db.query(sql, [student_email, password], (error, results) => {
+    if (error) { 
+      res.status(500).send(error.message);
+    } else {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.json(results);
+    }
+  });
+});
 
  // Démarrer le serveur
 app.listen(PORT, () => {

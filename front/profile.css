@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;    
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background: linear-gradient(135deg, #e4ecf5, #d1e7f0);
+    color: #333;
+    flex: 1; /* Take up available space */
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #e4ecf5, #d1e7f0);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Adjust shadow as needed */
+    z-index: 1000;
+    padding: 10px 20px;
+  }
+.navbar{
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    text-decoration: none;
+    font-size: 26px;
+    color: #171954;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.logo:hover {
+    color: #3ba1c5;
+    transition: color 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.signOUT-btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color:#3ba1c5;
+    color: white;
+}
+.signOUT-btn:hover {
+    background-color: #00cba9;
+}
+
+
+
+footer {
+    background-color: #333; /* Dark grey background */
+    color: #fff; /* White text */
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid #444; /* Subtle border for separation */
+    width: 100%;
+    position: relative;
+    margin-top: auto; /* Pushes the footer to the bottom */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: #bbb; /* Light grey for links */
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #007BFF; /* Highlight color on hover */
+}
+
+.social-media-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-media-icons a {
+    font-size: 24px;
+    color: #bbb; /* Light grey for icons */
+    transition: color 0.3s;
+}
+
+.social-media-icons a:hover {
+    color: #007BFF; 
+}
+
+.footer-logo-container {
+    text-align: center;
+}
+
+.footer-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.footer-logo:hover {
+    color: #007BFF;
+}
+
+.footer-logo-container p {
+    font-size: 14px;
+    color: #bbb;
+}
+
+/* Adjust profile section */
+.profile-section {
+    flex: 1; /* Allow profile section to take remaining space */
+    padding: 90px;
+}
+
+.profile-section .profile-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.profile-section .profile-header h2 {
+    font-size: 32px;
+    color: #171954;
+}
+
+.profile-section .profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.profile-box h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #171954;
+}
+
+.profile-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.profile-box li {
+    font-size: 16px;
+    color: #555;
+}
+
+.profile-box a {
+    color: #3ba1c5;
+    text-decoration: none;
+}
+
+.profile-box a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="logIn.css">
+    <title>Log In</title>
+
+</head>
+<body>
+    <header>
+        <div id="logo-container">
+            <a href="home.html" class="logo">Educ-Me</a>
+        </div>
+    </header>
+    <div id="auth-container">
+        <div id="auth-tabs">
+            <button id="sign-in-tab" class="active">log In</button>
+        </div>
+        <div id="auth-content">
+           
+            <form>
+                <input id="email" type="email" placeholder="Email Address" required>
+                <input id="password" type="password" placeholder="Password" required>
+                <button id="login-btn" type="button" class="auth-btn">Log In</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+          // Retrieve email and password from localStorage
+    const savedEmail = localStorage.getItem('email');
+    const savedPassword = localStorage.getItem('password');
+
+    // Populate the input fields if the values exist
+    if (savedEmail) {
+        document.getElementById("email").value = savedEmail;
+    }
+    if (savedPassword) {
+        document.getElementById("password").value = savedPassword;
+    }
+
+    // Clear the saved credentials from localStorage after pre-filling
+    localStorage.removeItem('email');
+    localStorage.removeItem('password');
+
+        const login_btn = document.getElementById("login-btn")
+        
+        // Add event to login button:
+
+        login_btn.addEventListener('click', () => {
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if(email === 'admin@user.edu' && password === 'admin123'){
+        
+                window.location.href = '/E-learning_Platform/Admin/admin.html';
+    
+            }else {
+                
+            function login(email, password) {
+            let request = new XMLHttpRequest();
+            request.open("GET", `http://127.0.0.1:3000/student-login?student_email=${email}&password=${password}`);
+            request.send();
+
+            request.onreadystatechange = () => {
+                // Check if the request is complete
+                if (request.readyState === XMLHttpRequest.DONE) {
+                    // Parse the response
+                    console.log(request.responseText); // Logs the raw response
+                    const response = JSON.parse(request.responseText);
+                    console.log(response);
+
+                    if (request.status === 200 && response.length > 0) {
+                        console.log("Student logged in successfully:", response);
+                        localStorage.setItem('num',  response[0].num);
+                        window.location.href = '/E-learning_Platform/front/homeStudent.html';
+                    } else {
+                        
+                        alert('Invalid credentials. Please try again.');
+                    }
+                }
+            };
+        }
+
+       
+        login(email, password);
+    }
+    });
+
+    </script>
+
+</body>
+</html>
