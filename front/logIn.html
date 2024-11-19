@@ -29,6 +29,21 @@
     </div>
 
     <script>
+          // Retrieve email and password from localStorage
+    const savedEmail = localStorage.getItem('email');
+    const savedPassword = localStorage.getItem('password');
+
+    // Populate the input fields if the values exist
+    if (savedEmail) {
+        document.getElementById("email").value = savedEmail;
+    }
+    if (savedPassword) {
+        document.getElementById("password").value = savedPassword;
+    }
+
+    // Clear the saved credentials from localStorage after pre-filling
+    localStorage.removeItem('email');
+    localStorage.removeItem('password');
 
         const login_btn = document.getElementById("login-btn")
         
@@ -60,6 +75,7 @@
 
                     if (request.status === 200 && response.length > 0) {
                         console.log("Student logged in successfully:", response);
+                        localStorage.setItem('num',  response[0].num);
                         window.location.href = '/E-learning_Platform/front/homeStudent.html';
                     } else {
                         

@@ -95,6 +95,9 @@
 
         if (response.ok) {
             alert('Student added successfully.');
+            window.location.href = '/E-learning_Platform/front/logIn.html';
+            localStorage.setItem('email',  email);
+            localStorage.setItem('password',  password);
             
         } else {
             const errorText = await response.text();
