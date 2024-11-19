@@ -22,22 +22,17 @@
 
 
     <div class="profile-content">
-        
-        <!-- Courses Enrolled Section -->
         <div class="profile-box">
             <div class="profile-info">
-                <h2>John Doe</h2>
-                <p><i class="fas fa-id-card"></i> Card ID: 12345678</p>
-                <p><i class="fas fa-envelope"></i> john.doe@example.com</p>
-                <p><i class="fas fa-graduation-cap"></i> Software</p>
+                <h2 id="fullname"></h2>
+                <br>
+                <p id="num"><i class="fas fa-id-card"></i> </p>
+                <p id="email"><i class="fas fa-envelope"></i> </p>
+                <p id="level"> <i class="fas fa-graduation-cap"></i> </p>
             </div>
             <br>
-            <h3>Courses Enrolled</h3>
-            <ul>
-                <li><a href="course1.html">Introduction to Data Science</a></li>
-                <li><a href="course2.html">Cybersecurity Basics</a></li>
-                <li><a href="course3.html">Advanced Java Programming</a></li>
-            </ul>
+             <!-- Courses Enrolled Section -->
+            <div id="courses"></div>
         </div>
     </div>
 </section>
@@ -76,6 +71,65 @@
     </div>
   </footer>
 </body>
+<script>
+        function getinfo(num) {
+            let request = new XMLHttpRequest();
+            request.open("GET", `http://127.0.0.1:3000/students-login?numr=${num}`);
+            request.send();
+
+            request.onreadystatechange = () => {
+                // Check if the request is complete
+                if (request.readyState === XMLHttpRequest.DONE) {
+                    // Parse the response
+                    console.log(request.responseText); // Logs the raw response
+                    const response = JSON.parse(request.responseText);
+                    
+
+                    if (request.status === 200 && response.length > 0) {
+                       
+                      const student = response[0]; // Access the first (and only) record
+
+                     document.getElementById("fullname").innerHTML = student.lastname+" "+student.firstname;
+                     document.getElementById("num").innerHTML = `<i class="fas fa-id-card"></i> Card ID: ${student.num}`;
+                     document.getElementById("email").innerHTML = `<i class="fas fa-envelope"></i> Email: ${student.student_email}`;
+                     document.getElementById("level").innerHTML = `<i class="fas fa-graduation-cap"></i> level: ${student.level}`;
+
+                     let courseRequest = new XMLHttpRequest();
+                courseRequest.open("GET", `http://127.0.0.1:3000/Astudent-courses?num=${num}`);
+                courseRequest.send();
+
+                courseRequest.onreadystatechange = () => {
+                    if (courseRequest.readyState === XMLHttpRequest.DONE) {
+                        if (courseRequest.status === 200) {
+                            const courses = JSON.parse(courseRequest.responseText).courses;
+
+                            // Check if there are any courses and display them
+                            if (courses.length > 0) {
+                              let coursesList = "<h3>Enrolled Courses:</h3><ul>";
+                               courses.forEach(course => {
+                              // Create a clickable link for each course
+                               coursesList += `<li><a href="course-details.html?courseId=${course.course_id}" target="_blank">${course.title}</a> (${course.responsable})</li>`;
+                              });
+                                coursesList += "</ul>";
+                                document.getElementById("courses").innerHTML = coursesList;
+                            } else {
+                                document.getElementById("courses").innerHTML = "<p>No courses found for this student.</p>";
+                            }
+                        } else {
+                            document.getElementById("courses").innerHTML = "<p>Error retrieving courses.</p>";
+                        }
+                    }
+                };
+            } else {
+                alert('Student not found.');
+            }
+        }
+    };
+}
+
+        const num = localStorage.getItem('num');
+        getinfo(num)
+</script>
 </html>
 
 
