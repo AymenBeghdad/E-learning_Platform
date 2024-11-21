@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet" href="category.css">
+    <title>Home</title>
+</head>
+<body>
+
+<!-- Header start -->
+<header class="header">
+    <div class="nav-container">
+        <a href="home.html" class="logo">Educ-Me</a>
+         <!-- Navigation Links -->
+         <nav class="navbar">
+          <a href="home.html">Home</a>
+          <div class="dropdown">
+              <a href="#" class="dropdown-btn">Categories</a>
+              <ul class="dropdown-content">
+                  <li><a href="data-science.html">Data Science</a></li>
+                  <li><a href="security.html">Security</a></li>
+                  <li><a href="software.html">Software</a></li>
+              </ul>
+          </div>
+          <a href=""class="scroll-to-about">About</a>
+      </nav>
+        <!-- Search Bar -->
+        <form action="" method="post" class="search-form">
+          <input type="text" name="search-box" placeholder="Search" required maxlength="30">
+          <button type="submit" class="fas fa-search"></button>
+      </form>
+
+      <!-- Login and Sign Up Buttons -->
+      <div class="auth-buttons">
+          <a href="login.html" class="btn login-btn">Log In</a>
+          <a href="signup.html" class="btn signup-btn">Sign Up</a>
+      </div>
+  </div>
+</header>
+<!-- Header end -->
+
+
+
+<!-- category details -->
+
+<section class="category-details">
+  <div class="category-header">
+    <h2>
+      <span>School of Cybersecurity</span><br>
+      Dive into the world of cybersecurity, mastering defensive techniques and offensive strategies. Learn to safeguard networks, identify vulnerabilities, and respond to real-world security threats with confidence.
+    </h2>
+    <a href="#" class="enroll-btn">Enroll Now</a>
+  </div>
+
+<!-- Courses in Program Section -->
+ 
+<div class="cours">
+
+
+  <h2 class="section-title">Courses in Program</h2>
+  
+  <!-- Course 1 -->
+  <div class="course-container">
+    <div class="course-title-box">
+      <p class="tile-duration">Course 1 . 56 minutes</p>
+      <p class="titre" >Welcome to the Advanced Cybersecurity Fundamentals Course!</p class="titre">
+      <p class="p1">We're excited to have you join us and look forward to exploring the essential skills and strategies to secure the digital world together!</p>  
+    </div>
+    
+    <div class="lesson-container">
+      <div class="horizontal-scroll">
+        <div class="lesson-box">
+          <i class="fa-solid fa-school"><span>Lesson 1</span></i>
+          <h4 class="small">Welcome!</h4>
+          <p>Welcome to Educ-Me. Takes 5 minutes to get familiar with Educ-Me courses and gain some tips to succeed in courses.</p>
+        </div>
+
+        <div class="lesson-box">
+          <i class="fa-solid fa-school"><span>Lesson 2</span></i>
+          <h4 class="small">Getting Help</h4>
+          <p>You are starting a challenging but rewarding journey! Take 5 minutes to read how to get help with projects and content.</p>
+        </div>
+
+        <div class="lesson-box">
+          <i class="fa-solid fa-school"><span>Lesson 3</span></i>
+          <h4 class="small">Title here!</h4>
+          <p>Description here</p>
+        </div>
+
+        <div class="lesson-box">
+          <i class="fa-solid fa-school"><span>Lesson 4</span></i>
+          <h4 class="small">Title here!</h4>
+          <p>Description here</p>
+        </div>
+
+        <div class="lesson-box">
+          <i class="fa-solid fa-school"><span>Lesson 5</span></i>
+          <h4 class="small">Title here!</h4>
+          <p>Description here</p>
+        </div>
+
+      </div>
+  </div>
+</div>
+
+  <!-- Course 2 -->
+
+  <div class="course-container"> 
+    <div class="course-title-box">
+      <p class="tile-duration">Course 2 . 2 weeks</p>
+      <p class="titre" >Welcome to the Math tools for cryptography course!</p class="titre">
+      <p class="p1">Join us as we explore the key mathematical tools that power cryptography and secure the digital world!</p>  
+    </div>
+    
+    <div class="lesson-container">
+      <div class="horizontal-scroll">
+        <div class="lesson-box">
+          <i class="fa-solid fa-school"><span>Lesson 1</span></i>
+          <h4 class="small">Welcome!</h4>
+          <p>Welcome to Educ-Me. Takes 5 minutes to get familiar with Educ-Me courses and gain some tips to succeed in courses.</p>
+        </div>
+    
+        <div class="lesson-box">
+          <i class="fa-solid fa-school"><span>Lesson 2</span></i>
+          <h4 class="small">Getting Help</h4>
+          <p>You are starting a challenging but rewarding journey! Take 5 minutes to read how to get help with projects and content.</p>
+        </div>
+    
+        <div class="lesson-box">
+          <i class="fa-solid fa-school"><span>Lesson 3</span></i>
+          <h4 class="small">Title here!</h4>
+          <p>Description here</p>
+        </div>   
+            
+      </div>
+    </div>
+  </div>
+
+<!-- Button to see more courses -->
+<button class="see-more-btn" onclick="toggleCourses()">See More Courses</button>
+
+<!-- other courses  -->
+<div class="course-container" id="course3" style="display: none;">
+  <div class="course-title-box">
+    <p class="tile-duration">Course 3 . 6 hours</p>
+    <p class="titre">Welcome to the Ethical Hacking and Penetration Testing course!</p>
+    <p class="p1">
+      Master the techniques used by ethical hackers to identify vulnerabilities. Learn how to simulate cyberattacks, test security defenses, and strengthen systems against real-world threats!
+    </p>
+  </div>
+  <div class="lesson-container ">
+    <div class="horizontal-scroll">
+      <div class="lesson-box">
+        <i class="fa-solid fa-school"><span>Lesson 1</span></i>
+        <h4 class="small">Welcome!</h4>
+        <p>Welcome to Educ-Me. Takes 5 minutes to get familiar with Educ-Me courses and gain some tips to succeed in courses.</p>
+      </div>
+  
+      <div class="lesson-box">
+        <i class="fa-solid fa-school"><span>Lesson 2</span></i>
+        <h4 class="small">Getting Help</h4>
+        <p>You are starting a challenging but rewarding journey! Take 5 minutes to read how to get help with projects and content.</p>
+      </div>
+      
+      <div class="lesson-box">
+        <i class="fa-solid fa-school"><span>Lesson 3</span></i>
+        <p>Description here</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Taught By The Best -->
+<section class="taught-section" id="taught-section">
+
+  <h2 class="section-title">Taught By The Best</h2>
+  <div class="taught-grid"> 
+    <div class="horizontal-scroll">
+      <!-- Teacher 1 -->
+      <div class="taught-card">
+          <div class="taught-text">
+            <h3>James Bennett</h3>
+            <p>Cybersecurity professional with extensive experience in protecting digital systems and networks.</p>
+            <div class="more">
+              <p>James mentors students and professionals, helping them build careers in cybersecurity and advocating for a more secure digital future.</p>
+            </div>
+            <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+          </div>
+      </div>
+
+      <!-- Teacher 2 -->
+      <div class="taught-card">
+          <div class="taught-text">
+            <h3>Sophia Harris</h3>
+            <p>Experienced cybersecurity strategist with a focus on risk management, threat detection, and incident response.</p>
+            <div class="more">
+              <p>Sophia conducts workshops and seminars, sharing insights on the latest cybersecurity trends and emerging technologies.</p>
+            </div>
+            <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+          </div>
+      </div>
+
+
+
+  <div class="taught-card">
+          <div class="taught-text">
+            <h3>Sophia Harris</h3>
+            <p>Experienced cybersecurity strategist with a focus on risk management, threat detection, and incident response.</p>
+            <div class="more">
+              <p>Sophia conducts workshops and seminars, sharing insights on the latest cybersecurity trends and emerging technologies.</p>
+            </div>
+            <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+          </div>
+      </div>
+
+      <!-- Teacher 3 -->
+      <div class="taught-card">
+          <div class="taught-text">
+            <h3>Liam Smith</h3>
+            <p>Cybersecurity professional with extensive experience in protecting digital systems and networks.</p>
+            <div class="more">
+              <p>Liam is dedicated to building a stronger cybersecurity community, providing guidance to professionals, and helping organizations navigate the ever-evolving threat landscape.</p>
+            </div>
+            <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+</section>
+
+
+
+
+<!-- Taught By The Best  ENDS-->
+
+
+
+  <!-- Choose the Right Learning Path Section -->
+   
+  <section class="path-section">
+    <h2 class="section-title">Choose the right learning path for your goals</h2>
+
+
+  <div class="learning-paths">
+    <div class="path-box">
+      <h4>All Access Monthly</h4>
+      <p>$249/month</p>
+      <button>Enroll Now</button>
+      <hr>
+      <ul>
+        <li><span class="checkmark">✔</span> Unlimited access to top-rated courses</li>
+        <li><span class="checkmark">✔</span> Personalized Career Services</li>
+        <li><span class="checkmark">✔</span> Cancel Anytime</li>
+        <li><span class="checkmark">✔</span> Real-world projects</li>
+        <li><span class="checkmark">✔</span> Personalized project reviews</li>
+        <li><span class="checkmark">✔</span> Program certificates</li>
+      </ul>
+    </div>
+    <div class="path-box">
+      <h4>All Access Bundle 1</h4>
+      <p>Save 15% - $212/month</p>
+      <button>Enroll Now</button>
+      <hr>
+      <ul>
+        <li><span class="checkmark">✔</span> All the same benefits as monthly plan</li>
+        <li><span class="checkmark">✔</span> Cost-effective way to develop skills</li>
+        <li><span class="checkmark">✔</span> 4-month plan with discount</li>
+      </ul>
+    </div>
+  </div>
+  </section>
+
+
+<!-- Footer Start -->
+<footer class="footer">
+  <div class="footer-container">
+    <!-- Footer Links -->
+    <div class="footer-links">
+      <a href="home.html">Home</a>
+      <a href="help.html">Help</a>
+      <a href="conditions.html">Conditions</a>
+      <a href="#reviews-section">Review</a>
+    </div>
+
+    <!-- Social Media Icons -->
+    <div class="social-media-icons">
+      <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+        <i class="fab fa-facebook"></i>
+      </a>
+      <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+
+    <!-- Footer Logo and Copyright -->
+    <div class="footer-logo-container">
+      <a href="home.html" class="footer-logo">Educ-Me</a>
+      <p>&copy; 2024 Educ-Me. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<!-- Footer End -->
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="Go to top">↑</button>
+
+    <script src="category.js"></script>
+    
+  
+</html>
