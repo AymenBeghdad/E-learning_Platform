@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="editinfo.css">
+    <title>edit information</title>
+</head>
+<body>
+<!-- Header -->
+<!-- <header class="header">
+    <div class="navbar">
+        <a href="homeStudent.html" class="logo">Educ-Me</a>
+    
+        <a href="home.html" class="signOUT-btn" id="signOUT">Sign out</a>        
+    </div>
+</header> -->
+
+<section>
+    <div id="container">
+        <h2>Edit your profile</h2>
+        
+            <div class="name-fields">
+                <input id="firstName" type="text" placeholder="First Name" >
+                <input id="lastName" type="text" placeholder="Last Name" >
+            </div>
+       
+            <input id="level" type="text" placeholder="Level" required>
+            <input id="email" type="email" placeholder="Email" required>
+            <input id="password" type="password" placeholder="Password" required>
+            <button id="editbtn">Edit</button>
+       
+    </div>
+</section>
+<!-- 
+<footer class="footer">
+    <div class="footer-container">
+
+      <div class="footer-links">
+        <a href="home.html">Home</a>
+        <a href="help.html">Help</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="#reviews-section">Review</a>
+      </div>
+  
+      <div class="social-media-icons">
+        <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+  
+      <div class="footer-logo-container">
+        <a href="home.html" class="footer-logo">Educ-Me</a>
+        <p>&copy; 2024 Educ-Me. All rights reserved.</p>
+      </div>
+    </div>
+  </footer> -->
+</body>
+<script>
+let originalData = {};
+
+function parseinfo(num) {
+    let request = new XMLHttpRequest();
+    request.open("GET", `http://127.0.0.1:3000/students-login?numr=${num}`);
+    request.send();
+
+    request.onreadystatechange = () => {
+        // Check if the request is complete
+        if (request.readyState === XMLHttpRequest.DONE) {
+            // Parse the response
+            console.log(request.responseText); // Logs the raw response
+            const response = JSON.parse(request.responseText);
+
+            if (request.status === 200 && response.length > 0) {
+                const student = response[0]; 
+
+               
+                document.getElementById("firstName").value = student.firstname;
+                document.getElementById("lastName").value = student.lastname;
+                document.getElementById("level").value = student.level;
+                document.getElementById("email").value = student.student_email;
+                document.getElementById("password").value = student.password; 
+                originalData = {
+                    firstname: student.firstname,
+                    lastname: student.lastname,
+                    level: student.level,
+                    student_email: student.student_email,
+                    password: student.password,
+                };
+                
+                
+                console.log("Form pre-filled with student data.");
+            } else {
+                alert("Student not found.");
+            }
+        }
+    };
+}
+
+
+        const num = localStorage.getItem('num');
+        parseinfo(num)
+        //IDA NDIR NAV BAR NRJ3ha
+        // document.getElementById("signOUT").addEventListener('click', function() {
+        //     localStorage.clear();
+        // });
+
+
+    document.getElementById('editbtn').addEventListener('click', function () {
+    // Get current values from form fields
+    const currentData = {
+        firstname: document.getElementById("firstName").value,
+        lastname: document.getElementById("lastName").value,
+        level: document.getElementById("level").value,
+        student_email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
+    };
+
+    // Create an object to store only the updated fields
+    const updatedFields = {};
+
+    // Compare each field with its original value
+    for (let key in currentData) {
+        if (currentData[key] !== originalData[key]) {
+            updatedFields[key] = currentData[key];
+        }
+    }
+
+    // If no fields are updated
+    if (Object.keys(updatedFields).length === 0) {
+        alert("You made no changes.");
+        return;
+    }
+
+    // Get the student number from localStorage
+    const num = localStorage.getItem('num');
+
+    // Send the updated fields to the server
+    fetch(`http://127.0.0.1:3000/modifier-student?num=${num}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedFields),
+    })
+        .then((response) => {
+            if (response.ok) {
+                alert('Information updated successfully.');
+               
+            } else {
+                alert('There was an error updating the information.');
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('There was an error updating the information.');
+        });
+});
+
+
+</script>
+</html>
+

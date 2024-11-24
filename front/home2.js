@@ -118,3 +118,8 @@ if (backToTopButton) {
         });
     });
 }
+const num = localStorage.getItem('num');
+
+document.getElementById("signOUT").addEventListener('click', function() {
+    localStorage.clear();
+});
