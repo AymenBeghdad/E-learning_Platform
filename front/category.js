@@ -34,3 +34,14 @@ document.addEventListener('DOMContentLoaded', function () {
     seeMoreButton.style.display = "none";
   }
   
+  //scrool btn
+  document.addEventListener("DOMContentLoaded", () => {
+    const enrollButton = document.getElementById("enroll-now-btn");
+    const courseContainer = document.querySelector(".cours");
+  
+    enrollButton.addEventListener("click", (e) => {
+      e.preventDefault(); // Prevent default link behavior
+      courseContainer.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+  
