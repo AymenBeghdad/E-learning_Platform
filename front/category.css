@@ -728,7 +728,7 @@
   flex-direction: column; 
   justify-content: center; 
   align-items: center; 
-  background: url(images/back3.jpg) no-repeat;
+  background: url(images/image.webp) no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -766,7 +766,7 @@
   text-decoration: none;
   color: #fff;
   background-color: var(--main-color);
-  border-radius: 20px;
+  border-radius: 10px;
   letter-spacing: 1px;
   transition: all 0.3s ease-in-out;
   display: inline-block;
@@ -825,8 +825,6 @@
 .titre {
   font-size:xx-large;
 }
-
-
 
 .lesson-container {
   display: flex;
@@ -894,6 +892,7 @@
   color: var(--dark-blue);
   margin-bottom: 10px;
   display: block; 
+  cursor: pointer;
 }
 
 .lesson-box i span{
@@ -1134,4 +1133,4 @@ hr {
   margin: 15px 0;
   border-color: #fff;
 }
-
+
