@@ -216,8 +216,28 @@ app.delete('/delete-student', (req, res)=> {
   });
 });
 
+
 // Router pour modifier les information d'etudiant
-app.put('/modifier-student', (req, res) => {
+app.put('/modifier-student', (req,res) =>{
+
+  const num = req.query.num
+  const { lastname ,firstname, level, student_email, password } = req.body;
+  const sql = `UPDATE students SET  lastname = ?, firstname = ?, level = ?, student_email= ?, \`password\`= ? WHERE num = ?`;
+  
+  db.query(sql , [lastname, firstname, level ,student_email, password, num], (err, result) => {
+    if(err){
+      console.log('Error : ', err);
+      res.status(500).send(`<h3>Error please try again</h3>`);
+      return;
+    }else{
+      console.log('Informations modified succesfully');
+      res.status(200).send(`<h3>Informations modified succesfully</h3>`);
+    }
+  });
+  });
+
+// Router pour modifier les information d'etudiant
+app.put('/edit-student', (req, res) => {
   const num = req.query.num;
   const { lastname, firstname, level, student_email, password } = req.body;
 
