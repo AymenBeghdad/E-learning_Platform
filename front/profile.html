@@ -11,9 +11,8 @@
 <!-- Header -->
 <header class="header">
     <div class="navbar">
-        <a href="home.html" class="logo">Educ-Me</a>
-    
-        <a href="" class="signOUT-btn">Sign out</a>        
+        <a href="homeStudent.html" class="logo">Educ-Me</a>
+        <a href="home.html" class="signOUT-btn" id="signOUT">Sign out</a>        
     </div>
 </header>
 
@@ -24,10 +23,16 @@
     <div class="profile-content">
         <div class="profile-box">
             <div class="profile-info">
-                <h2 id="fullname"></h2>
+                <div class="firstdiv"> 
+                  <h2 id="fullname"></h2>
+                  <a href="editinfo.html" ><img src="images/edit.svg"></a>
+                </div>
+               
                 <br>
                 <p id="num"><i class="fas fa-id-card"></i> </p>
+                <br>
                 <p id="email"><i class="fas fa-envelope"></i> </p>
+                <br>
                 <p id="level"> <i class="fas fa-graduation-cap"></i> </p>
             </div>
             <br>
@@ -108,12 +113,12 @@
                               let coursesList = "<h3>Enrolled Courses:</h3><ul>";
                                courses.forEach(course => {
                               // Create a clickable link for each course
-                               coursesList += `<li><a href="course-details.html?courseId=${course.course_id}" target="_blank">${course.title}</a> (${course.responsable})</li>`;
+                               coursesList += `<li><a href="course-details.html?courseId=${course.course_id}" target="_blank">${course.title}</a> (${course.responsable})</li><br>`;
                               });
                                 coursesList += "</ul>";
                                 document.getElementById("courses").innerHTML = coursesList;
                             } else {
-                                document.getElementById("courses").innerHTML = "<p>No courses found for this student.</p>";
+                                document.getElementById("courses").innerHTML = "<p>No courses found.</p>";
                             }
                         } else {
                             document.getElementById("courses").innerHTML = "<p>Error retrieving courses.</p>";
@@ -129,6 +134,9 @@
 
         const num = localStorage.getItem('num');
         getinfo(num)
+        document.getElementById("signOUT").addEventListener('click', function() {
+        localStorage.clear();
+        });
 </script>
 </html>
 

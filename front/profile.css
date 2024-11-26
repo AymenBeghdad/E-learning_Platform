@@ -196,3 +196,7 @@ footer {
 .profile-box a:hover {
     text-decoration: underline;
 }
+.firstdiv{
+    display:flex ;
+    justify-content: space-between;
+}
