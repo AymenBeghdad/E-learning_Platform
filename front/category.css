@@ -397,11 +397,7 @@
 
 }
 
-<<<<<<< HEAD
-* Card Title Styling */
-=======
 /* Card Title Styling */
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
 /* Course Info */
 .course-info {
     padding: 15px;
@@ -714,10 +710,7 @@
   display: inline-block;
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
 .enroll-btn:hover {
   background-color: var(--secondary-color);
   transform: scale(1.05); 
@@ -736,22 +729,14 @@
   flex-direction: column; 
   justify-content: center; 
   align-items: center; 
-<<<<<<< HEAD
-  background: url(images/back3.jpg) no-repeat;
-=======
   background: url(images/image.webp) no-repeat;
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   text-align: center; 
-<<<<<<< HEAD
-}.category-header h2 {
-=======
 }
 
 .category-header h2 {
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
   display: inline-block;
   margin: 5px;
   color: #fff;
@@ -795,20 +780,12 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
 } 
 
-<<<<<<< HEAD
-
-.path-section,
-.cours {
-  padding: 45px;
-}
-=======
 .taught-section,
 .path-section,
 .cours {
   padding: 50px;
 }
 
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
 .category-header h2 {
   display: inline-block;
   margin: 5px;
@@ -818,10 +795,6 @@
 }
 
 .course-container {
-<<<<<<< HEAD
-  color: #fff;
-=======
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
   padding: 20px;
   background-color: #f8f8f8;
   border: 1px solid #ddd;
@@ -829,31 +802,6 @@
   border-radius: 8px;
 }
 
-<<<<<<< HEAD
-.course-title-box {
-  background-color: var(--dark-blue);
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.course-title-box h3 {
-  font-size: 2em;
-  font-weight: 700;
-}
-
-.tile-duration {
-  font-size: small;
-  font-weight: bold;
-  color: var(--secondary-color);
-}
-
-.p1 {
-  font-size: large;
-}
-
-.titre {
-  font-size:xx-large;
-=======
 
 .teacher,
 .title-duration {
@@ -868,20 +816,10 @@
   font-size:large;
   font-weight: bolder;
   padding-bottom: 5px;
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
 }
 
 
 
-<<<<<<< HEAD
-.lesson-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-
-=======
 
 .rating {
   display: flex;
@@ -973,7 +911,6 @@
   opacity: 0.8;
   cursor: pointer;
 }
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
 
 /* Horizontal Scroll Container */
 .horizontal-scroll {
@@ -1008,86 +945,11 @@
   border-radius: 10px;
 }
 
-<<<<<<< HEAD
-/* Individual Lesson Box Styling */
-.lesson-box {
-  min-width: 300px; 
-  max-width: 300px; 
-  background: #fff;
-  border: 1px solid #ddd; 
-  border-radius: 8px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  padding: 20px; 
-  box-sizing: border-box; 
-  text-align: left;
-  overflow: hidden; 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
-}
-
-
-/* Typography Adjustments for Lesson Box */
-.lesson-box i {
-  font-size: 1.5em;
-  color: var(--dark-blue);
-  margin-bottom: 10px;
-  display: block; 
-}
-
-.lesson-box i span{
-
-  padding: 10px;
-}
-.lesson-box span {
-  font-size: 1em;
-  font-weight: bold;
-}
-
-.lesson-box h4 {
-  font-size: 1.1em;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: var(--dark-blue); 
-  text-align: left; 
-  word-wrap: break-word; 
-}
-.lesson-box i:hover {
-  color: var(--main-color);
-}
-
-.lesson-box p {
-  font-size: 1em;
-  color: #333;
-  word-wrap: break-word; 
-  overflow-wrap: break-word;
-  line-height: 1.5; 
-  text-align: justify; 
-}
-
-.lesson-box:hover {
-  transform: scale(1.05); 
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
-}
-=======
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
 
 
 .see-more-btn {
   display: block;
   margin: 50px auto;
-<<<<<<< HEAD
-  padding: 15px 40px;
-  font-size: 1.2em;
-  background-color: var(--secondary-color);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-=======
   padding: 15px 25px;
   font-size: 1.2em;
   background-color: var(--main-color);
@@ -1105,7 +967,6 @@
 }
 
 
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
 /* Container for lessons with horizontal scroll */
 .courses-grid {
   display: flex; 
@@ -1129,12 +990,8 @@
 
 /* Taught Section */
 .taught-section {
-<<<<<<< HEAD
-  padding: 20px;
-=======
   padding-left: 50px;
   padding-top: 0;
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
   max-width: 100%; 
 }
 
@@ -1143,44 +1000,25 @@
   display: flex; 
   gap: 25px; 
   flex-wrap: nowrap; 
-<<<<<<< HEAD
-  padding: 20px 0; 
-=======
   padding: 0; 
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
 }
 
 /* Individual Taught Card */
 .taught-card {
   background-color: var(--light-bg);
-<<<<<<< HEAD
-  border-top-right-radius: 50px; 
-=======
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
   border-top: 5px solid var(--dark-blue); 
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
-<<<<<<< HEAD
-  transition: transform 0.3s ease, box-shadow 0.3s ease; 
-=======
   transition: transform 0.2s ease, box-shadow 0.2s ease; 
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
   display: flex; 
   flex-direction: column; 
   justify-content: flex-start; 
   align-items: center; 
-<<<<<<< HEAD
-  max-width: 300px; 
-  height: 100%; 
-  flex-shrink: 0; 
-  min-height: 300px; 
-=======
   max-width: 350px; 
   height: 100%; 
   flex-shrink: 0; 
   min-height: 150px; 
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
   flex-grow: 1; 
 }
 
@@ -1223,11 +1061,7 @@
 
 /* Hover Effect for Taught Cards */
 .taught-card:hover {
-<<<<<<< HEAD
-  transform: translateY(-7px); 
-=======
   transform: translateY(-1px); 
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); 
 }
 
@@ -1251,11 +1085,7 @@
 }
 
 .read-more-btn:hover {
-<<<<<<< HEAD
-  color: #333;
-=======
   color: var(--main-color);
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
 }
 
 /* Choose the Right Learning Path Section */
@@ -1328,8 +1158,6 @@ hr {
   border-color: #fff;
 }
 
-<<<<<<< HEAD
-=======
 
 /*  */
 /* Category Banner */
@@ -1557,4 +1385,3 @@ submitButton.onclick = submitKey; and: * Modal container */
     transform: translateY(0);
   }
 }
->>>>>>> 3f334ba16d4c240ae7e3cbd20eebc60e55758fdc
