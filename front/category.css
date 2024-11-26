@@ -733,9 +733,7 @@
   background-position: center;
   background-attachment: fixed;
   text-align: center; 
-}
-
-.category-header h2 {
+}.category-header h2 {
   display: inline-block;
   margin: 5px;
   color: #fff;
@@ -1134,4 +1132,4 @@ hr {
   margin: 15px 0;
   border-color: #fff;
 }
-
+
