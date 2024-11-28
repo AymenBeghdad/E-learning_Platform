@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+:root {
+    --main-color: #3ba1c5;
+    --secondary-color: #00cba9;
+    --white: #fff;
+    --black: #000;
+    --light-bg: #f9f9f9; /* Slightly lighter background */
+    --dark-bg: #171954;
+    --border-color: #ddd;
+    --hover-color: #ff6f61; /* New hover color for better contrast */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: var(--light-bg);
+    color: #333;
+    font-size: 16px;
+}
+
+/* Header */
+.header {
+    /* position: sticky; */
+    top: 0;
+    position: fixed;
+    width: 100%;
+    background-color: var(--light-bg);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header.scrolled {
+    background-color: var(--light-bg);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    padding: 1rem 2rem;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 2rem;
+    color: var(--main-color);
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: var(--secondary-color);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.navbar a {
+    font-size: 1.2rem;
+    color: var(--black);
+    text-decoration: none;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: var(--main-color);
+}
+
+/* Course Details Section */
+.course-details {
+    max-width: 1200px;
+    margin: 120px auto; /* Increased margin for header spacing */
+    padding: 40px;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.course-details h2 {
+    font-size: 2.5rem;
+    color: var(--dark-bg);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.course-details p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+video {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 15px 30px;
+    background-color: var(--main-color);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05); /* Slightly zoom on hover */
+}
+
+button:active {
+    transform: scale(1); /* Reset on click */
+}
+
+/* Quiz Section */
+#quizSection {
+    background-color: var(--light-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    text-align: center;
+}
+
+#quizSection h3 {
+    font-size: 2rem;
+    color: var(--dark-bg);
+    margin-bottom: 20px;
+}
+
+#quizSection p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #333; /* Dark grey background */
+    color: #fff; /* White text */
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid #444; /* Subtle border for separation */
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  /* Footer Links */
+  .footer-links {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .footer-links a {
+    color: #bbb; /* Light grey for links */
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+  
+  .footer-links a:hover {
+    color: #007BFF; /* Highlight color on hover */
+  }
+  
+  /* Social Media Icons */
+  .social-media-icons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .social-media-icons a {
+    font-size: 24px;
+    color: #bbb; /* Light grey for icons */
+    transition: color 0.3s;
+  }
+  
+  .social-media-icons a:hover {
+    color: #007BFF; 
+  }
+  
+  .footer-logo-container {
+    text-align: center;
+  }
+  
+  .footer-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 5px;
+  }
+  
+  .footer-logo:hover {
+    color: #007BFF; /
+  }
+  
+  .footer-logo-container p {
+    font-size: 14px;
+    color: #bbb; }
+  
+/* Quiz Section */
+#quizSection {
+    
+    background-color: var(--light-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 100px;
+    
+}
+
+#quizContent {
+    display: none;
+}
+
+#quizSection h3 {
+    font-size: 2rem;
+    color: var(--dark-bg);
+    margin-bottom: 20px;
+}
+
+#quizSection p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 15px 30px;
+    background-color: var(--main-color);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(1);
+}
