@@ -11,33 +11,33 @@
 
 <!-- Header start: -->
 <header class="header">
-    <div class="nav-container">
-        <a href="home.html" class="logo">Educ-Me</a>
-         <!-- Navigation Links -->
-         <nav class="navbar">
-          <a href="home.html">Home</a>
-          <div class="dropdown">
-              <a href="#" class="dropdown-btn">Categories</a>
-              <ul class="dropdown-content">
-                  <li><a href="data-science.html">Data Science</a></li>
-                  <li><a href="security.html">Security</a></li>
-                  <li><a href="software.html">Software</a></li>
-              </ul>
-          </div>
-          <a href=""class="scroll-to-about">About</a>
-      </nav>
-        <!-- Search Bar -->
-        <form action="" method="post" class="search-form">
-          <input type="text" name="search-box" placeholder="Search" required maxlength="30">
-          <button type="submit" class="fas fa-search"></button>
-      </form>
+  <div class="nav-container">
+      <a href="home.html" class="logo">Educ-Me</a>
+       <!-- Navigation Links -->
+       <nav class="navbar">
+        <a href="home.html">Home</a>
+        <div class="dropdown">
+            <a href="#" class="dropdown-btn">Categories</a>
+            <ul class="dropdown-content">
+                <li><a href="data-science.html">Data Science</a></li>
+                <li><a href="security.html">Security</a></li>
+                <li><a href="software.html">Software</a></li>
+            </ul>
+        </div>
+        <a href=""class="scroll-to-about">About</a>
+    </nav>
+      <!-- Search Bar -->
+      <form action="" method="post" class="search-form">
+        <input type="text" name="search-box" placeholder="Search" required maxlength="30">
+        <button type="submit" class="fas fa-search"></button>
+    </form>
 
-      <!-- Login and Sign Up Buttons -->
-      <div class="auth-buttons">
-          <a href="login.html" class="btn login-btn">Log In</a>
-          <a href="signup.html" class="btn signup-btn">Sign Up</a>
-      </div>
-  </div>
+    <!-- Login and Sign Up Buttons -->
+    <div class="auth-buttons">
+        <a href="login.html" class="btn login-btn">Log In</a>
+        <a href="signup.html" class="btn signup-btn">Sign Up</a>
+    </div>
+</div>
 </header>
 <!-- Header end -->
 
@@ -46,6 +46,50 @@
 <!-- category details -->
 
 <section class="category-details">
+
+<div class="category-header">
+  <h2>
+    <span>Cybersecurity</span><br>
+    Dive into the world of cybersecurity, mastering defensive techniques and offensive strategies. Learn to safeguard networks, identify vulnerabilities, and respond to real-world security threats with confidence.
+  </h2>
+  <a href="cour.html" class="start-btn">Start Now</a>
+</div>
+
+<!-- Courses in Program Section -->
+<div class="cours">
+<h2 class="section-title">Courses in Program</h2>
+
+<!-- Courses Grid -->
+<div class="courses-grid">
+  <div class="course-card">
+    <h3 class="course-title">Course 1: Advanced Cybersecurity Fundamentals</h3>
+    <p class="course-description">Learn the fundamental concepts of cybersecurity, network defense techniques, and how to protect your system from cyber threats.</p>
+  </div>
+
+  <div class="course-card">
+    <h3 class="course-title">Course 2: Math Tools for Cryptography</h3>
+    <p class="course-description">Explore the mathematics behind cryptographic algorithms and their applications in secure communications.</p>
+  </div>
+
+  <div class="course-card">
+    <h3 class="course-title">Course 3: Ethical Hacking and Penetration Testing</h3>
+    <p class="course-description">Learn the methods and tools used by ethical hackers to identify vulnerabilities and secure systems.</p>
+  </div>
+
+  <div class="course-card">
+    <h3 class="course-title">Course 4: Introduction to Network Security</h3>
+    <p class="course-description">Gain an understanding of the basics of network security, including firewalls, intrusion detection, and protection strategies.</p>
+  </div>
+
+  <div class="course-card">
+    <h3 class="course-title">Course 5: Cloud Security Essentials</h3>
+    <p class="course-description">Master the best practices for securing cloud-based applications, data storage, and networks in a cloud environment.</p>
+  </div>
+
+  <div class="course-card">
+    <h3 class="course-title">Course 6: Malware Analysis and Forensics</h3>
+    <p class="course-description">Learn the techniques used to analyze malware and investigate cybercrimes through forensic methods.</p>
+=======
   <div class="category-header">
     <h2>
       <span>Cybersecurity</span><br>
@@ -91,62 +135,63 @@
     </div>
   </div>
 </div>
+</div>
 </section>
 <!-- Taught By The Best -->
 <section class="taught-section" id="taught-section">
 
-  <h2 class="section-title">Taught By The Best</h2>
-  <div class="taught-grid"> 
-    <div class="horizontal-scroll">
-      <!-- Teacher 1 -->
-      <div class="taught-card">
-          <div class="taught-text">
-            <h3>James Bennett</h3>
-            <p>Cybersecurity professional with extensive experience in protecting digital systems and networks.</p>
-            <div class="more">
-              <p>James mentors students and professionals, helping them build careers in cybersecurity and advocating for a more secure digital future.</p>
-            </div>
-            <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+<h2 class="section-title">Taught By The Best</h2>
+<div class="taught-grid"> 
+  <div class="horizontal-scroll">
+    <!-- Teacher 1 -->
+    <div class="taught-card">
+        <div class="taught-text">
+          <h3>James Bennett</h3>
+          <p>Cybersecurity professional with extensive experience in protecting digital systems and networks.</p>
+          <div class="more">
+            <p>James mentors students and professionals, helping them build careers in cybersecurity and advocating for a more secure digital future.</p>
           </div>
-      </div>
+          <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+        </div>
+    </div>
 
-      <!-- Teacher 2 -->
-      <div class="taught-card">
-          <div class="taught-text">
-            <h3>Sophia Harris</h3>
-            <p>Experienced cybersecurity strategist with a focus on risk management, threat detection, and incident response.</p>
-            <div class="more">
-              <p>Sophia conducts workshops and seminars, sharing insights on the latest cybersecurity trends and emerging technologies.</p>
-            </div>
-            <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+    <!-- Teacher 2 -->
+    <div class="taught-card">
+        <div class="taught-text">
+          <h3>Sophia Harris</h3>
+          <p>Experienced cybersecurity strategist with a focus on risk management, threat detection, and incident response.</p>
+          <div class="more">
+            <p>Sophia conducts workshops and seminars, sharing insights on the latest cybersecurity trends and emerging technologies.</p>
           </div>
-      </div>
+          <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+        </div>
+    </div>
 
 
 
-  <div class="taught-card">
-          <div class="taught-text">
-            <h3>Sophia Harris</h3>
-            <p>Experienced cybersecurity strategist with a focus on risk management, threat detection, and incident response.</p>
-            <div class="more">
-              <p>Sophia conducts workshops and seminars, sharing insights on the latest cybersecurity trends and emerging technologies.</p>
-            </div>
-            <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+<div class="taught-card">
+        <div class="taught-text">
+          <h3>Sophia Harris</h3>
+          <p>Experienced cybersecurity strategist with a focus on risk management, threat detection, and incident response.</p>
+          <div class="more">
+            <p>Sophia conducts workshops and seminars, sharing insights on the latest cybersecurity trends and emerging technologies.</p>
           </div>
-      </div>
+          <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+        </div>
+    </div>
 
-      <!-- Teacher 3 -->
-      <div class="taught-card">
-          <div class="taught-text">
-            <h3>Liam Smith</h3>
-            <p>Cybersecurity professional with extensive experience in protecting digital systems and networks.</p>
-            <div class="more">
-              <p>Liam is dedicated to building a stronger cybersecurity community, providing guidance to professionals, and helping organizations navigate the ever-evolving threat landscape.</p>
-            </div>
-            <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+    <!-- Teacher 3 -->
+    <div class="taught-card">
+        <div class="taught-text">
+          <h3>Liam Smith</h3>
+          <p>Cybersecurity professional with extensive experience in protecting digital systems and networks.</p>
+          <div class="more">
+            <p>Liam is dedicated to building a stronger cybersecurity community, providing guidance to professionals, and helping organizations navigate the ever-evolving threat landscape.</p>
           </div>
-      </div>
-  </div>
+          <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+        </div>
+    </div>
+</div>
 </div>
 </div>
 </section>
@@ -158,44 +203,44 @@
 
 <!-- Footer Start -->
 <footer class="footer">
-  <div class="footer-container">
-    <!-- Footer Links -->
-    <div class="footer-links">
-      <a href="home.html">Home</a>
-      <a href="help.html">Help</a>
-      <a href="conditions.html">Conditions</a>
-      <a href="#reviews-section">Review</a>
-    </div>
-
-    <!-- Social Media Icons -->
-    <div class="social-media-icons">
-      <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-        <i class="fab fa-facebook"></i>
-      </a>
-      <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-        <i class="fab fa-instagram"></i>
-      </a>
-    </div>
-
-    <!-- Footer Logo and Copyright -->
-    <div class="footer-logo-container">
-      <a href="home.html" class="footer-logo">Educ-Me</a>
-      <p>&copy; 2024 Educ-Me. All rights reserved.</p>
-    </div>
+<div class="footer-container">
+  <!-- Footer Links -->
+  <div class="footer-links">
+    <a href="home.html">Home</a>
+    <a href="help.html">Help</a>
+    <a href="conditions.html">Conditions</a>
+    <a href="#reviews-section">Review</a>
   </div>
+
+  <!-- Social Media Icons -->
+  <div class="social-media-icons">
+    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+      <i class="fab fa-facebook"></i>
+    </a>
+    <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
+      <i class="fab fa-twitter"></i>
+    </a>
+    <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn">
+      <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
+
+  <!-- Footer Logo and Copyright -->
+  <div class="footer-logo-container">
+    <a href="home.html" class="footer-logo">Educ-Me</a>
+    <p>&copy; 2024 Educ-Me. All rights reserved.</p>
+  </div>
+</div>
 </footer>
 <!-- Footer End -->
-    <!-- Back to Top Button -->
-    <button id="backToTop" title="Go to top">↑</button>
+  <!-- Back to Top Button -->
+  <button id="backToTop" title="Go to top">↑</button>
 
-    <script src="category.js"></script>
-    
+  <script src="category.js"></script>
   
+
 </html>
 
