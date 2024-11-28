@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet" href="course_study.css">
+    <title>Course</title>
+</head>
+<body>
+  
+
+<!-- Header start -->
+<header class="header">
+    <div class="nav-container">
+        <a href="home.html" class="logo">Educ-Me</a>
+         <!-- Navigation Links -->
+         <nav class="navbar">
+          <a href="home.html">Home</a>
+          <div class="dropdown">
+              <a href="#" class="dropdown-btn">Categories</a>
+              <ul class="dropdown-content">
+                  <li><a href="data-science.html">Data Science</a></li>
+                  <li><a href="security.html">Security</a></li>
+                  <li><a href="software.html">Software</a></li>
+              </ul>
+          </div>
+          <a href=""class="scroll-to-about">About</a>
+      </nav>
+        <!-- Search Bar -->
+        <form action="" method="post" class="search-form">
+          <input type="text" name="search-box" placeholder="Search" required maxlength="30">
+          <button  class="fas fa-search"></button>
+      </form>
+
+      <!-- Login and Sign Up Buttons -->
+      <div class="auth-buttons">
+          <a href="login.html" class="btn login-btn">Log In</a>
+          <a href="signup.html" class="btn signup-btn">Sign Up</a>
+      </div>
+    </div>
+</header>
+<!-- Header end -->
+
+<div class="container">
+  <!-- Main Content Area -->
+  <main>
+    <!-- Video Section -->
+    <section class="video-section">
+      <div class="video-container">
+          <!-- Background image for the video -->
+          <div class="video-background" id="video-bg" style="background-image: url('images/image-cours2.webp');"></div>
+
+          <!-- Play button -->
+          <button id="play-video" class="play-button">▶</button>
+  
+          <!-- Video player -->
+          <video id="course-video" >
+              <source src="lecture.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+          </video>
+      </div>
+    </section>
+    
+  </main>
+  <!-- Course Checklist Section -->
+  <div class="course-container">
+    <div class="title-box">
+      <h3 class="section-title">Course Modules</h3>
+    </div>
+    <div class="course-checklist">
+      <!-- Title Box -->
+      
+      <!-- Full Width Line -->
+      <hr class="title-divider">
+      <!-- Task List -->
+      <ul>
+        <li>
+          <div class="task-box">
+            <input type="checkbox" id="module1">
+            <label for="module1">
+              <a href="video1.mp4" target="_blank" class="video-link">Introduction to AI and ML</a>
+            </label>
+          </div>
+        </li>
+        <hr>
+        <li>
+          <div class="task-box">
+            <input type="checkbox" id="module2">
+            <label for="module2">
+              <a href="video2.mp4" target="_blank" class="video-link">Basics of Python Programming</a>
+            </label>
+          </div>
+        </li>
+        <hr>
+        <li>
+          <div class="task-box">
+            <input type="checkbox" id="module3">
+            <label for="module3">
+              <a href="video3.mp4" target="_blank" class="video-link">Supervised Learning Techniques</a>
+            </label>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+
+</div>
+
+<!-- course description -->
+<div class="course-description">
+  <h2>Roadmap to Artificial Intelligence and Machine Learning</h2>
+  <p>
+      This comprehensive course introduces you to the exciting fields of AI and ML. 
+      Learn about supervised and unsupervised learning, Python programming, and the 
+      latest trends in AI with hands-on projects and real-world examples.
+  </p>
+  <div class="course-meta">
+      <span><i class="fa-solid fa-user"></i> By: John Doe</span>
+      <span><i class="fa-solid fa-calendar"></i> Created: November 2024</span>
+      <span><i class="fa-solid fa-star"></i> Rating: 4.5</span>
+  </div>
+</div>
+
+ <!-- resources downlaod -->
+  <section id="resources-section" style="margin-top: 40px;">
+    <h2>Course Resources</h2>
+    <ul>
+        <li><a href="path-to-resource/AI_Slides.pdf" download>Download AI Slides (PDF)</a></li>
+        <li><a href="path-to-resource/Python_Basics_Code.zip" download>Download Python Basics Code Files</a></li>
+        <li><a href="path-to-resource/Supervised_Learning_Guide.pdf" download>Download Supervised Learning Guide (PDF)</a></li>
+    </ul>
+  </section>
+
+  
+
+ <!-- Comments Section -->
+ <section class="comments-section">
+  <h2>Student Feedback</h2>
+
+  <div id="comments-container">
+      <div class="comment">
+          <p>"This course is a game-changer for AI enthusiasts!"</p>
+          <span class="stars">⭐⭐⭐⭐⭐</span>
+      </div>
+      <div class="comment">
+          <p>"Well-structured and easy to follow."</p>
+          <span class="stars">⭐⭐⭐⭐</span>
+      </div>
+  </div>
+
+  <form id="comment-form">
+      <h3>Add Your Review</h3>
+      <textarea id="comment-text" placeholder="Write your comment..." required></textarea>
+      <div class="rating-container">
+          <label for="rating">Your Rating:</label>
+          <select id="rating" required>
+              <option value="" disabled selected>Select stars</option>
+              <option value="5">⭐⭐⭐⭐⭐</option>
+              <option value="4">⭐⭐⭐⭐</option>
+              <option value="3">⭐⭐⭐</option>
+              <option value="2">⭐⭐</option>
+              <option value="1">⭐</option>
+          </select>
+      </div>
+  <button type="submit" class="submitbtn">Submit Review</button>
+  </form>
+</section>  
+
+<!-- Footer Start -->
+<footer class="footer">
+    <div class="footer-container">
+      <!-- Footer Links -->
+      <div class="footer-links">
+        <a href="home.html">Home</a>
+        <a href="help.html">Help</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="#reviews-section">Review</a>
+      </div>
+  
+      <!-- Social Media Icons -->
+      <div class="social-media-icons">
+        <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+  
+      <!-- Footer Logo and Copyright -->
+      <div class="footer-logo-container">
+        <a href="home.html" class="footer-logo">Educ-Me</a>
+        <p>&copy; 2024 Educ-Me. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer End -->
+      <!-- Back to Top Button -->
+      <button id="backToTop" title="Go to top">↑</button>
+  
+      <script src="course_study.js"></script>
+      
+</body>    
+</html>
