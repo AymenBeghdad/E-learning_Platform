@@ -9,7 +9,7 @@ video.addEventListener('timeupdate', () => {
     progressDisplay.textContent = `Progress: ${progress}%`;
 });
 
-///
+///cmd
  
 // Save Checklist Progress
 const checklist = document.querySelectorAll('.course-checklist input');
