@@ -397,7 +397,7 @@
 
 }
 
-* Card Title Styling */
+/* Card Title Styling */
 /* Course Info */
 .course-info {
     padding: 15px;
@@ -766,7 +766,7 @@
   text-decoration: none;
   color: #fff;
   background-color: var(--main-color);
-  border-radius: 10px;
+  border-radius: 20px;
   letter-spacing: 1px;
   transition: all 0.3s ease-in-out;
   display: inline-block;
@@ -779,11 +779,12 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
 } 
 
-
+.taught-section,
 .path-section,
 .cours {
-  padding: 45px;
+  padding: 50px;
 }
+
 .category-header h2 {
   display: inline-block;
   margin: 5px;
@@ -793,7 +794,6 @@
 }
 
 .course-container {
-  color: #fff;
   padding: 20px;
   background-color: #f8f8f8;
   border: 1px solid #ddd;
@@ -801,38 +801,115 @@
   border-radius: 8px;
 }
 
-.course-title-box {
-  background-color: var(--dark-blue);
-  padding: 20px;
-  border-radius: 8px;
-}
 
-.course-title-box h3 {
-  font-size: 2em;
-  font-weight: 700;
-}
-
-.tile-duration {
+.teacher,
+.title-duration {
   font-size: small;
-  font-weight: bold;
-  color: var(--secondary-color);
+  /* font-weight: bold; */
+  color: gray;
+  padding-bottom: 5px;
 }
 
-.p1 {
-  font-size: large;
-}
 
 .titre {
-  font-size:xx-large;
+  font-size:large;
+  font-weight: bolder;
+  padding-bottom: 5px;
 }
 
-.lesson-container {
+
+
+
+.rating {
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.score {
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(44, 2, 2);
+  margin-right: 0.5rem;
+}
+
+.stars {
+  display: flex;
+}
+
+.star4.filled4,
+.star3.filled3,
+.star2.filled2,
+.star1.filled1 {
+  background-color: #dab900;
+}
+
+.star2.half-filled2,
+.star1.half-filled1 {
+  background: linear-gradient(to right, #dab900 50%, lightgray 50%);
+}
+
+.star4.non-filled4,
+.star2.non-filled2 {
+  background-color:  #ccc;
 }
 
 
+.star1,
+.star2,
+.star3,
+.star4 {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%,
+    79% 91%, 50% 70%, 21% 91%, 32% 57%,
+    2% 35%, 39% 35%
+  );
+  background-color: #ccc; /* Default star color (empty) */
+}
+
+.star3 {
+  width: 20px;
+  height: 20px;
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%,
+    79% 91%, 50% 70%, 21% 91%, 32% 57%,
+    2% 35%, 39% 35%
+  );
+  background-color: #ccc; /* Default star color (empty) */
+}
+
+
+.bt {
+  background-color: var(--main-color);
+  border: none;
+  color: var(--light-bg);
+  padding: 4px 8px;
+  transition: background-color 0.25s ease;
+  cursor: pointer;
+}
+
+
+.see-more-btn:hover,
+.bt:hover {
+  background-color: var(--light-bg);
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+}
+
+.im {
+  height: auto;
+  width: 280px;
+  float: left;
+  padding-right: 20px; 
+}
+
+.im:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
 
 /* Horizontal Scroll Container */
 .horizontal-scroll {
@@ -867,81 +944,27 @@
   border-radius: 10px;
 }
 
-/* Individual Lesson Box Styling */
-.lesson-box {
-  min-width: 300px; 
-  max-width: 300px; 
-  background: #fff;
-  border: 1px solid #ddd; 
-  border-radius: 8px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  padding: 20px; 
-  box-sizing: border-box; 
-  text-align: left;
-  overflow: hidden; 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
-}
-
-
-/* Typography Adjustments for Lesson Box */
-.lesson-box i {
-  font-size: 1.5em;
-  color: var(--dark-blue);
-  margin-bottom: 10px;
-  display: block; 
-  cursor: pointer;
-}
-
-.lesson-box i span{
-
-  padding: 10px;
-}
-.lesson-box span {
-  font-size: 1em;
-  font-weight: bold;
-}
-
-.lesson-box h4 {
-  font-size: 1.1em;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: var(--dark-blue); 
-  text-align: left; 
-  word-wrap: break-word; 
-}
-.lesson-box i:hover {
-  color: var(--main-color);
-}
-
-.lesson-box p {
-  font-size: 1em;
-  color: #333;
-  word-wrap: break-word; 
-  overflow-wrap: break-word;
-  line-height: 1.5; 
-  text-align: justify; 
-}
-
-.lesson-box:hover {
-  transform: scale(1.05); 
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
-}
 
 
 .see-more-btn {
   display: block;
   margin: 50px auto;
-  padding: 15px 40px;
+  padding: 15px 25px;
   font-size: 1.2em;
-  background-color: var(--secondary-color);
+  background-color: var(--main-color);
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.25s ease;
+
 }
+
+.bt:active,
+.see-more-btn:active {
+  opacity: 0.6;
+}
+
 
 /* Container for lessons with horizontal scroll */
 .courses-grid {
@@ -966,7 +989,8 @@
 
 /* Taught Section */
 .taught-section {
-  padding: 20px;
+  padding-left: 50px;
+  padding-top: 0;
   max-width: 100%; 
 }
 
@@ -975,26 +999,25 @@
   display: flex; 
   gap: 25px; 
   flex-wrap: nowrap; 
-  padding: 20px 0; 
+  padding: 0; 
 }
 
 /* Individual Taught Card */
 .taught-card {
   background-color: var(--light-bg);
-  border-top-right-radius: 50px; 
   border-top: 5px solid var(--dark-blue); 
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  transition: transform 0.2s ease, box-shadow 0.2s ease; 
   display: flex; 
   flex-direction: column; 
   justify-content: flex-start; 
   align-items: center; 
-  max-width: 300px; 
+  max-width: 350px; 
   height: 100%; 
   flex-shrink: 0; 
-  min-height: 300px; 
+  min-height: 150px; 
   flex-grow: 1; 
 }
 
@@ -1037,7 +1060,7 @@
 
 /* Hover Effect for Taught Cards */
 .taught-card:hover {
-  transform: translateY(-7px); 
+  transform: translateY(-1px); 
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); 
 }
 
@@ -1061,7 +1084,7 @@
 }
 
 .read-more-btn:hover {
-  color: #333;
+  color: var(--main-color);
 }
 
 /* Choose the Right Learning Path Section */
@@ -1134,3 +1157,230 @@ hr {
   border-color: #fff;
 }
 
+
+/*  */
+/* Category Banner */
+.category-banner {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(90deg, #0a3300, #003366);
+  color: white;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.category-banner h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.category-banner p {
+  font-size: 1.2em;
+}
+
+/* Course Box with Image */
+.course-box {
+  display: flex;
+  gap: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.course-image img {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.course-info {
+  flex: 1;
+}
+
+.course-title {
+  font-size: 1.8em;
+  color: #0a3300;
+  margin-bottom: 10px;
+}
+
+.course-duration {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.course-description {
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* Buttons with Hover Effects */
+.enroll-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #003366;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.enroll-button:hover {
+  background-color: #00509e;
+  transform: scale(1.05);
+}
+
+/* Subtle Background */
+body {
+  background: url('background-pattern.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Popular Badge */
+.popular-badge {
+  background-color: #ff5733;
+  color: white;
+  font-size: 0.9em;
+  padding: 5px 10px;
+  border-radius: 3px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Modal container */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  overflow: hidden;
+  animation: fadeIn 0.5s ease; /* Smooth fade-in effect */
+}
+
+/* Modal content */
+.modal-content {
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  color: #333;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 12px;
+  width: 350px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: slideDown 0.5s ease; /* Sliding animation */
+}
+
+/* Modal title */
+.modalTitle {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: var(--main-color); /* Accent color */
+}
+
+/* Modal description */
+.modal-description {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+/* Close button (×) */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+.close:hover,
+.close:focus {
+  color: #f00;
+}
+
+/* Input field */
+.keyInput {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: var(--main-color); 
+}
+
+/* Submit button */
+.modal-button {
+  background-color: var(--main-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.taught-section
+
+.modal-button:hover {
+  background-color: var(--main-color); 
+}
+
+/* Error message */
+.errorMessage {
+  color: red;
+  margin-top: 10px;
+  display: none; /* Hidden by default */
+  font-size: 14px;
+}
+
+/* // Submit the key when the "Submit" button is clicked
+submitButton.onclick = submitKey; and: * Modal container */ 
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  overflow: hidden;
+  animation: fadeIn 0.5s ease; /* Smooth fade-in effect */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-50px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
