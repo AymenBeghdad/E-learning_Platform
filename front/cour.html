@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet" href="cour.css">
+    <title>Course Page</title>
+</head>
+<body>
+<!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="home.html" class="logo">Educ-Me</a>
+            <nav class="navbar">
+                <a href="home.html">Home</a>
+                <a href="category.html">Categories</a>
+            </nav>
+        </div>
+    </header>
+
+<!-- Course Details Section -->
+    <section id="course-details" class="course-details">
+        <h2 id="courseTitle">Course Title</h2>
+        <p id="courseDescription">Course description will go here.</p>
+        
+        <!-- Video Section -->
+        <div class="video-container">
+            <video id="lessonVideo" controls>
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <button id="nextLessonBtn" style="display: none;" onclick="loadNextLesson()">Next Lesson</button>
+        </div>
+    </section>
+
+<!-- Quiz Section (Initially hidden) -->
+    <section id="quizSection" style="display: none;">
+        <h3>Quiz: Course Title</h3>
+        <p>After completing the lessons, take this quiz to test your knowledge.</p>
+        <button onclick="startQuiz()">Start Quiz</button>
+
+        <div id="quizContent" style="display: none;">
+            <h4>Question 1: What is Cybersecurity?</h4>
+            <label>
+                <input type="radio" name="q1" value="a"> A process to secure personal data
+            </label><br>
+            <label>
+                <input type="radio" name="q1" value="b"> The study of cryptography
+            </label><br>
+            <label>
+                <input type="radio" name="q1" value="c"> Protecting computer systems from cyber attacks
+            </label><br>
+
+            <h4>Question 2: What is a Firewall?</h4>
+            <label>
+                <input type="radio" name="q2" value="a"> A physical barrier
+            </label><br>
+            <label>
+                <input type="radio" name="q2" value="b"> A software to protect from unauthorized access
+            </label><br>
+            <label>
+                <input type="radio" name="q2" value="c"> A hardware device for network monitoring
+            </label><br>
+            
+            <button onclick="submitQuiz()">Submit Quiz</button>
+        </div>
+    </section>
+
+<!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="home.html">Home</a>
+                <a href="help.html">Help</a>
+                <a href="conditions.html">Conditions</a>
+                <a href="#reviews-section">Review</a>
+            </div>
+            <div class="social-media-icons">
+                <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <div class="footer-logo-container">
+                <a href="home.html" class="footer-logo">Educ-Me</a>
+                <p>&copy; 2024 Educ-Me. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+<script src="cour.js"></script>
+</body>
+</html>
