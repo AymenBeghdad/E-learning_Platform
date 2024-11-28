@@ -710,7 +710,6 @@
   display: inline-block;
 }
 
-
 .enroll-btn:hover {
   background-color: var(--secondary-color);
   transform: scale(1.05); 

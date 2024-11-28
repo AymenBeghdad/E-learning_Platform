@@ -216,24 +216,80 @@ app.delete('/delete-student', (req, res)=> {
   });
 });
 
+
 // Router pour modifier les information d'etudiant
 app.put('/modifier-student', (req,res) =>{
 
-const num = req.query.num
-const { lastname ,firstname, level, student_email, password } = req.body;
-const sql = `UPDATE students SET  lastname = ?, firstname = ?, level = ?, student_email= ?, \`password\`= ? WHERE num = ?`;
+  const num = req.query.num
+  const { lastname ,firstname, level, student_email, password } = req.body;
+  const sql = `UPDATE students SET  lastname = ?, firstname = ?, level = ?, student_email= ?, \`password\`= ? WHERE num = ?`;
+  
+  db.query(sql , [lastname, firstname, level ,student_email, password, num], (err, result) => {
+    if(err){
+      console.log('Error : ', err);
+      res.status(500).send(`<h3>Error please try again</h3>`);
+      return;
+    }else{
+      console.log('Informations modified succesfully');
+      res.status(200).send(`<h3>Informations modified succesfully</h3>`);
+    }
+  });
+  });
 
-db.query(sql , [lastname, firstname, level ,student_email, password, num], (err, result) => {
-  if(err){
-    console.log('Error : ', err);
-    res.status(500).send(`<h3>Error please try again</h3>`);
-    return;
-  }else{
-    console.log('Informations modified succesfully');
-    res.status(200).send(`<h3>Informations modified succesfully</h3>`);
+// Router pour modifier les information d'etudiant
+app.put('/edit-student', (req, res) => {
+  const num = req.query.num;
+  const { lastname, firstname, level, student_email, password } = req.body;
+
+  // Create a dynamic query based on provided fields
+  let updates = [];
+  let values = [];
+
+  if (lastname !== undefined) {
+      updates.push('lastname = ?');
+      values.push(lastname);
   }
+  if (firstname !== undefined) {
+      updates.push('firstname = ?');
+      values.push(firstname);
+  }
+  if (level !== undefined) {
+      updates.push('level = ?');
+      values.push(level);
+  }
+  if (student_email !== undefined) {
+      updates.push('student_email = ?');
+      values.push(student_email);
+  }
+  if (password !== undefined) {
+      updates.push('`password` = ?');
+      values.push(password);
+  }
+
+  // If no fields are provided, return an error
+  if (updates.length === 0) {
+      res.status(400).send('No fields to update.');
+      return;
+  }
+
+  // Append the num to the values array for the WHERE clause
+  values.push(num);
+
+  // Construct the SQL query
+  const sql = `UPDATE students SET ${updates.join(', ')} WHERE num = ?`;
+
+  db.query(sql, values, (err, result) => {
+      if (err) {
+          console.log('Error:', err);
+          res.status(500).send('Error: Please try again.');
+          return;
+      }
+
+      console.log('Information modified successfully');
+      res.status(200).send('Information modified successfully');
+  });
 });
-});
+
 
 /********************* */
 
