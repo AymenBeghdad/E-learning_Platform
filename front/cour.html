@@ -8,66 +8,104 @@
     <title>Course Page</title>
 </head>
 <body>
-<!-- Header -->
+    <!-- Header -->
     <header class="header">
         <div class="nav-container">
             <a href="home.html" class="logo">Educ-Me</a>
             <nav class="navbar">
                 <a href="home.html">Home</a>
-                <a href="category.html">Categories</a>
             </nav>
         </div>
     </header>
 
-<!-- Course Details Section -->
-    <section id="course-details" class="course-details">
-        <h2 id="courseTitle">Course Title</h2>
-        <p id="courseDescription">Course description will go here.</p>
-        
-        <!-- Video Section -->
-        <div class="video-container">
-            <video id="lessonVideo" controls>
-                <source src="" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <button id="nextLessonBtn" style="display: none;" onclick="loadNextLesson()">Next Lesson</button>
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Course Lessons</h3>
+            <div class="lesson-item">
+                <h4 onclick="toggleDropdown(0)">Lesson 1: Introduction</h4>
+                <div class="dropdown-container">
+                    <a href="#" onclick="loadLesson(0, 'video')">1.1 Video</a>
+                    <a href="#" onclick="loadLesson(0, 'summary')">1.2 Summary</a>
+                    <a href="#" onclick="loadLesson(0, 'quiz')">1.3 Quiz</a>
+                    <a href="#" onclick="loadLesson(0, 'pdf')">1.4 Pdf </a>
+                </div>
+            </div>
+            <div class="lesson-item">
+                <h4 onclick="toggleDropdown(1)">Lesson 2: Basics</h4>
+                <div class="dropdown-container">
+                    <a href="#" onclick="loadLesson(1, 'video')">2.1 Video</a>
+                    <a href="#" onclick="loadLesson(1, 'Summary')">2.2 Summary</a>
+                    <a href="#" onclick="loadLesson(1, 'quiz')">2.3 Quiz</a>
+                    <a href="#" onclick="loadLesson(1, 'pdf')">1.3 Pdf</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="video-container">
+                <h3 id="lesson-title">Lesson 1: Introduction</h3>
+                <video id="lesson-video" controls>
+                    <source src="lesson1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div id="lesson-summary"></div>
+            </div>
+            <div class="navigation-buttons">
+                <button id="prevLessonBtn" disabled>Previous</button>
+                <button id="nextLessonBtn">Next</button>
+            </div>
+        </main>
+    </div>
+    <!-- course description -->
+<div class="course-description">
+    <h2>Course 1: Advanced Cybersecurity Fundamentals</h2>
+    <p>
+        Learn the fundamental concepts of cybersecurity, network defense techniques, and how to protect your system from cyber threats.
+    </p>
+    <div class="course-meta">
+        <span><i class="fa-solid fa-user"></i> By: John Doe</span>
+        <span><i class="fa-solid fa-calendar"></i> Created: November 2024</span>
+        <span><i class="fa-solid fa-star"></i> Rating: 4.5</span>
+    </div>
+  </div>
+   <!-- Comments Section -->
+ <section class="comments-section">
+    <h2>Student Feedback</h2>
+  
+    <div id="comments-container">
+        <div class="comment">
+            <p>"This course is a game-changer for AI enthusiasts!"</p>
+            <span class="stars">⭐⭐⭐⭐⭐</span>
         </div>
-    </section>
-
-<!-- Quiz Section (Initially hidden) -->
-    <section id="quizSection" style="display: none;">
-        <h3>Quiz: Course Title</h3>
-        <p>After completing the lessons, take this quiz to test your knowledge.</p>
-        <button onclick="startQuiz()">Start Quiz</button>
-
-        <div id="quizContent" style="display: none;">
-            <h4>Question 1: What is Cybersecurity?</h4>
-            <label>
-                <input type="radio" name="q1" value="a"> A process to secure personal data
-            </label><br>
-            <label>
-                <input type="radio" name="q1" value="b"> The study of cryptography
-            </label><br>
-            <label>
-                <input type="radio" name="q1" value="c"> Protecting computer systems from cyber attacks
-            </label><br>
-
-            <h4>Question 2: What is a Firewall?</h4>
-            <label>
-                <input type="radio" name="q2" value="a"> A physical barrier
-            </label><br>
-            <label>
-                <input type="radio" name="q2" value="b"> A software to protect from unauthorized access
-            </label><br>
-            <label>
-                <input type="radio" name="q2" value="c"> A hardware device for network monitoring
-            </label><br>
-            
-            <button onclick="submitQuiz()">Submit Quiz</button>
+        <div class="comment">
+            <p>"Well-structured and easy to follow."</p>
+            <span class="stars">⭐⭐⭐⭐</span>
         </div>
-    </section>
+    </div>
+  
+    <form id="comment-form">
+        <h3>Add Your Review</h3>
+        <textarea id="comment-text" placeholder="Write your comment..." required></textarea>
+        <div class="rating-container">
+            <label for="rating">Your Rating:</label>
+            <select id="rating" required>
+                <option value="" disabled selected>Select stars</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="1">⭐</option>
+            </select>
+        </div>
+    <button type="submit" class="submitbtn">Submit Review</button>
+    </form>
+  </section>  
+  <!-- cmnt -->
 
-<!-- Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-links">
@@ -77,26 +115,15 @@
                 <a href="#reviews-section">Review</a>
             </div>
             <div class="social-media-icons">
-                <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
-            <div class="footer-logo-container">
-                <a href="home.html" class="footer-logo">Educ-Me</a>
-                <p>&copy; 2024 Educ-Me. All rights reserved.</p>
-            </div>
+            <p>&copy; 2024 Educ-Me. All rights reserved.</p>
         </div>
     </footer>
 
-<script src="cour.js"></script>
+    <script src="cour.js"></script>
 </body>
 </html>
