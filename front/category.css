@@ -1081,10 +1081,10 @@ hr {
 }
 
 /* Subtle Background */
-body {
+/* body {
   background: url('background-pattern.png') no-repeat center center fixed;
   background-size: cover;
-}
+} */
 
 /* Popular Badge */
 .popular-badge {
