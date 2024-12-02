@@ -146,7 +146,7 @@ function parseinfo(num) {
     const num = localStorage.getItem('num');
 
     // Send the updated fields to the server
-    fetch(`http://127.0.0.1:3000/modifier-student?num=${num}`, {
+    fetch(`http://127.0.0.1:3000/edit-student?num=${num}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
