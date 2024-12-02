@@ -468,39 +468,7 @@
   font-weight: 600;
 }
 
-.category-header h3 {
-  color: #fff;
-  font-size: 2em;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-top: 10px;
-  margin-bottom: 30px;
-}
 
-.enroll-btn {
-  margin-top: 20px; 
-  padding: 12px 30px;
-  font-size: 1.1em;
-  font-weight: bold;
-  text-decoration: none;
-  color: #fff;
-  background-color: var(--main-color);
-  border-radius: 20px;
-  letter-spacing: 1px;
-  transition: all 0.3s ease-in-out;
-  display: inline-block;
-}
-
-.enroll-btn:hover {
-  background-color: var(--secondary-color);
-  transform: scale(1.05); 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Adds depth */
-}
-
-.path-box button:active,
-.enroll-btn:active {
-  opacity: 50%;
-}
 .category-header {
   padding: 100px 200px;
   width: 100%;
@@ -516,150 +484,9 @@
   text-align: center; 
 }
 
-.category-header h2 {
-  display: inline-block;
-  margin: 5px;
-  color: #fff;
-  font-weight: 500;
-  font-size: 1.4em;
-}
-
-.category-header h2 span {
-  color: var(--secondary-color);
-  font-size: 3em;
-  font-weight: 600;
-}
-
-.category-header h3{
-  color: #fff;
-  font-size: 2em;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-top: 10px;
-  margin-bottom: 30px;
-}
-
-.enroll-btn {
-  margin-top: 20px; 
-  padding: 12px 30px;
-  font-size: 1.1em;
-  font-weight: bold;
-  text-decoration: none;
-  color: #fff;
-  background-color: var(--main-color);
-  border-radius: 20px;
-  letter-spacing: 1px;
-  transition: all 0.3s ease-in-out;
-  display: inline-block;
-}
-
-.enroll:hover,
-.enroll-btn:hover {
-  background-color: var(--secondary-color);
-  transform: scale(1.05); 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
-} 
-
 .taught-section,
-.path-section,
 .cours {
   padding: 50px;
-}
-
-.category-header h2 {
-  display: inline-block;
-  margin: 5px;
-  color: #fff;
-  font-weight: 500;
-  font-size: 1.4em;
-}
-
-.course-container {
-  padding: 20px;
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  margin: 20px 0;
-  border-radius: 8px;
-}
-
-
-.teacher,
-.title-duration {
-  font-size: small;
-  /* font-weight: bold; */
-  color: gray;
-  padding-bottom: 5px;
-}
-
-
-.titre {
-  font-size:large;
-  font-weight: bolder;
-  padding-bottom: 5px;
-}
-
-
-
-
-.rating {
-  display: flex;
-  align-items: center;
-  font-family: Arial, sans-serif;
-}
-
-.score {
-  font-size: 1rem;
-  font-weight: bold;
-  color: rgb(44, 2, 2);
-  margin-right: 0.5rem;
-}
-
-.stars {
-  display: flex;
-}
-
-.star4.filled4,
-.star3.filled3,
-.star2.filled2,
-.star1.filled1 {
-  background-color: #dab900;
-}
-
-.star2.half-filled2,
-.star1.half-filled1 {
-  background: linear-gradient(to right, #dab900 50%, lightgray 50%);
-}
-
-.star4.non-filled4,
-.star2.non-filled2 {
-  background-color:  #ccc;
-}
-
-
-.star1,
-.star2,
-.star3,
-.star4 {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-  clip-path: polygon(
-    50% 0%, 61% 35%, 98% 35%, 68% 57%,
-    79% 91%, 50% 70%, 21% 91%, 32% 57%,
-    2% 35%, 39% 35%
-  );
-  background-color: #ccc; /* Default star color (empty) */
-}
-
-.star3 {
-  width: 20px;
-  height: 20px;
-  clip-path: polygon(
-    50% 0%, 61% 35%, 98% 35%, 68% 57%,
-    79% 91%, 50% 70%, 21% 91%, 32% 57%,
-    2% 35%, 39% 35%
-  );
-  background-color: #ccc; /* Default star color (empty) */
 }
 
 
@@ -667,147 +494,26 @@
   background-color: var(--main-color);
   border: none;
   color: var(--light-bg);
-  padding: 4px 8px;
+  padding: 8px 11px;
   transition: background-color 0.25s ease;
   cursor: pointer;
 }
 
 
-.see-more-btn:hover,
 .bt:hover {
   background-color: var(--light-bg);
   color: var(--main-color);
   border: 1px solid var(--main-color);
 }
 
-.im {
-  height: auto;
-  width: 280px;
-  float: left;
-  padding-right: 20px; 
-}
 
-.im:hover {
-  opacity: 0.8;
-  cursor: pointer;
-}
 
-/* Horizontal Scroll Container */
-.horizontal-scroll {
-  display: flex; 
-  gap: 20px; 
-  padding: 10px 0; 
-  overflow-x: auto; 
-  scroll-behavior: smooth; 
-  border-bottom: 1px solid #ddd; 
-  overflow-y: hidden; 
-}
-
-/* Scrollbar Styling */
-.horizontal-scroll::-webkit-scrollbar {
-  height: 8px; 
-  background: #f1f1f1; 
-  border-radius: 10px; 
-}
-
-.horizontal-scroll::-webkit-scrollbar-thumb {
-  background: lightgray; 
-  border-radius: 10px; 
-  border: 2px solid #f1f1f1; 
-}
-
-.horizontal-scroll::-webkit-scrollbar-thumb:hover {
-  background: var(--dark-blue); 
-}
-
-.horizontal-scroll::-webkit-scrollbar-track {
-  background: #eaeaea; 
-  border-radius: 10px;
-}
-
-/* Individual Lesson Box Styling */
-.lesson-box {
-  min-width: 300px; 
-  max-width: 300px; 
-  background: #fff;
-  border: 1px solid #ddd; 
-  border-radius: 8px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  padding: 20px; 
-  box-sizing: border-box; 
-  text-align: left;
-  overflow: hidden; 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
-}
 .course-description{
   padding:30px  0px ;
 }
 
 
-/* Typography Adjustments for Lesson Box */
-.lesson-box i {
-  font-size: 1.5em;
-  color: var(--dark-blue);
-  margin-bottom: 10px;
-  display: block; 
-  cursor: pointer;
-}
-
-.lesson-box i span{
-
-  padding: 10px;
-}
-.lesson-box span {
-  font-size: 1em;
-  font-weight: bold;
-}
-
-.lesson-box h4 {
-  font-size: 1.1em;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: var(--dark-blue); 
-  text-align: left; 
-  word-wrap: break-word; 
-}
-.lesson-box i:hover {
-  color: var(--main-color);
-}
-
-.lesson-box p {
-  font-size: 1em;
-  color: #333;
-  word-wrap: break-word; 
-  overflow-wrap: break-word;
-  line-height: 1.5; 
-  text-align: justify; 
-}
-
-.lesson-box:hover {
-  transform: scale(1.05); 
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
-}
-
-
-.see-more-btn {
-  display: block;
-  margin: 50px auto;
-  padding: 15px 25px;
-  font-size: 1.2em;
-  background-color: var(--main-color);
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.25s ease;
-
-}
-
-.bt:active,
-.see-more-btn:active {
+.bt:active {
   opacity: 0.6;
 }
 
@@ -830,7 +536,7 @@
 }
 
 .courses-grid::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary-color); 
+  background: var(--main-color); 
 }
 
 /* Taught Section */
@@ -933,78 +639,8 @@
   color: var(--main-color);
 }
 
-/* Choose the Right Learning Path Section */
-.learning-paths {
-  display: flex;
-  justify-content:center;
-  gap: 90px;
-  margin-top: 50px;
-}
-
-.path-box {
-  background-color: var(--main-color);
-  color: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  width: 35%;
-  box-sizing: border-box;
-  margin-bottom: 50px;
-
-}
 
 
-.path-box h4 {
-  font-size: 2em;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-.path-box p {
-  font-size: 1.5em;
-  font-weight: 600;
-}
-
-.path-box button {
-  margin-top: 15px;
-  padding: 10px 21px;
-  font-size: 1em;
-  background-color: var(--secondary-color);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.path-box button:hover {
-  background-color: #ebf6f4;
-  color: var(--main-color);
-  transform: translateY(-1.5px);
-}
-
-.path-box ul {
-  margin-top: 20px;
-}
-
-.path-box ul li {
-  font-size: 1.1em;
-  color: #fff;
-  margin-bottom: 10px;
-  list-style: none;
-}
-
-.checkmark {
-  color: #ffeb3b;
-  margin-right: 10px;
-}
-
-hr {
-  margin: 15px 0;
-  border-color: #fff;
-}
-
-
-/*  */
 /* Category Banner */
 .category-banner {
   text-align: center;
@@ -1036,28 +672,16 @@ hr {
   margin-bottom: 20px;
 }
 
-.course-image img {
-  width: 150px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 5px;
-}
-
 .course-info {
   flex: 1;
 }
 
 .course-title {
-  font-size: 1.8em;
+  font-size: 1.6em;
   color: #0a3300;
   margin-bottom: 10px;
 }
 
-.course-duration {
-  font-size: 0.9em;
-  color: #666;
-  margin-bottom: 10px;
-}
 
 .course-description {
   line-height: 1.6;
@@ -1100,16 +724,16 @@ hr {
 
 /* Modal container */
 .modal {
-  display: none; /* Hidden by default */
+  display: none; 
   position: fixed;
   z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  background-color: rgba(0, 0, 0, 0.7); 
   overflow: hidden;
-  animation: fadeIn 0.5s ease; /* Smooth fade-in effect */
+  animation: fadeIn 0.5s ease; 
 }
 
 /* Modal content */
@@ -1197,8 +821,6 @@ input[type="text"]:focus {
   font-size: 14px;
 }
 
-/* // Submit the key when the "Submit" button is clicked
-submitButton.onclick = submitKey; and: * Modal container */ 
 .modal {
   display: none; /* Hidden by default */
   position: fixed;

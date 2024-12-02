@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   
-  // Read More / Read Less functionality
+  // Read More / Read Less functionality in the taught by section
   const readMoreBtns = document.querySelectorAll('.read-more-btn');
   
   readMoreBtns.forEach((btn) => {
@@ -15,28 +15,28 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Toggle content visibility for additional courses
-  const seeMoreBtn = document.querySelector(".see-more-btn");
-  const hiddenCourses = document.querySelector(".hidden-courses");
+  // // Toggle content visibility for additional courses
+  // const seeMoreBtn = document.querySelector(".see-more-btn");
+  // const hiddenCourses = document.querySelector(".hidden-courses");
 
-  if (seeMoreBtn && hiddenCourses) {
-    seeMoreBtn.addEventListener("click", () => {
-      const isHidden = hiddenCourses.style.display === "none" || hiddenCourses.style.display === "";
-      hiddenCourses.style.display = isHidden ? "block" : "none";
-      seeMoreBtn.textContent = isHidden ? "See Less Courses" : "See More Courses";
-    });
-  }
+  // if (seeMoreBtn && hiddenCourses) {
+  //   seeMoreBtn.addEventListener("click", () => {
+  //     const isHidden = hiddenCourses.style.display === "none" || hiddenCourses.style.display === "";
+  //     hiddenCourses.style.display = isHidden ? "block" : "none";
+  //     seeMoreBtn.textContent = isHidden ? "See Less Courses" : "See More Courses";
+  //   });
+  // }
 
-  // Scroll to courses section functionality
-  const enrollButton = document.getElementById("enroll-now-btn");
-  const courseContainer = document.querySelector(".cours");
+  // // Scroll to courses section functionality
+  // const enrollButton = document.getElementById("enroll-now-btn");
+  // const courseContainer = document.querySelector(".cours");
 
-  if (enrollButton && courseContainer) {
-    enrollButton.addEventListener("click", (e) => {
-      e.preventDefault(); // Prevent default link behavior
-      courseContainer.scrollIntoView({ behavior: "smooth" });
-    });
-  }
+  // if (enrollButton && courseContainer) {
+  //   enrollButton.addEventListener("click", (e) => {
+  //     e.preventDefault(); // Prevent default link behavior
+  //     courseContainer.scrollIntoView({ behavior: "smooth" });
+  //   });
+  // }
 
   // Modal display for course enrollment
   const keyModal = document.getElementById("keyModal");
