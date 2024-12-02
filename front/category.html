@@ -60,33 +60,66 @@
       <div class="course-card">
         <h3 class="course-title">Course 1: Advanced Cybersecurity Fundamentals</h3>
         <p class="course-description">Learn the fundamental concepts of cybersecurity, network defense techniques, and how to protect your system from cyber threats.</p>
+        <a href="#course">
+          <button class="bt enrollbtn" data-course-id="1" data-course-name="Advanced Cybersecurity Fundamentals" id="key">Enroll now</button>
+        </a>
       </div>
+      
+      
+
       <div class="course-card">
         <h3 class="course-title">Course 2: Math Tools for Cryptography</h3>
         <p class="course-description">Explore the mathematics behind cryptographic algorithms and their applications in secure communications.</p>
+        <a href="#course">
+          <button class="bt enrollbtn" data-course-id="2" data-course-name="Math Tools for Cryptography" id="key">Enroll now</button>
+        </a>
       </div>
 
       <div class="course-card">
         <h3 class="course-title">Course 3: Ethical Hacking and Penetration Testing</h3>
         <p class="course-description">Learn the methods and tools used by ethical hackers to identify vulnerabilities and secure systems.</p>
+        <a href="#course">
+          <button class="bt enrollbtn" data-course-id="3" data-course-name="Ethical Hacking and Penetration Testing" id="key">Enroll now</button>
+        </a>
       </div>
 
       <div class="course-card">
         <h3 class="course-title">Course 4: Introduction to Network Security</h3>
         <p class="course-description">Gain an understanding of the basics of network security, including firewalls, intrusion detection, and protection strategies.</p>
+        <a href="#course">
+          <button class="bt enrollbtn" data-course-id="4" data-course-name="Introduction to Network Security" id="key">Enroll now</button>
+        </a>
       </div>
 
       <div class="course-card">
         <h3 class="course-title">Course 5: Cloud Security Essentials</h3>
         <p class="course-description">Master the best practices for securing cloud-based applications, data storage, and networks in a cloud environment.</p>
+        <a href="#course">
+          <button class="bt enrollbtn" data-course-id="5" data-course-name="Cloud Security Essentials" id="key">Enroll now</button>
+        </a>
       </div>
 
       <div class="course-card">
         <h3 class="course-title">Course 6: Malware Analysis and Forensics</h3>
         <p class="course-description">Learn the techniques used to analyze malware and investigate cybercrimes through forensic methods.</p>
+        <a href="#course">
+          <button class="bt enrollbtn" data-course-id="6" data-course-name="Malware Analysis and Forensics" id="key">Enroll now</button>
+        </a>
       </div>
     </div>
   </div>
+  <!-- Reusable Modal -->
+<div id="keyModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <h2 id="modalTitle">🔐 Enrollment Key</h2>
+    <p>Enter the key to enroll in <span id="courseName"></span>:</p>
+    <input class="keyInput" type="text" id="keyInput" placeholder="Enter your key">
+    <button id="submitKey" class="modal-button">Submit</button>
+    <p id="errorMessage" style="color: red; display: none;">Invalid key! Please try again.</p>
+    <p id="successMessage" style="color: green; display: none;">Enrollment successful! Redirecting...</p>
+  </div>
+</div>
 </section>
 
 <!-- Modal example for closing functionality (if you're using one) -->
@@ -101,7 +134,7 @@
 <section class="taught-section" id="taught-section">
   <h2 class="section-title">Taught By The Best</h2>
   <div class="taught-grid"> 
-    <div class="horizontal-scroll">
+    <div class="courses-grid">
       <!-- Teacher 1 -->
       <div class="taught-card">
         <div class="taught-text">
@@ -115,6 +148,17 @@
       </div>
 
       <!-- Teacher 2 -->
+      <div class="taught-card">
+        <div class="taught-text">
+          <h3>Sophia Harris</h3>
+          <p>Experienced cybersecurity strategist with a focus on risk management, threat detection, and incident response.</p>
+          <div class="more">
+            <p>Sophia conducts workshops and seminars, sharing insights on the latest cybersecurity trends and emerging technologies.</p>
+          </div>
+          <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+        </div>
+      </div>
+
       <div class="taught-card">
         <div class="taught-text">
           <h3>Sophia Harris</h3>
