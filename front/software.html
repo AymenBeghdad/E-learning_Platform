@@ -150,6 +150,8 @@
 <!-- Back to Top Button -->
 <button id="backToTop" title="Go to top">↑</button>
 
+
+
 <script >
 document.addEventListener('DOMContentLoaded', function () {
   const categoryName = "Software";
@@ -183,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
           courseCard.classList.add("course-card");
 
           courseCard.innerHTML = `
-            <h3 class="course-title">Course ${courseNumber++}: ${course.title}</h3>
+            <h3 class="course-title" data="${course.title}" >Course ${courseNumber++}: ${course.title}</h3>
             <p class="course-description">${course.Informations}</p>
             <a href="#course">
               <button class="bt enrollbtn" data-course-id=${course.ID_cours} data-course-name=${course.title} data-course-key=${course.key} id="key">Enroll now</button>
@@ -207,12 +209,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="more">
                   <p>${course.responsable} brings unique expertise and passion to the field of ${categoryName}.</p>
                 </div>
-                <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+                <button dataC="${course.responsable}" class="read-more-btn"  >Contact</button>
               </div>
             `;
 
             taughtGrid.appendChild(taughtCard);
           }
+
+          document.querySelectorAll(".read-more-btn").forEach(readMore => {
+            readMore.addEventListener("click", () => {
+                const teacherName = event.target.getAttribute('dataC');
+                localStorage.setItem("teacher_name", teacherName);    
+                window.location.href = "./contact.html"    
+                
+            });
+        });
+        
         });
 
         // Now that the courses have been appended, add the event listeners for enroll buttons
@@ -224,7 +236,8 @@ document.addEventListener('DOMContentLoaded', function () {
             courseName.textContent = course;
 
             // Show the modal
-            if (keyModal) keyModal.style.display = "block";
+            if (keyModal)  keyModal.style.display = "block";
+    
 
             // Reset input and messages
             keyInput.value = "";
@@ -274,12 +287,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (enteredKey === validKey) {
       successMessage.style.display = "block";
       errorMessage.style.display = "none";
+      window.location.href = "./course_study.html"
 
-      // Clear the input field and close the modal after success
-      keyInput.value = "";
-      setTimeout(() => {
-        keyModal.style.display = "none";
-      }, 1000); // Close after 1 second
     } else {
       successMessage.style.display = "none";
       errorMessage.style.display = "block";
@@ -298,7 +307,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Attach event to Submit button for key validation
   if (submitKey) {
-    submitKey.addEventListener("click", handleKeySubmission);
+    submitKey.addEventListener("click", () => {
+      handleKeySubmission()
+      
+    });
   }
 });
 

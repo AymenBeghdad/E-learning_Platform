@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="./contact.css">
+</head>
+<body>
+  <div class="bg-image"></div>
+    <form id="contactForm">
+        <!-- Header -->
+        <div class="head">
+            <h1>Contact Form</h1>
+            <p>Please fill all the texts in the fields</p>
+        </div>
+        <!-- /Header -->
+
+        <!-- Main Form Started -->
+        <label for="fullName">Your email:</label>
+        <input type="email" placeholder="Full Name" name="fullName" id="user-email">
+
+
+        <label for="subject">Subject:</label>
+        <input type="text" placeholder="Job Enquiry" name="subject" id="subject" required>
+      
+        <label for="message">Message:</label>
+        <textarea placeholder="Your Message Here" name="message" id="message" required></textarea>
+
+        <!-- Submit Button -->
+        <button id="submit-btn" type="submit">Submit</button>
+    </form>
+    <!-- /Main Form Ended -->
+
+    <script>
+        
+    document.addEventListener("DOMContentLoaded", () => {
+        const name = localStorage.getItem('teacher_name');
+        let request = new XMLHttpRequest();
+            request.open("GET", `http://127.0.0.1:3000/teacher-email?fullname=${name}`);
+            request.responseType = "json"
+            request.send();
+            request.onreadystatechange = () => {
+                let result = request.response;
+                const email = result[0].teacher_email
+                localStorage.setItem('teacher_email', email)
+            }
+
+    });
+
+        document.getElementById('submit-btn').addEventListener('click', async () => {
+
+            // Gather form data
+            const user_email = document.getElementById('user-email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            const email = localStorage.getItem('teacher_email');
+            
+
+            // Send POST request to the server
+            try {
+                const response = await fetch('http://127.0.0.1:3000/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        from: user_email,
+                        to: email,
+                        subject: subject,
+                        text: `From: ${user_email} /n Message: ${message}`,
+                    }),
+                });
+
+                const result = response.json();
+                if (response.ok) {
+                    alert('Email sent successfully!');
+                } else {
+                    alert('Error sending email: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An unexpected error occurred.');
+            }
+        });
+    </script>
+</body>
+</html>
