@@ -162,7 +162,7 @@
                         
                         <td class="edit"><a class="edit-link" dataA-num="${result.fullname}" href="/E-learning_Platform/forms/teacher-form2.html">Edit</a></td>
 
-                        <td class="delete"><a href="#" class="delete-link" data-num="${result.fullname}">Delete</a></td>
+                        <td class="delete"><a class="delete-link" dataB="${result.fullname}" href="#" >Delete</a></td>
                     </tr>
                     `
                 });
@@ -176,8 +176,8 @@
                 });
 
                 document.querySelectorAll('.delete-link').forEach(link => {
-                    link.addEventListener('click', (event) => {
-                        const TeacherName = event.target.getAttribute('data-num');
+                    link.addEventListener('click', () => {
+                        const TeacherName = event.target.getAttribute('dataB');
                         deleteTeacher(TeacherName);
                     });
                 });
@@ -188,7 +188,7 @@
         function deleteTeacher(name) {
             
             let deleteRequest = new XMLHttpRequest();
-            deleteRequest.open("DELETE", `http://127.0.0.1:3000/delete-teacher?fullname=${name}`);
+            deleteRequest.open("DELETE", `http://127.0.0.1:3000/delete-teachers?fullname=${name}`);
             deleteRequest.send();
             deleteRequest.onreadystatechange = () => {
                 

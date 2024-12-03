@@ -100,26 +100,70 @@ app.post('/add-teacher', (req,res) =>{
     });
 });
 
-// Router pour supprimer un enseignant
-app.delete('/delete-teacher', (req, res)=> {
-  
-  const name = req.query.fullname;
-  const sql = `delete from teachers where fullname=?`
-  
-  db.query(sql , [name], (err, result)=> {
-      
-    if(!err){
-      console.log({ message: 'Teacher deleted successfully' });
-      res.status(200).send({ message: 'Teacher deleted successfully' });
-     
-    }else{
-      console.log('Error ._. !!');
-      res.status(500).send({ message: 'Teacher not found' });
-    }
-  
-  });
+// Route pour supprimier un enseignants:
 
+app.delete('/delete-teachers', async (req, res) => {
+  const { fullname } = req.query; // Extract fullname from query parameters
+
+  if (!fullname) {
+    return res.status(400).send({ error: 'Teacher fullname is required as a query parameter' });
+  }
+
+  db.beginTransaction(async (err) => {
+    if (err) {
+      return res.status(500).send({ error: 'Failed to start transaction' });
+    }
+
+    try {
+      // Step 1: Get all courses (cours) related to the teacher
+      const courses = await new Promise((resolve, reject) => {
+        db.query('SELECT ID_cours FROM cours WHERE responsable = ?', [fullname], (err, results) => (
+          err ? reject(err) : resolve(results))
+        );
+      });
+
+      // Step 2: Delete all enrollments related to these courses
+      for (const course of courses) {
+        await new Promise((resolve, reject) => {
+          db.query('DELETE FROM enrollments WHERE course_id = ?', [course.ID_cours], (err, results) => (
+            err ? reject(err) : resolve(results))
+          );
+        });
+      }
+
+      // Step 3: Delete all courses (cours) related to the teacher
+      await new Promise((resolve, reject) => {
+        db.query('DELETE FROM cours WHERE responsable = ?', [fullname], (err, results) => (
+          err ? reject(err) : resolve(results))
+        );
+      });
+
+      // Step 4: Delete the teacher
+      const result = await new Promise((resolve, reject) => {
+        db.query('DELETE FROM teachers WHERE fullname = ?', [fullname], (err, results) => (
+          err ? reject(err) : resolve(results))
+        );
+      });
+
+      if (result.affectedRows === 0) {
+        throw new Error('Teacher not found');
+      }
+
+      // Commit the transaction
+      db.commit((err) => {
+        if (err) {
+          throw err;
+        }
+        res.status(200).send({ message: 'Teacher and related data deleted successfully.' });
+      });
+    } catch (error) {
+      db.rollback(() => {
+        res.status(500).send({ error: error.message });
+      });
+    }
+  });
 });
+
 
 // Router pour modifier les information d'enseignant
 app.put('/modifier-teacher', (req,res) =>{
