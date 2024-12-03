@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="more">
                   <p>${course.responsable} brings unique expertise and passion to the field of ${categoryName}.</p>
                 </div>
-                <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+                 <a href="contact.html" class="read-more-btn">Contact</a>
               </div>
             `;
 
@@ -274,12 +274,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (enteredKey === validKey) {
       successMessage.style.display = "block";
       errorMessage.style.display = "none";
+      window.location.href = "./course_study.html"
 
-      // Clear the input field and close the modal after success
-      keyInput.value = "";
-      setTimeout(() => {
-        keyModal.style.display = "none";
-      }, 1000); // Close after 1 second
     } else {
       successMessage.style.display = "none";
       errorMessage.style.display = "block";
@@ -298,7 +294,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Attach event to Submit button for key validation
   if (submitKey) {
-    submitKey.addEventListener("click", handleKeySubmission);
+    submitKey.addEventListener("click", ()=> {
+      handleKeySubmission();
+    });
   }
 });
 

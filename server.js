@@ -1,6 +1,7 @@
 import express, { json } from 'express';
 import mysql from 'mysql2';
 import bodyParser from 'body-parser';
+import sendMail from './sendMail.js';
 
 const app = express();
 const PORT = 3000;
@@ -67,10 +68,27 @@ app.get('/cours-spc', (req, res) => {
 //Route pour récupérer clé du cours
 app.get('/cours-key', (req, res) => { 
     
-  const key = req.query.title;
+  const title = req.query.title;
   const sql = 'SELECT key FROM cours WHERE title = ?';
 
   db.query(sql, [title], (error, results) => {
+    if (error) {
+      res.status(500).send(error.message);
+    } else {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.json(results);
+    }
+  });
+});
+
+//Route pour rvérifier un clé du cours
+
+app.get('/key-cours', (req, res) => { 
+    
+  const key = req.query.key;
+  const sql = 'SELECT title FROM cours WHERE `key` = ?';
+
+  db.query(sql, [key], (error, results) => {
     if (error) {
       res.status(500).send(error.message);
     } else {
@@ -616,6 +634,36 @@ app.get('/Astudent-courses', (req, res) => {
     res.status(200).json({ courses: results });
   });
 })
+
+// Route pour envoyer des email From Admin to School
+
+app.post('/send-email', (req, res) => {
+  const { from ,to, subject, text } = req.body;
+
+  sendMail(from, to, subject, text, (error, info) => {
+    if (error) {
+      return res.status(500).json({ message: 'Error sending email', error });
+    }
+    res.status(200).json({ message: 'Email sent successfully', info });
+  });
+});
+
+app.get('/teacher-email', (req, res) => { 
+    
+  const fullname = req.query.fullname;
+  
+  const sql = `SELECT teacher_email FROM teachers where fullname=?`;
+  
+  db.query(sql, [fullname], (error, results) => {
+    if (error) { 
+      res.status(500).send(error.message);
+    } else {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.json(results);
+    }
+  });
+});
+
 
  // Démarrer le serveur
 app.listen(PORT, () => {
