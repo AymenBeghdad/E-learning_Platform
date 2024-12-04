@@ -21,7 +21,7 @@
         <div id="auth-content">
            
             <form>
-                <input id="email" type="email" placeholder="Email Address" required>
+                <input id="email" type="text" placeholder="Email Address" required>
                 <input id="password" type="password" placeholder="Password" required>
                 <button id="login-btn" type="button" class="auth-btn">Log In</button>
             </form>
@@ -54,7 +54,7 @@
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
-            if(email === 'admin@user.edu' && password === 'admin123'){
+            if(email === 'admin' && password === 'admin123'){
         
                 window.location.href = '/E-learning_Platform/Admin/admin.html';
     
