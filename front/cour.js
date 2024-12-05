@@ -1,7 +1,6 @@
-// Array of lesson data (parts within each lesson)
 const lessons = [
-    { title: 'Lesson 1: Introduction', parts: ['video', 'summary', 'quiz', 'pdf'] },
-    { title: 'Lesson 2: Basics', parts: ['video', 'summary', 'quiz', 'pdf'] },
+    { title: 'Lesson 1: Introduction', parts: ['video', 'quiz', 'pdf'] },
+    { title: 'Lesson 2: Basics', parts: ['video', 'quiz', 'pdf'] },
 ];
 
 let currentLessonIndex = 0;
@@ -15,6 +14,8 @@ function loadLesson(lessonIndex, part) {
     const summaryElement = document.getElementById('lesson-summary');
     const prevButton = document.getElementById('prevLessonBtn');
     const nextButton = document.getElementById('nextLessonBtn');
+    const quizSection = document.getElementById('quizSection');
+    const pdfSection = document.getElementById('pdfSection');
 
     // Set current lesson and part
     currentLessonIndex = lessonIndex;
@@ -26,20 +27,22 @@ function loadLesson(lessonIndex, part) {
     // Handle content switching based on part type
     switch (part) {
         case 'video':
-            videoElement.src = `lesson${lessonIndex + 1}.mp4`; // Assuming video files follow a naming convention
             videoElement.style.display = 'block'; // Show video element
+            quizSection.style.display = 'none'; // Hide quiz
+            pdfSection.style.display = 'none'; // Hide PDF
             summaryElement.innerText = '';
             break;
-        case 'summary':
-            videoElement.style.display = 'none'; // Hide video for summary part
-            summaryElement.innerText = 'This is the lesson summary.';
-            break;
         case 'quiz':
-            videoElement.style.display = 'none'; // Hide video for quiz part
+            videoElement.style.display = 'none'; // Hide video
+            quizSection.style.display = 'block'; // Show quiz
+            pdfSection.style.display = 'none'; // Hide PDF
             summaryElement.innerText = 'Complete the quiz for this lesson.';
+            displayQuiz();  // Show quiz when quiz part is selected
             break;
         case 'pdf':
-            videoElement.style.display = 'none'; // Hide video for PDF part
+            videoElement.style.display = 'none'; // Hide video
+            quizSection.style.display = 'none'; // Hide quiz
+            pdfSection.style.display = 'block'; // Show PDF
             summaryElement.innerText = 'Download the PDF for this lesson.';
             break;
     }
@@ -49,80 +52,155 @@ function loadLesson(lessonIndex, part) {
     nextButton.disabled = currentLessonIndex === lessons.length - 1 && part === 'pdf';
 }
 
-// Toggle dropdown visibility for each lesson
-function toggleDropdown(lessonIndex) {
-    const dropdown = document.querySelectorAll('.dropdown-container')[lessonIndex];
-    const lessonItem = document.querySelectorAll('.lesson-item')[lessonIndex];
+// Function to navigate to the next or previous part of the lesson
+function navigateLesson(direction) {
+    const currentLesson = lessons[currentLessonIndex];
+    const currentPartIndex = currentLesson.parts.indexOf(currentPart);
 
-    if (dropdown.style.display === 'block') {
-        dropdown.style.display = 'none';
-        lessonItem.classList.remove('active');
-    } else {
-        dropdown.style.display = 'block';
-        lessonItem.classList.add('active');
+    if (direction === 'next') {
+        if (currentPartIndex < currentLesson.parts.length - 1) {
+            loadLesson(currentLessonIndex, currentLesson.parts[currentPartIndex + 1]);
+        } else if (currentLessonIndex < lessons.length - 1) {
+            loadLesson(currentLessonIndex + 1, 'video');
+        }
+    } else if (direction === 'prev') {
+        if (currentPartIndex > 0) {
+            loadLesson(currentLessonIndex, currentLesson.parts[currentPartIndex - 1]);
+        } else if (currentLessonIndex > 0) {
+            loadLesson(currentLessonIndex - 1, 'pdf');
+        }
     }
 }
 
-// Function to go to the next part or lesson
-document.getElementById('nextLessonBtn').addEventListener('click', () => {
-    const lesson = lessons[currentLessonIndex];
-    const partIndex = lesson.parts.indexOf(currentPart);
-
-    // Move to the next part of the current lesson
-    if (partIndex < lesson.parts.length - 1) {
-        loadLesson(currentLessonIndex, lesson.parts[partIndex + 1]);
+// Quiz Data (Cybersecurity-related questions)
+const quizData = [
+    {
+        question: "What is a firewall?",
+        options: ["A type of malware", "A network security system", "A hardware device", "A programming language"],
+        correct: "A network security system"
+    },
+    {
+        question: "What does VPN stand for?",
+        options: ["Very Private Network", "Virtual Private Network", "Viral Protection Network", "Virtual Protection Node"],
+        correct: "Virtual Private Network"
+    },
+    {
+        question: "Which is an example of two-factor authentication?",
+        options: ["Username and password", "Password and PIN", "Password and SMS code", "Username and fingerprint"],
+        correct: "Password and SMS code"
+    },
+    {
+        question: "What does phishing involve?",
+        options: ["Hacking into a network", "Sending fraudulent emails", "Brute force attack", "Malicious software download"],
+        correct: "Sending fraudulent emails"
     }
-    // Move to the next lesson if the current lesson is completed
-    else if (currentLessonIndex < lessons.length - 1) {
-        loadLesson(currentLessonIndex + 1, 'video'); // Start from the first part (video) of the next lesson
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+// Display Quiz
+function displayQuiz() {
+    const quizContainer = document.getElementById("quizContainer");
+
+    if (currentQuestion < quizData.length) {
+        const quiz = quizData[currentQuestion];
+        quizContainer.innerHTML = `
+            <div class="quiz-question">${quiz.question}</div>
+            <div class="quiz-options">
+                ${quiz.options
+                    .map(
+                        (option) => `<button onclick="checkAnswer(this, '${option}')">${option}</button>`
+                    )
+                    .join("")}
+            </div>
+        `;
+    } else {
+        quizContainer.innerHTML = `<div class="quiz-score">You scored ${score} out of ${quizData.length}</div>`;
+        setTimeout(() => {
+            currentQuestion = 0;
+            score = 0;
+            loadLesson(currentLessonIndex + 1, 'video'); // Reset and move to next lesson
+        }, 3000);
+    }
+}
+
+// Check Answer
+function checkAnswer(button, answer) {
+    const quiz = quizData[currentQuestion];
+    const buttons = document.querySelectorAll(".quiz-options button");
+
+    // Disable all buttons after selection
+    buttons.forEach((btn) => (btn.disabled = true));
+
+    // Check if the answer is correct
+    if (answer === quiz.correct) {
+        score++;
+        button.classList.add("correct");
+        button.style.backgroundColor = "green";  // Make entire button green
+    } else {
+        button.classList.add("wrong");
+        button.style.backgroundColor = "red";  // Make entire button red
+        buttons.forEach((btn) => {
+            if (btn.textContent === quiz.correct) btn.style.backgroundColor = "green";  // Highlight correct answer
+        });
+    }
+
+    // Move to the next question after 2 seconds
+    setTimeout(() => {
+        currentQuestion++;
+        displayQuiz();
+    }, 2000);
+}
+
+// Reset Quiz
+function resetQuiz() {
+    currentQuestion = 0;
+    score = 0;
+    const quizContainer = document.getElementById("quizContainer");
+    quizContainer.innerHTML = "";
+}
+
+// Function to toggle dropdown visibility for lessons
+function toggleDropdown(index) {
+    const lessonItems = document.querySelectorAll('.lesson-item');
+    lessonItems.forEach((item, i) => {
+        const dropdown = item.querySelector('.dropdown-container');
+        if (i === index) {
+            item.classList.toggle('active');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        } else {
+            item.classList.remove('active');
+            item.querySelector('.dropdown-container').style.display = 'none';
+        }
+    });
+}
+
+// Handle comments submission
+document.getElementById('comment-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const commentText = document.getElementById('comment-text').value;
+    const rating = document.getElementById('rating').value;
+
+    if (commentText && rating) {
+        const commentsContainer = document.getElementById('comments-container');
+        const newComment = document.createElement('div');
+        newComment.classList.add('comment');
+        newComment.innerHTML = `
+            <p>"${commentText}"</p>
+            <span class="stars">${'⭐'.repeat(rating)}</span>
+        `;
+        commentsContainer.appendChild(newComment);
+
+        // Reset form
+        document.getElementById('comment-form').reset();
     }
 });
 
-// Function to go to the previous part or lesson
-document.getElementById('prevLessonBtn').addEventListener('click', () => {
-    const lesson = lessons[currentLessonIndex];
-    const partIndex = lesson.parts.indexOf(currentPart);
+// Initialize the page with the first lesson and part
+loadLesson(0, 'video');
 
-    // Move to the previous part of the current lesson
-    if (partIndex > 0) {
-        loadLesson(currentLessonIndex, lesson.parts[partIndex - 1]);
-    }
-    // Move to the previous lesson if at the beginning of the current lesson
-    else if (currentLessonIndex > 0) {
-        loadLesson(currentLessonIndex - 1, 'pdf'); // Go to the last part of the previous lesson
-    }
-});
-
-// Initialize the first lesson on page load
-window.onload = () => loadLesson(0, 'video'); // Default to the first lesson and video
-
-// Comment Section: Handle comment submission
-document.getElementById("comment-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    // Get user input
-    const commentText = document.getElementById("comment-text").value.trim();
-    const ratingValue = document.getElementById("rating").value;
-
-    // Validate input
-    if (!commentText || !ratingValue) {
-        alert("Please enter both a comment and a rating.");
-        return;
-    }
-
-    // Create new comment element
-    const newComment = document.createElement("div");
-    newComment.classList.add("comment");
-    newComment.innerHTML = `
-        <p>${commentText}</p>
-        <span class="stars">${"⭐".repeat(ratingValue)}</span>
-    `;
-
-    // Add new comment to the top of the comments container
-    const commentsContainer = document.getElementById("comments-container");
-    commentsContainer.insertBefore(newComment, commentsContainer.firstChild);
-
-    // Clear form inputs
-    document.getElementById("comment-text").value = "";
-    document.getElementById("rating").value = "";
-});
+// Event listeners for navigation buttons
+document.getElementById('prevLessonBtn').addEventListener('click', () => navigateLesson('prev'));
+document.getElementById('nextLessonBtn').addEventListener('click', () => navigateLesson('next'));

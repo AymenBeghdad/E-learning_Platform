@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        :root {
+            --main-color: #3ba1c5;
+            --secondary-color: #00cba9;
+            --white: #fff;
+            --black: #000;
+            --light-bg: #fdfdf9;
+            --border-color: #ddd;
+            --dark-blue: #171954;
+            --correct-color: #d4edda;
+            --wrong-color: #f8d7da;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            margin: 20px;
+            background-color: var(--white);
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            max-width: 700px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-question {
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .quiz-options button {
+            padding: 15px;
+            font-size: 16px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            color: var(--dark-blue);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-options button:hover {
+            background-color: #e2e6ea;
+        }
+
+        .quiz-options .correct {
+            background-color: var(--correct-color) !important;
+            border-color: #c3e6cb !important;
+            color: #155724 !important;
+        }
+
+        .quiz-options .wrong {
+            background-color: var(--wrong-color) !important;
+            border-color: #f5c6cb !important;
+            color: #721c24 !important;
+        }
+
+        .quiz-score {
+            font-size: 20px;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="startQuizBtn">Start Quiz</button>
+
+        <!-- Quiz Section -->
+        <div class="quiz-section hidden" id="quizSection">
+            <div id="quizContainer"></div>
+            <div id="quizScore" class="quiz-score"></div>
+        </div>
+    </div>
+
+    <script>
+        // Get elements
+        const quizSection = document.getElementById("quizSection");
+        const startQuizBtn = document.getElementById("startQuizBtn");
+
+        // Quiz Data (Cybersecurity-related questions)
+        const quizData = [
+            {
+                question: "What is a firewall?",
+                options: ["A type of malware", "A network security system", "A hardware device", "A programming language"],
+                correct: "A network security system"
+            },
+            {
+                question: "What does VPN stand for?",
+                options: ["Very Private Network", "Virtual Private Network", "Viral Protection Network", "Virtual Protection Node"],
+                correct: "Virtual Private Network"
+            },
+            {
+                question: "Which is an example of two-factor authentication?",
+                options: ["Username and password", "Password and PIN", "Password and SMS code", "Username and fingerprint"],
+                correct: "Password and SMS code"
+            },
+            {
+                question: "What does phishing involve?",
+                options: ["Hacking into a network", "Sending fraudulent emails", "Brute force attack", "Malicious software download"],
+                correct: "Sending fraudulent emails"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        // Show Quiz Section When Quiz Starts
+        startQuizBtn.addEventListener("click", () => {
+            quizSection.classList.remove("hidden");
+            startQuizBtn.classList.add("hidden");
+            resetQuiz();
+            displayQuiz();
+        });
+
+        // Display Quiz
+        function displayQuiz() {
+            const quizContainer = document.getElementById("quizContainer");
+
+            if (currentQuestion < quizData.length) {
+                const quiz = quizData[currentQuestion];
+                quizContainer.innerHTML = `
+                    <div class="quiz-question">${quiz.question}</div>
+                    <div class="quiz-options">
+                        ${quiz.options
+                            .map(
+                                (option) => `<button onclick="checkAnswer(this, '${option}')">${option}</button>`
+                            )
+                            .join("")}
+                    </div>
+                `;
+            } else {
+                quizContainer.innerHTML = `<div class="quiz-score">You scored ${score} out of ${quizData.length}</div>`;
+                startQuizBtn.classList.remove("hidden"); // Show Start Quiz button again
+            }
+        }
+
+        // Check Answer
+        window.checkAnswer = function (button, answer) {
+            const quiz = quizData[currentQuestion];
+            const buttons = document.querySelectorAll(".quiz-options button");
+
+            buttons.forEach((btn) => (btn.disabled = true)); // Disable all buttons after selection
+
+            if (answer === quiz.correct) {
+                score++;
+                button.classList.add("correct");
+            } else {
+                button.classList.add("wrong");
+                buttons.forEach((btn) => {
+                    if (btn.textContent === quiz.correct) btn.classList.add("correct");
+                });
+            }
+
+            // Move to the next question after 2 seconds
+            setTimeout(() => {
+                currentQuestion++;
+                displayQuiz();
+            }, 2000);
+        };
+
+        // Reset Quiz
+        function resetQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            const quizContainer = document.getElementById("quizContainer");
+            quizContainer.innerHTML = "";
+        }
+    </script>
+</body>
+</html>
+// Function to toggle dropdown visibility for lessons
+function toggleDropdown(index) {
+    const lessonItems = document.querySelectorAll('.lesson-item');
+    lessonItems.forEach((item, i) => {
+        const dropdown = item.querySelector('.dropdown-container');
+        if (i === index) {
+            item.classList.toggle('active');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        } else {
+            item.classList.remove('active');
+            item.querySelector('.dropdown-container').style.display = 'none';
+        }
+    });
+}
