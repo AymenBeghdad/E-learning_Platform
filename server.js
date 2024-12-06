@@ -664,6 +664,38 @@ app.get('/teacher-email', (req, res) => {
   });
 });
 
+// api to calculate nbr of students teachers and courses: 
+
+app.get('/counts', (req, res) => {
+  const queries = {
+      students: 'SELECT COUNT(*) AS count FROM students',
+      courses: 'SELECT COUNT(*) AS count FROM cours',
+      teachers: 'SELECT COUNT(*) AS count FROM teachers',
+  };
+
+  const results = {};
+
+  const promises = Object.keys(queries).map((key) => {
+      return new Promise((resolve, reject) => {
+          db.query(queries[key], (err, result) => {
+              if (err) {
+                  reject(err);
+              } else {
+                  results[key] = result[0].count;
+                  resolve();
+              }
+          });
+      });
+  });
+
+  Promise.all(promises)
+      .then(() => res.json(results))
+      .catch((err) => {
+          console.error('Error:', err.message);
+          res.status(500).json({ error: 'Internal Server Error' });
+      });
+});
+
 
  // Démarrer le serveur
 app.listen(PORT, () => {
