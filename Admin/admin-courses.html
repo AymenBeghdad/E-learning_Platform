@@ -47,7 +47,7 @@
             <div class="val-box">
                 <i class="fas fa-user-graduate"></i>
                 <div>
-                    <h3>1,213</h3>
+                    <h3 id="students-nbr">1,213</h3>
                     <span>Students</span>
                 </div>
             </div>
@@ -56,7 +56,7 @@
             <div class="val-box">
                 <i class="fas fa-users"></i>
                 <div>
-                    <h3>54</h3>
+                    <h3 id="teachers-nbr">54</h3>
                     <span>Teachers</span>
                 </div>
             </div>
@@ -65,7 +65,7 @@
             <div class="val-box">
                 <i class="fas fa-laptop-code"></i>
                 <div>
-                    <h3>213</h3>
+                    <h3 id="courses-nbr">213</h3>
                     <span>Courses</span>
                 </div>
             </div>
@@ -111,6 +111,30 @@
         document.addEventListener("DOMContentLoaded", () => {
 
             const courses_container = document.getElementById("courses-div");
+
+            fetch('http://localhost:3000/counts')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                const students_nbr = document.getElementById("students-nbr");
+                const teachers_nbr = document.getElementById("teachers-nbr");
+                const courses_nbr = document.getElementById("courses-nbr");
+                
+                students_nbr.innerHTML = `${data.students}`;
+                teachers_nbr.innerHTML = `${data.teachers}`;
+                courses_nbr.innerHTML = `${data.courses}`;
+
+            })
+            .catch((error) => {
+                const errorMessage = document.getElementById('error-message');
+                errorMessage.textContent = `Failed to fetch data: ${error.message}`;
+            });
+
+
             let request = new XMLHttpRequest();
             request.open("GET", `http://127.0.0.1:3000/cours`);
             request.responseType = "json"
