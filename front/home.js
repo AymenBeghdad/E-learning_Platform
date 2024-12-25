@@ -14,15 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Search form handling
+    // Search form handling (Add this here)
     const searchForm = document.querySelector('.search-form');
-    searchForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const query = searchForm.querySelector('input[name="search-box"]').value;
-        if (query) {
-            // Redirect to the search results page with the query
-            window.location.href = `/search?q=${query}`; // You can adjust this URL to your search results page
-        }
-    });
+    if (searchForm) {
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const query = searchForm.querySelector('input[name="search-box"]').value.trim();
+            if (query) {
+                localStorage.setItem('searchQuery', query);
+                window.location.href = '/E-learning_Platform/front/search.html'; 
+            }
+        });
+    }
 
 });
 document.addEventListener('DOMContentLoaded', () => {

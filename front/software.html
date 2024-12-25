@@ -158,6 +158,18 @@ document.addEventListener('DOMContentLoaded', function () {
   const coursesGrid = document.querySelector(".courses-grid");
   const taughtGrid = document.querySelector(".taught-grid");
   let validkey = "";
+  const searchForm = document.querySelector('.search-form');
+    if (searchForm) {
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const query = searchForm.querySelector('input[name="search-box"]').value.trim();
+            if (query) {
+                localStorage.setItem('searchQuery', query);
+                window.location.href = '/E-learning_Platform/front/search.html'; 
+            }
+        });
+    }
   
   // Function to fetch and display courses based on category (specialty)
   function fetchCourses(category) {
