@@ -113,7 +113,7 @@
                               let coursesList = "<h3>Enrolled Courses:</h3><ul>";
                                courses.forEach(course => {
                               // Create a clickable link for each course
-                               coursesList += `<li><a href="course-details.html?courseId=${course.course_id}" target="_blank">${course.title}</a> (${course.responsable})</li><br>`;
+                               coursesList += `<li><a href="course_study.html?courseId=${course.course_id}" target="_blank">${course.title}</a> (${course.responsable})</li><br>`;
                               });
                                 coursesList += "</ul>";
                                 document.getElementById("courses").innerHTML = coursesList;

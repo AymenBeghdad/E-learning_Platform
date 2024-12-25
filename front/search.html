@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <link rel="stylesheet" href="category.css">
-    <title>data science</title>
+    <title>security</title>
 </head>
 <body>
 
@@ -13,21 +13,19 @@
 <header class="header">
   <div class="nav-container">
       <a href="home.html" class="logo">Educ-Me</a>
-       
-      <!-- Navigation Links -->
-      <nav class="navbar">
+       <!-- Navigation Links -->
+       <nav class="navbar">
         <a href="home.html">Home</a>
         <div class="dropdown">
             <a href="#" class="dropdown-btn">Categories</a>
             <ul class="dropdown-content">
-                <li><a href="data_science.html">Data Science</a></li>
+                <li><a href="data-science.html">Data Science</a></li>
                 <li><a href="security.html">Security</a></li>
                 <li><a href="software.html">Software</a></li>
             </ul>
         </div>
-        <a href=""class="scroll-to-about">About</a>
+        <a href="" class="scroll-to-about">About</a>
     </nav>
-    
       <!-- Search Bar -->
       <form action="" method="post" class="search-form">
         <input type="text" name="search-box" placeholder="Search" required maxlength="30">
@@ -43,25 +41,18 @@
 </header>
 <!-- Header end -->
 
-<!-- Category details -->
-<section class="category-details">
-  <div class="category-header">
-    <h2>
-      <span>Data Science</span><br>
-      Dive into the world of data science, unlocking the power of data to uncover insights and drive decisions. Learn to analyze complex datasets, build predictive models, and apply machine learning techniques to solve real-world problems with precision and expertise.    
-    </h2>
-    
-  </div>
 
-  <!-- Courses in Program Section -->
+<section class="category-details">
+
+  <!-- Courses searched -->
   <div class="cours">
     <h2 class="section-title">Courses in Program</h2>
 
     <!-- Courses Grid -->
     <div class="courses-grid">
       <div class="course-card">
-        <h3 class="course-title">Course 1: Advanced Cybersecurity Fundamentals</h3>
-        <p class="course-description">Learn the fundamental concepts of cybersecurity, network defense techniques, and how to protect your system from cyber threats.</p>
+        <h3 class="course-title"></h3>
+        <p class="course-description"></p>
         <a href="#course">
           <button class="bt enrollbtn" data-course-id="1" data-course-name="Advanced Cybersecurity Fundamentals" id="key">Enroll now</button>
         </a>
@@ -71,7 +62,7 @@
 
     </div>
   </div>
-<!-- Reusable Modal -->
+  <!-- Reusable Modal -->
 <div id="keyModal" class="modal" style="display: none;">
   <div class="modal-content">
     <span class="close" id="closeModal">&times;</span>
@@ -93,74 +84,13 @@
   </div>
 </div>
 
-<!-- Taught By The Best Section -->
-<section class="taught-section" id="taught-section">
-  <h2 class="section-title">Taught By The Best</h2>
-  <div class="taught-grid"> 
-    <div class="courses-grid">
-      <!-- Teacher 1 -->
-      <div class="taught-card">
-        <div class="taught-text">
-          <h3>James Bennett</h3>
-          <p>Cybersecurity professional with extensive experience in protecting digital systems and networks.</p>
-          <div class="more">
-            <p>James mentors students and professionals, helping them build careers in cybersecurity and advocating for a more secure digital future.</p>
-          </div>
-          <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer Start -->
-<footer class="footer">
-  <div class="footer-container">
-    <!-- Footer Links -->
-    <div class="footer-links">
-      <a href="home.html">Home</a>
-      <a href="help.html">Help</a>
-      <a href="conditions.html">Conditions</a>
-      <a href="#reviews-section">Review</a>
-    </div>
-
-    <!-- Social Media Icons -->
-    <div class="social-media-icons">
-      <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-        <i class="fab fa-facebook"></i>
-      </a>
-      <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-        <i class="fab fa-instagram"></i>
-      </a>
-    </div>
-
-    <!-- Footer Logo and Copyright -->
-    <div class="footer-logo-container">
-      <a href="home.html" class="footer-logo">Educ-Me</a>
-      <p>&copy; 2024 Educ-Me. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
-<!-- Footer End -->
-
-<!-- Back to Top Button -->
-<button id="backToTop" title="Go to top">↑</button>
-
-
 
 <script >
 document.addEventListener('DOMContentLoaded', function () {
-  const categoryName = "Data Science";
   const coursesGrid = document.querySelector(".courses-grid");
-  const taughtGrid = document.querySelector(".taught-grid");
   let validkey = "";
-  const searchForm = document.querySelector('.search-form');
+      // Search form handling (Add this here)
+      const searchForm = document.querySelector('.search-form');
     if (searchForm) {
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -172,9 +102,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-  // Function to fetch and display courses based on category (specialty)
-  function fetchCourses(category) {
-    const apiUrl = `http://localhost:3000/cours-spc?Target=${encodeURIComponent(category)}`;
+  // Function to fetch and display courses based on course name
+  function fetchCourseByName(courseName) {
+    const apiUrl = `http://localhost:3000/SearchCourse?title=${courseName}`;
 
     fetch(apiUrl)
       .then((response) => {
@@ -186,71 +116,36 @@ document.addEventListener('DOMContentLoaded', function () {
       .then((courses) => {
         // Clear existing content
         coursesGrid.innerHTML = "";
-        taughtGrid.innerHTML = "";
 
         let courseNumber = 1;
-        const displayedTeachers = new Set(); // To avoid duplicates in the "Taught By The Best" section
 
-        // Populate courses and teachers
+        // Populate courses
         courses.forEach((course) => {
           // Add course card
           const courseCard = document.createElement("div");
           courseCard.classList.add("course-card");
 
           courseCard.innerHTML = `
-            <h3 class="course-title" data="${course.title}" >Course ${courseNumber++}: ${course.title}</h3>
+            <h3 class="course-title">Course ${courseNumber++}: ${course.title}</h3>
             <p class="course-description">${course.Informations}</p>
             <a href="#course">
               <button class="bt enrollbtn" data-course-id=${course.ID_cours} data-course-name=${course.title} data-course-key=${course.key} id="key">Enroll now</button>
             </a>
           `;
-        
+
           // Append the course card to the courses grid
           coursesGrid.appendChild(courseCard);
-          
-          // Add teacher details if not already displayed
-          if (course.responsable && !displayedTeachers.has(course.responsable)) {
-            displayedTeachers.add(course.responsable);
-
-            const taughtCard = document.createElement("div");
-            taughtCard.classList.add("taught-card");
-
-            taughtCard.innerHTML = `
-              <div class="taught-text">
-                <h3>${course.responsable}</h3>
-                <p>${course.responsable} is responsible for teaching ${course.title}.</p>
-                <div class="more">
-                  <p>${course.responsable} brings unique expertise and passion to the field of ${categoryName}.</p>
-                </div>
-                <button dataC="${course.responsable}" class="read-more-btn"  >Contact</button>
-              </div>
-            `;
-
-            taughtGrid.appendChild(taughtCard);
-          }
-
-          document.querySelectorAll(".read-more-btn").forEach(readMore => {
-            readMore.addEventListener("click", () => {
-                const teacherName = event.target.getAttribute('dataC');
-                localStorage.setItem("teacher_name", teacherName);    
-                window.location.href = "./contact.html"    
-                
-            });
-        });
-        
         });
 
-        // Now that the courses have been appended, add the event listeners for enroll buttons
+        // Add the event listeners for enroll buttons
         document.querySelectorAll(".enrollbtn").forEach((button) => {
           button.addEventListener("click", () => {
             // Set the course name dynamically
             const course = button.getAttribute("data-course-name");
             validkey = button.getAttribute("data-course-key");
-            courseName.textContent = course;
 
             // Show the modal
-            if (keyModal)  keyModal.style.display = "block";
-    
+            if (keyModal) keyModal.style.display = "block";
 
             // Reset input and messages
             keyInput.value = "";
@@ -264,8 +159,14 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   }
 
-  // Fetch courses when the page loads
-  fetchCourses(categoryName);
+  // Retrieve the course name from localStorage and display it
+  const storedCourseName = localStorage.getItem('searchQuery');
+  if (storedCourseName) {
+    fetchCourseByName(storedCourseName); // Fetch and display courses by name
+    localStorage.removeItem('searchQuery'); // Optional: Clear localStorage after use
+  } else {
+    console.warn("No course name found in localStorage");
+  }
 
   // Modal elements
   const keyModal = document.getElementById("keyModal");
@@ -274,7 +175,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const submitKey = document.getElementById("submitKey");
   const errorMessage = document.getElementById("errorMessage");
   const successMessage = document.getElementById("successMessage");
-  const courseName = document.getElementById("courseName");
 
   // Close modal functionality
   if (closeModal) {
@@ -295,13 +195,11 @@ document.addEventListener('DOMContentLoaded', function () {
   // Handle key submission
   function handleKeySubmission() {
     const enteredKey = keyInput.value.trim();
-    const validKey = validkey; // Replace with your logic for key validation
 
-    if (enteredKey === validKey) {
+    if (enteredKey === validkey) {
       successMessage.style.display = "block";
       errorMessage.style.display = "none";
-      window.location.href = "./course_study.html"
-
+      window.location.href = "./course_study.html";
     } else {
       successMessage.style.display = "none";
       errorMessage.style.display = "block";
@@ -321,12 +219,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // Attach event to Submit button for key validation
   if (submitKey) {
     submitKey.addEventListener("click", () => {
-      handleKeySubmission()
-      
+      handleKeySubmission();
     });
   }
 });
-
 
 </script>
 
@@ -335,6 +231,4 @@ document.addEventListener('DOMContentLoaded', function () {
 </html>
 
 </html>
-
-
 

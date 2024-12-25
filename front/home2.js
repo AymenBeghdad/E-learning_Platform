@@ -15,15 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Search form handling
+    // Search form handling (Add this here)
     const searchForm = document.querySelector('.search-form');
     if (searchForm) {
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const query = searchForm.querySelector('input[name="search-box"]').value;
+            
+            const query = searchForm.querySelector('input[name="search-box"]').value.trim();
             if (query) {
-                // Redirect to the search results page with the query
-                window.location.href = `/search?q=${query}`;
+                localStorage.setItem('searchQuery', query);
+                window.location.href = '/E-learning_Platform/front/search.html'; 
             }
         });
     }

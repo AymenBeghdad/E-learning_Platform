@@ -696,6 +696,24 @@ app.get('/counts', (req, res) => {
       });
 });
 
+app.get('/SearchCourse', (req, res) => { 
+    
+  const title = req.query.title;
+
+  
+  const sql = `SELECT * FROM cours WHERE LOWER(title) LIKE LOWER(?)`;
+    
+  db.query(sql,[`%${title}%`], (error, results) => {
+    if (error) {
+      console.error('Database error:', error);
+      res.status(500).send(error.message);
+    }
+    else {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.json(results);
+    }
+  });
+});
 
  // Démarrer le serveur
 app.listen(PORT, () => {
