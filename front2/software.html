@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <link rel="stylesheet" href="category.css">
-    <title>data science</title>
+    <title>software</title>
 </head>
 <body>
 
@@ -13,21 +13,19 @@
 <header class="header">
   <div class="nav-container">
       <a href="home.html" class="logo">Educ-Me</a>
-       
-      <!-- Navigation Links -->
-      <nav class="navbar">
+       <!-- Navigation Links -->
+       <nav class="navbar">
         <a href="home.html">Home</a>
         <div class="dropdown">
             <a href="#" class="dropdown-btn">Categories</a>
             <ul class="dropdown-content">
-                <li><a href="data_science.html">Data Science</a></li>
+                <li><a href="data-science.html">Data Science</a></li>
                 <li><a href="security.html">Security</a></li>
                 <li><a href="software.html">Software</a></li>
             </ul>
         </div>
-        <a href=""class="scroll-to-about">About</a>
+        <a href="" class="scroll-to-about">About</a>
     </nav>
-    
       <!-- Search Bar -->
       <form action="" method="post" class="search-form">
         <input type="text" name="search-box" placeholder="Search" required maxlength="30">
@@ -47,8 +45,8 @@
 <section class="category-details">
   <div class="category-header">
     <h2>
-      <span>Data Science</span><br>
-      Dive into the world of data science, unlocking the power of data to uncover insights and drive decisions. Learn to analyze complex datasets, build predictive models, and apply machine learning techniques to solve real-world problems with precision and expertise.    
+      <span>Software</span><br>
+      Dive into the world of software development, where creativity meets functionality. Learn to design, develop, and maintain high-quality software solutions. Master programming languages, tools, and frameworks to build applications that solve complex problems and improve user experiences.    
     </h2>
     
   </div>
@@ -71,7 +69,7 @@
 
     </div>
   </div>
-<!-- Reusable Modal -->
+  <!-- Reusable Modal -->
 <div id="keyModal" class="modal" style="display: none;">
   <div class="modal-content">
     <span class="close" id="closeModal">&times;</span>
@@ -154,7 +152,7 @@
 
 
 
-<script >
+<script>
 document.addEventListener('DOMContentLoaded', function () {
 
   const dropdown = document.querySelector('.dropdown');
@@ -171,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-  const categoryName = "Data Science";
+  const categoryName = "Software";
   const coursesGrid = document.querySelector(".courses-grid");
   const taughtGrid = document.querySelector(".taught-grid");
   let validkey = "";
@@ -187,6 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+  
   // Function to fetch and display courses based on category (specialty)
   function fetchCourses(category) {
     const apiUrl = `http://localhost:3000/cours-spc?Target=${encodeURIComponent(category)}`;
@@ -377,6 +376,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+
 </script>
 
 </body>
@@ -384,6 +384,4 @@ document.addEventListener('DOMContentLoaded', function () {
 </html>
 
 </html>
-
-
 
