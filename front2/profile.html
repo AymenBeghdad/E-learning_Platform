@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="profile.css">
+    <title>Profile</title>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <div class="navbar">
+        <a href="homeStudent.html" class="logo">Educ-Me</a>
+        <a href="home.html" class="signOUT-btn" id="signOUT">Sign out</a>        
+    </div>
+</header>
+
+<!-- Profile Section -->
+<section class="profile-section">
+
+
+    <div class="profile-content">
+        <div class="profile-box">
+            <div class="profile-info">
+                <div class="firstdiv"> 
+                  <h2 id="fullname"></h2>
+                  <a href="editinfo.html" ><img src="images/edit.svg"></a>
+                </div>
+               
+                <br>
+                <p id="num"><i class="fas fa-id-card"></i> </p>
+                <br>
+                <p id="email"><i class="fas fa-envelope"></i> </p>
+                <br>
+                <p id="level"> <i class="fas fa-graduation-cap"></i> </p>
+            </div>
+            <br>
+             <!-- Courses Enrolled Section -->
+            <div id="courses"></div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-container">
+      <!-- Footer Links -->
+      <div class="footer-links">
+        <a href="home.html">Home</a>
+        <a href="help.html">Help</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="#reviews-section">Review</a>
+      </div>
+  
+      <!-- Social Media Icons -->
+      <div class="social-media-icons">
+        <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+  
+      <!-- Footer Logo and Copyright -->
+      <div class="footer-logo-container">
+        <a href="home.html" class="footer-logo">Educ-Me</a>
+        <p>&copy; 2024 Educ-Me. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+<script>
+        function getinfo(num) {
+            let request = new XMLHttpRequest();
+            request.open("GET", `http://127.0.0.1:3000/students-login?numr=${num}`);
+            request.send();
+
+            request.onreadystatechange = () => {
+                // Check if the request is complete
+                if (request.readyState === XMLHttpRequest.DONE) {
+                    // Parse the response
+                    console.log(request.responseText); // Logs the raw response
+                    const response = JSON.parse(request.responseText);
+                    
+
+                    if (request.status === 200 && response.length > 0) {
+                       
+                      const student = response[0]; // Access the first (and only) record
+
+                     document.getElementById("fullname").innerHTML = student.lastname+" "+student.firstname;
+                     document.getElementById("num").innerHTML = `<i class="fas fa-id-card"></i> Card ID: ${student.num}`;
+                     document.getElementById("email").innerHTML = `<i class="fas fa-envelope"></i> Email: ${student.student_email}`;
+                     document.getElementById("level").innerHTML = `<i class="fas fa-graduation-cap"></i> level: ${student.level}`;
+
+                     let courseRequest = new XMLHttpRequest();
+                courseRequest.open("GET", `http://127.0.0.1:3000/Astudent-courses?num=${num}`);
+                courseRequest.send();
+
+                courseRequest.onreadystatechange = () => {
+                    if (courseRequest.readyState === XMLHttpRequest.DONE) {
+                        if (courseRequest.status === 200) {
+                            const courses = JSON.parse(courseRequest.responseText).courses;
+
+                            // Check if there are any courses and display them
+                            if (courses.length > 0) {
+                              let coursesList = "<h3>Enrolled Courses:</h3><ul>";
+                               courses.forEach(course => {
+                              // Create a clickable link for each course
+                               coursesList += `<li><a href="course_study.html?courseId=${course.course_id}" target="_blank">${course.title}</a> (${course.responsable})</li><br>`;
+                              });
+                                coursesList += "</ul>";
+                                document.getElementById("courses").innerHTML = coursesList;
+                            } else {
+                                document.getElementById("courses").innerHTML = "<p>No courses found.</p>";
+                            }
+                        } else {
+                            document.getElementById("courses").innerHTML = "<p>Error retrieving courses.</p>";
+                        }
+                    }
+                };
+            } else {
+                alert('Student not found.');
+            }
+        }
+    };
+}
+
+        const num = localStorage.getItem('num');
+        getinfo(num)
+        document.getElementById("signOUT").addEventListener('click', function() {
+        localStorage.clear();
+        });
+</script>
+</html>
+
+

@@ -114,6 +114,13 @@ document.addEventListener('DOMContentLoaded', function () {
         return response.json();
       })
       .then((courses) => {
+
+        if (!Array.isArray(courses) || courses.length === 0) {
+          console.log("No courses found. Redirecting to notfound.html...");
+          window.location.href = "notfound.html";
+          return;
+        }
+
         // Clear existing content
         coursesGrid.innerHTML = "";
 

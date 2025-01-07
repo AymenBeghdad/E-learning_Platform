@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <link rel="stylesheet" href="category.css">
-    <title>security</title>
+    <link rel="stylesheet" href="category.css" />
+    <title>search</title>
 </head>
 <body>
 
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const query = searchForm.querySelector('input[name="search-box"]').value.trim();
             if (query) {
                 localStorage.setItem('searchQuery', query);
-                window.location.href = '/E-learning_Platform/front/search.html'; 
+                window.location.href = '/E-learning_Platform/front2/search2.html'; 
             }
         });
     }
@@ -118,6 +118,15 @@ document.addEventListener('DOMContentLoaded', function () {
         return response.json();
       })
       .then((courses) => {
+
+      if (!Array.isArray(courses) || courses.length === 0) {
+        console.log("No courses found. Redirecting to notfound.html...");
+        window.location.href = "notfound.html";
+        return;
+      }
+
+        console.log("Courses fetched:", courses);
+
         // Clear existing content
         coursesGrid.innerHTML = "";
 
@@ -157,9 +166,12 @@ document.addEventListener('DOMContentLoaded', function () {
             successMessage.style.display = "none";
           });
         });
-      })
+        
+      }) 
       .catch((error) => {
         console.error("Error fetching courses:", error);
+        console.log("No courses found. Redirecting to notfound.html...");
+        window.location.href = "notfound.html"; // Redirect to error page
       });
   }
 
