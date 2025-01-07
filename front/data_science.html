@@ -243,8 +243,13 @@ document.addEventListener('DOMContentLoaded', function () {
         // Now that the courses have been appended, add the event listeners for enroll buttons
         document.querySelectorAll(".enrollbtn").forEach((button) => {
           button.addEventListener("click", () => {
+            
+            const token = localStorage.getItem('num');
+            if(token != null) {
             // Set the course name dynamically
             const course = button.getAttribute("data-course-name");
+            const cour_id = button.getAttribute("data-course-id");
+            localStorage.setItem('cour_id', cour_id);
             validkey = button.getAttribute("data-course-key");
             courseName.textContent = course;
 
@@ -256,6 +261,11 @@ document.addEventListener('DOMContentLoaded', function () {
             keyInput.value = "";
             errorMessage.style.display = "none";
             successMessage.style.display = "none";
+          
+            }else {
+              alert('You must log in to enroll in a course.')
+            }
+
           });
         });
       })
@@ -300,7 +310,32 @@ document.addEventListener('DOMContentLoaded', function () {
     if (enteredKey === validKey) {
       successMessage.style.display = "block";
       errorMessage.style.display = "none";
-      window.location.href = "./course_study.html"
+      const token = localStorage.getItem('num');
+      const course_id = localStorage.getItem('cour_id')
+
+      const data = {
+        student_id: token,
+        course_id: course_id,
+      };
+      fetch('http://127.0.0.1:3000/add_enrollment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json', // This tells the server to return JSON
+        },
+        body: JSON.stringify(data)
+      })
+      .then(res => {
+          console.log('Response:', data);
+          alert('You are logged in! Proceeding to enrollment...')
+          window.location.href = "./course_study.html"
+      })
+      .catch(error => {
+        console.log(error)
+          alert('You must log in to enroll in a course.')
+          successMessage.style.display = "none";
+          errorMessage.style.display = "block";
+      });
 
     } else {
       successMessage.style.display = "none";
@@ -326,7 +361,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
-
 
 </script>
 
