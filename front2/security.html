@@ -36,7 +36,7 @@
 
       <!-- Login and Sign Up Buttons -->
       <div class="auth-buttons">
-          <a href="home.html" class="btn signup-btn" id="signOUT">Sign out</a>
+          <a href="/E-learning_Platform/front/home.html" class="btn signup-btn" id="signOUT">Sign out</a>
           <a href="profile.html"><img src="/E-learning_Platform/images/userIMG2.svg" style="width:33px; height:auto;"></a>
           
 
@@ -378,7 +378,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
-
+document.getElementById("signOUT").addEventListener('click', function() {
+    localStorage.clear();
+});
 
 </script>
 

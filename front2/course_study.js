@@ -151,3 +151,6 @@ document.addEventListener("keydown", (event) => {
         toggleFullscreen();
     }
 });
+document.getElementById("signOUT").addEventListener('click', function() {
+    localStorage.clear();
+});
