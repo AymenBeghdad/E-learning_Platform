@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const query = searchForm.querySelector('input[name="search-box"]').value.trim();
             if (query) {
                 localStorage.setItem('searchQuery', query);
-                window.location.href = '/E-learning_Platform/front/search2.html'; 
+                window.location.href = '/E-learning_Platform/front2/search2.html'; 
             }
         });
     }
