@@ -1,4 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
+    
+// Script te3 l video: 
+    const video = document.querySelector(".about-video video");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                video.currentTime = 0; // Restart the video when it becomes visible
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(document.querySelector(".about-section"));
+
+// Y5less hna diri copier coller
+    
     // Dropdown Hover
     const dropdown = document.querySelector('.dropdown');
     const dropdownContent = document.querySelector('.dropdown-content');
